@@ -9,7 +9,7 @@ function draw() {
   let vol= mic.getLevel();
   let vulls= map(vol,0,1,0,100);
   let vboca= map(vol,0,1,0,300);
-  background(127);
+  background(0,0,0);
   //Cara
   fill(227,192,139);
   ellipse(300,200,250,300);
