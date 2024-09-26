@@ -1,0 +1,39 @@
+<!--Id en serveix per identificar qualsevol element html i no es poden repetir en la mateixa pàgina, a vegades
+necesitem fer servir class perque volem repetir les caracteristiques d'aquesta classe diverses vegades a la pàgina.
+Quan escric en HTML id i vull agafar-ho des de javascript escric getElementById i quan escric en HTML class i vull 
+agafar-ho amb javascript getElementByClassName. Si ho vull agafar des de CSS, es a dir que el que vull fer amb ell es 
+donar-li un estil simplement he de posar en CSS si poso # seguit del nom de la clase seleccionare aquesta clase i si 
+escric . seguit del nom de la id seleccionare la id. En CSS s'ha descriure sempre {propietat1:valor1; propietat2:valor2}
+i davant del primer claudator he d'escriure .nomdelaid o #nomdelaclasse-->
+<script>
+  function  calculatePosition() {
+    //agafar les dades introduides per l'usuari
+    let a1 = parseFloat(document.getElementById('a1').value); //longitud primer braç
+    let a2 = parseFloat(document.getElementById('a2').value); //longitud segon braç
+    let q1_deg = parseFloat(document.getElementById('q1').value); //angle en graus del primer braç
+    let q2_deg = parseFloat(document.getElementById('q2').value); //angle en graus del segon braç
+    
+    /* let ens permet crear variables locals perque estan dintre de una funció en aquest cas 
+    (seria variable global si estiguesin a principi del codi i afectes a tot el codi)  que
+    emmagatzemen els valors introduits per l'usuari perque a banda de fer getElementById aplico
+    el metode .value per asegurarme que agafo el valor escrit i aplico la funcio parseFloat per 
+    convertir el valor introduit per l'usuari en un numero decimal o Floating point number en anglès
+    (si hagues parseInt el convertiria en nombres enters). En aquest tros de codi de la linea 11 a 
+    la 14 hem aconseguit guardar les 4 dades geometriques del nostre robot per fer calculs de la 
+    seva posició en funció de les 4 dades introduides per l'usuari */
+
+    //convertir graus a radians per als calculs trigonometrics
+    let  q1 = q1_deg * Math.PI / 180;
+    let  q2 = q2_deg * Math.PI / 180;
+    //aixó es lo mateix que 2PI/360
+
+    //mostrar les fórmules per calcular la posició del robot
+    let output = "<div class='equation'> Les equacions per calcular la posició final del robot son:</div>";
+    output += "<div class='equation'>\\[ x = a_1 \\cos(q_1) + a_2 \\cos(q_1 + q_2) \\] </div>";
+    output += "<div class='equation'>\\[ x = a_1 \\sin(q_1) + a_2 \\sin(q_1 + q_2) \\] </div>";
+
+    /* Estic creant una variable anomenada output en javascript que conté un element <div> o divisor HTML dintre del 
+    qual hi han equacions del robot en llenguatge javascript de la biblioteca (library) mathJax3 que permet veure 
+    formules matematiques en una web. MathJax3 utilitza \\ per avisar que comença un mathJax i te unes normes
+    com que la _ indica subindex, si poso una \\ davant de sinus o cosinus es veu escrit com a formula */
+</script>
