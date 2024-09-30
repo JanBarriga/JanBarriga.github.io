@@ -153,4 +153,17 @@ i davant del primer claudator he d'escriure .nomdelaid o #nomdelaclasse-->
     qual hi han equacions del robot en llenguatge javascript de la biblioteca (library) mathJax3 que permet veure 
     formules matematiques en una web. MathJax3 utilitza \\ per avisar que comença un mathJax i te unes normes
     com que la _ indica subindex, si poso una \\ davant de sinus o cosinus es veu escrit com a formula */
+ 
+    output = "<div class='equation'>substituir el valors;
+    output += "<div class='equation'>\\[ x = $(a1) \\ cos($(q1_deg)&deg;) = $(a2) \ cos($(q1_deg)&deg;) + $(q2_deg)&deg;  ] </div>";
+    output += "<div class='equation'>\\[ x = $(a1) \\ sin($(q1_deg)&deg;) = $(a2) \ sin($(q1_deg)&deg;) + $(q2_deg)&deg;  ] </div>";
+//calculs numerics detallats
+    let x1 = a1 * math.cos(q1); //posició en X de primer braç
+    let x2 = a2 * math.cos(q1 + q2); //posició en X del segon braç
+    let y1 = a1 * math.sin(q1) //posició en y del primer braç
+    let y2 = a2 * math.sin(q1 + q2); //posició en y del segon braç
+    output += "<div class='equation'>; //desgloçar els calculs
+    output += "<div class='equation'>\\ [x_1 = a_1 \\ cos($(q1_deg)&deg;) = $(a2) \ cos($(q1_deg)&deg;) + $(q2_deg)&deg;  ] </div>";
+    output += "<div class='equation'>\\ [x_1 = a_1 \\ sin($(q1_deg)&deg;) = $(a2) \ sin($(q1_deg)&deg;) + $(q2_deg)&deg;  ] </div>";
+    
 </script>
