@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <title>Web de Teo</title>
+    <title>Web de Jan</title>
     <style>
 body {
     padding: 0; /* Elimina l'espai extra al voltant del cos */
@@ -82,7 +82,8 @@ body {
     <input type="number" id="a1" value="2" step="0.1"><br><br>
     <!--input vol dir entrada d'informació per part de l'usuari que pot ser de molts tipus
     en aquest cas és un número, però podria ser un input type text, date o button que serian respectivament
-    que només accepta que escrivim text una data o un boto respectivament, més exemples aqui: https://www.w3schools.com/html/html_form_input_types.asp-->
+    que només accepta que escrivim text una data o un boto respectivament,
+    més exemples aqui: https://www.w3schools.com/html/html_form_input_types.asp-->
     <!--id significa identificador i és com un DNI, no es pot repetir en la mateixa pàgina i ens ajuda a manipular-lo amb
     Javascript getElementById, value significa valor per defecte que sortirà directament, step és la variabilitat
     que jo puc escriure, no puc escriure 4,32, si vulgues escriure 4,32 amb 2 decimal que hauries d'escriure?
@@ -125,45 +126,78 @@ i davant del primer claudator he d'escriure .nomdelaid o #nomdelaclasse-->
 
     function  calculatePosition() {
     //agafar les dades introduides per l'usuari
-    let a1 = parseFloat(document.getElementById('a1').value); //longitud primer braç
-    let a2 = parseFloat(document.getElementById('a2').value); //longitud segon braç
-    let q1_deg = parseFloat(document.getElementById('q1').value); //angle en graus del primer braç
-    let q2_deg = parseFloat(document.getElementById('q2').value); //angle en graus del segon braç
-    
-    /* let ens permet crear variables locals perque estan dintre de una funció en aquest cas 
-    (seria variable global si estiguesin a principi del codi i afectes a tot el codi)  que
-    emmagatzemen els valors introduits per l'usuari perque a banda de fer getElementById aplico
-    el metode .value per asegurarme que agafo el valor escrit i aplico la funcio parseFloat per 
-    convertir el valor introduit per l'usuari en un numero decimal o Floating point number en anglès
-    (si hagues parseInt el convertiria en nombres enters). En aquest tros de codi de la linea 11 a 
-    la 14 hem aconseguit guardar les 4 dades geometriques del nostre robot per fer calculs de la 
-    seva posició en funció de les 4 dades introduides per l'usuari */
+        let a1 = parseFloat(document.getElementById('a1').value); //longitud primer braç
+        let a2 = parseFloat(document.getElementById('a2').value); //longitud segon braç
+        let q1_deg = parseFloat(document.getElementById('q1').value); //angle en graus del primer braç
+        let q2_deg = parseFloat(document.getElementById('q2').value); //angle en graus del segon braç
+        
+            /* let ens permet crear variables locals perque estan dintre de una funció en quet cas (seria variabl global si estiguesi a principi del
+            codi i afectes a tot el codi) que emmagatzzena els valors introduits per l'usuari perque a banda de fer getElementtById aplico el metode 
+            .value per asegurarme que agaafo el valo escrit i aplico la funció parseFloat per convertir el valor del l'usuari en un numero decimal o 
+            Floatng point number en anglès (si hages parseInt el convertiria en nombres enters).
+            En aquet tros de codi de la linia 123 a la 127 hem aconseguit guardar les 4 dades geometriques del nostre robot per fer calculs de
+            la seva posició en la funció de les 4 dades incluides per l'usuari*/
+        
+        //convertir graus a radiants per als calculs trigonometrics
+        
+        let q1=q1_deg * Math.PI / 180;
+        let q2=q2_deg * Math.PI / 180;
+        
+        //aixó es lo mateix que 2PI/360
+        //mostrar les fórmules per calcular la pocició del robot
+        
+        let output = "<div class='equation'>  les equacions per calcular le pocició final del robor son:</div>";
+        output += "<div class='equation'>\\[ x = a_1 \\ cos(q_1) + a_2 \\cos(q_1 + q_2) \\] </div>";
+        output += "<div class='equation'>\\[ x = a_1 \\ sin(q_1) + a_2 \\sin(q_1 + q_2) \\] </div>";
+        
+        /* Estic creant una variable anomenada output en Javascript que conte un element <div> o divisor HTML dintre del
+        qual hi han equacions del robot en llenguatge Javascript de la bibliotece (library) mathJax3 que permet veure formules matematiques en una web.
+            mathJax3 utilitza  \\ per avisar que comnça un  mathJax i te unes normes com que la _ indica subindex, si poso uns 
+            ªª devant de sinus o cosinus es veu escrit com a formula */
+        
+        //Substituir les variables en les equacions
+        
+        output += "<div class='equation'>  Substituint els valors:</div>";
+        output += `<div class='equation'>\\[ x = ${a1} \\cdot \\cos(${q1_deg}°) + ${a2} \\cdot \\cos(${q1_deg}° + ${q2_deg}°) \\]</div>`;
+        output += `<div class='equation'>\\[ y = ${a1} \\cdot \\sin(${q1_deg}°) + ${a2} \\cdot \\sin(${q1_deg}° + ${q2_deg}°) \\]</div>`;
+        // Càlculs numèrics detallats
+        let x1 = a1 * Math.cos(q1); // Posició en X del primer braç
+        let x2 = a2 * Math.cos(q1 + q2); // Posició en X del segon braç
+        let y1 = a1 * Math.sin(q1); // Posició en Y del primer braç
+        let y2 = a2 * Math.sin(q1 + q2); // Posició en Y del segon braç
+        output += "<div class='equation'>Desglossant els càlculs:</div>";
+        output += `<div class='equation'>\\[ x_1 = a_1 \\cos(q_1) = ${a1} \\times \\cos(${q1_deg}°) = ${x1.toFixed(2)} \\]</div>`;
+        output += `<div class='equation'>\\[ x_2 = a_2 \\cos(q_1 + q_2) = ${a2} \\times \\cos(${q1_deg}° + ${q2_deg}°) = ${x2.toFixed(2)} \\]</div>`;
+        output += `<div class='equation'>\\[ y_1 = a_1 \\sin(q_1) = ${a1} \\times \\sin(${q1_deg}°) = ${y1.toFixed(2)} \\]</div>`;
+        output += `<div class='equation'>\\[ y_2 = a_2 \\sin(q_1 + q_2) = ${a2} \\times \\sin(${q1_deg}° + ${q2_deg}°) = ${y2.toFixed(2)} \\]</div>`;
+        // Càlcul de les coordenades finals (x,y) de la mà del robot  
+        let x = x1 + x2;
+        let y = y1 + y2;
+        output += "<div class='equation'> Calculant els resultats numèrics totals: </div>";
+        output += `<div class='equation'>\\[ x = ${x.toFixed(2)} \\]</div>`;
+        output += `<div class='equation'>\\[ y = ${y.toFixed(2)} \\]</div>`;
+        
+        /* .toFixed(2) és un metode d'arrodoniment que apliquem amb la sintaxi del punt a la lletra x i la lletra y
+            que corresponen a la posició final del robot. let x = x1 + x2; emmagatzema el valor de la posició x 
+            final en x i el $ seleciona el valor x i el posa 2 decimals arrodonots amb .toFixed i els \\[
+            indiquen que estem escrivint un codi MathJax3 que es un derivat de Latex per escriure formules matemàtiques 
+            que renderitzin bé a la pantalla. output += el que fa es sumar un elemet div anomenat output o sortida
+            d'informació que al principi està buit pero quan cliquem calculate comença a sortir tot el output. Ens 
+            hem d'adonar que el div output te al seu interior molts divs anomenats equation però no son "id" perquè si fosin
+            "id" haurien de ser 1, i son classes*/
+        
+        // Mostrar el resultat
+        
+        document.getElementById('output').innerHTML = output;
+        MathJax.typeset();}  // Renderitzar MathJax per mostrar les fórmules correctament
+    </script>
 
-    //convertir graus a radians per als calculs trigonometrics
-    let  q1 = q1_deg * Math.PI / 180;
-    let  q2 = q2_deg * Math.PI / 180;
-    //aixó es lo mateix que 2PI/360
+</div>
 
-    //mostrar les fórmules per calcular la posició del robot
-    let output = "<div class='equation'> Les equacions per calcular la posició final del robot son:</div>";
-    output += "<div class='equation'>\\[ x = a_1 \\cos(q_1) + a_2 \\cos(q_1 + q_2) \\] </div>";
-    output += "<div class='equation'>\\[ x = a_1 \\sin(q_1) + a_2 \\sin(q_1 + q_2) \\] </div>";
+<!-- Scripts necessaris -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
 
-    /* Estic creant una variable anomenada output en javascript que conté un element <div> o divisor HTML dintre del 
-    qual hi han equacions del robot en llenguatge javascript de la biblioteca (library) mathJax3 que permet veure 
-    formules matematiques en una web. MathJax3 utilitza \\ per avisar que comença un mathJax i te unes normes
-    com que la _ indica subindex, si poso una \\ davant de sinus o cosinus es veu escrit com a formula */
- 
-    output = "<div class='equation'>substituir el valors;
-    output += "<div class='equation'>\\[ x = $(a1) \\ cos($(q1_deg)&deg;) = $(a2) \ cos($(q1_deg)&deg;) + $(q2_deg)&deg;  ] </div>";
-    output += "<div class='equation'>\\[ x = $(a1) \\ sin($(q1_deg)&deg;) = $(a2) \ sin($(q1_deg)&deg;) + $(q2_deg)&deg;  ] </div>";
-//calculs numerics detallats
-    let x1 = a1 * math.cos(q1); //posició en X de primer braç
-    let x2 = a2 * math.cos(q1 + q2); //posició en X del segon braç
-    let y1 = a1 * math.sin(q1) //posició en y del primer braç
-    let y2 = a2 * math.sin(q1 + q2); //posició en y del segon braç
-    output += "<div class='equation'>; //desgloçar els calculs
-    output += "<div class='equation'>\\ [x_1 = a_1 \\ cos($(q1_deg)&deg;) = $(a2) \ cos($(q1_deg)&deg;) + $(q2_deg)&deg;  ] </div>";
-    output += "<div class='equation'>\\ [x_1 = a_1 \\ sin($(q1_deg)&deg;) = $(a2) \ sin($(q1_deg)&deg;) + $(q2_deg)&deg;  ] </div>";
-    
-</script>
+</body>
+</html>
