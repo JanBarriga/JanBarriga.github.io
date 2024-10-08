@@ -41,7 +41,7 @@ body {
      <div class="container-fluid">
        <a class="navbar-brand d-flex align-items-center" href="#">
     <img src="/files/images/logo.png" alt="Logo" width="50" class="logo">
-    <span class="brand-text">Web de Teo</span>
+    <span class="brand-text">Web de Jan</span>
 </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -186,12 +186,50 @@ i davant del primer claudator he d'escriure .nomdelaid o #nomdelaclasse-->
             hem d'adonar que el div output te al seu interior molts divs anomenats equation però no son "id" perquè si fosin
             "id" haurien de ser 1, i son classes*/
         
-        // Mostrar el resultat
-        
+//Mosrtar el resultat
         document.getElementById('output').innerHTML = output;
-        MathJax.typeset();}  // Renderitzar MathJax per mostrar les fórmules correctament
+        MathJax.typeset(); //Renderitzar les fórmules matemàtiques amb MathJax
+        }
+    //Dibuixar gràficament al robot amb els dos braços
+        let canvas = document.getElementById('robotCanvas');
+        /*Canvas és semblant a img que servia per introduir una imatge perquè no té els atributs o paràmetres src que 
+        indica la font (source=src=nom de la imatge) o la direcció d'internet de la imatge i tampoc té el paràmetre alt,
+        que s'hauria de posar en totes les imatges, per exemple, alt="aquest text nomes sortirà si no es troba la imatge
+        o per persones cegues perquè entenguin la imatge". En canvi canvas només té dos atributs width i height, que son
+        l'altura i l'amplada en píxels
+        /*Agafa un element que s'anomena robotcanvas i ques està situat en el div buit de sota del dev buit de l'output,
+        es a dir, hi ha un divisor buit HTML anomenat output on surten totes les fòrmles i un divisor buit anomenat HTML anomenat
+        robotCanvas on sortirà el dibuix del robot.*/
+        let ctx = canvas.getContext('2d');// el dibuix ha de ser 2D i no 3D
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        //Netejem el canvas abans de dibuixar
+        //ctx l'hem anomenat així perque significa context de canvas en 2D
+        /*Posem el punt davant de .clearRect perquè és un mètode que s'aplica 
+          al context (ctx) i té 4 arguments o paràmetres els dos primers son la
+          cantonada superior esquerra del rectangles, que sempre es el punt de referència
+          de qualsevol dibuix i la cantonada inferior dreta son els 2 darrers números.
+          Quins son els dos darrers números? Son 400 perquè son canvas.height i canvas.width.
+          clearRect. significa netejar un rectangles i només necessitem dos coordenades per
+          netejar-lo, la cantonada superior esquerr i la cantonada inferior dreta.*/
+        
+    // Definim el centre del canvas i l'escala
+        
+        let centerX = canvas.width / 2;
+        let centerY = canvas.height / 2;
+        let scale = 80; //Aixó es l'escala per dibuixar les distàncies
+            
     </script>
-
+    <p>Em dic Eric i sóc alumne de programació i robòtica de 1r de batxillerat tecnològic de <a href="https://agora.xtec.cat/ies-pompeu-fabra-martorell/">l'institut Pompeu Fabra</a></p>
+    <p>A continuació veuràs un llistat amb diferents projectes que farem durant el curs:</p>
+    <ul>
+        <li>Codis amb JavaScript, CSS i HTML que construiran una pàgina web on l'usuari introuirà diferents dades d'un braç robòtic i el sistema ens calcularà altres dades i les representarà visualment</li>
+        <!--<ul> significa lista doseordenada o unrdered list i <ol> ordered list o llista ordenada amb números i cada <li> és un element de le llista-->
+        <li>Creació d'una obra d'art geomètrica interactiva que reaccioni a la meva veu a través d'un micròfon i a diferents tecles del teclat, al ratolí, que faci moviments repetitius amb sin i cos, moviments aleatoris amb random... Utilitzarem p5.js.</li>
+        <li>Projecte de farmacocinètica: Us deixaré 2 llibre de farmacocinètica amb fòrmules matemàtiques i us donarè un codi inicial de 375 línies on usuari introdueix dades amb un slider com la dosis de fàrmac, la constant d'absorció i la ocnstant d'eliminació, el volum de distribució, la via d'administració (que serà un dropdown que podré trirar oral, intravenosa, transdèrmica, sublingual i inalatòria) nivell tòxic i el sistema em farà un grafic amb unes fòrmules matemàtiques que introduiré i el dibuixarà en un gràfic a temps real i em calculara moltes coses d'interès per un metge o un farmacèutic.</li>
+        <li>Aliments ecològics i convencionals amb C++.</li>
+        <li>Contaminació atmosfèrica d'una ciutat catalana amb R.</li> 
+        <li>Aprenentatge profund o "deep learning" amb Python i amb JavaScript (farem un codi que ens reconeixerà els contorns d'una obra d'art i ens donarà un codi en p5.js).</li>
+    </ul>
 </div>
 
 <!-- Scripts necessaris -->
