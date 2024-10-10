@@ -316,6 +316,24 @@ canvas{
           let centerX = canvas.width / 2;
           let centerY = canvas.height / 2;
           let scale = 80; //Aixó es l'escala per dibuixar les distàncies
+
+          let x1_screen = centerX + x1*scale;
+          let x2_screen = centerX + x2*scale;
+          let y1_screen = centerX + y1*scale;
+          let y2_screen = centerX + y2*scale;
+
+     ctx.beginPath();
+       ctx.moveto(centerX,centerY);
+       ctx.lineTo(x1_screen,y1_screen);
+       //final primer braç
+       ctx.stroke();
+       ctx.beginPath(); 
+       ctx.moveTo(x1_screen,y1_screen);
+       ctx.lineTo(x2_screen,y2_screen);
+       ctx.strokeStyle='green';
+       ctx.linewidth='5';
+       ctx.stroke();
+       
             
     </script>
     <p>Em dic Jan i sóc alumne de programació i robòtica de 1r de batxillerat tecnològic de <a href="https://agora.xtec.cat/ies-pompeu-fabra-martorell/">l'institut Pompeu Fabra</a></p>
