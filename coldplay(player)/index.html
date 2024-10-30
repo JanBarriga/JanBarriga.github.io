@@ -48,18 +48,8 @@
         
         <!-- Dropdown to select the type of visualization -->
         <select id="visualizationType">
-            <option value="stars">Stars</option>
-            <!-- Option to visualize stars -->
-            <option value="circles">Circles</option>
-            <!-- Option to visualize circles -->
             <option value="sphere">3D Sphere</option>
-            <!-- Option to visualize a 3D sphere -->
-            <option value="hearts">Hearts</option>
-            <!-- Option to visualize hearts -->
-            <option value="crescentMoon">Crescent Moon</option>
-            <!-- Option to visualize a crescent moon -->
             <option value="waningMoon">Waning Moon</option>
-            <!-- Option to visualize a waning moon -->
         </select>
         <br><br>
         
@@ -73,7 +63,6 @@
     <!-- Width and height of the canvas are set -->
     
     <script>
-        // Get references to the file input, audio player, canvas, and dropdown
         const fileInput = document.getElementById('audioFile');
         const audioPlayer = document.getElementById('audioPlayer');
         const canvas = document.getElementById('canvas');
@@ -82,7 +71,6 @@
         let audioContext, analyser, source, frequencyData;
         let animationFrameId;
 
-        // Check if the browser supports Web Audio API
         if (!window.AudioContext && !window.webkitAudioContext) {
             alert('Your browser does not support the Web Audio API. Please try a different browser.');
         }
@@ -109,7 +97,6 @@
                 audioPlayer.src = audioURL;
                 // Set the audio player source to the uploaded file
                 audioPlayer.load();
-                // Load the audio into the player
                 initAudio(audioURL);
                 // Initialize audio processing with Web Audio API
             } else {
