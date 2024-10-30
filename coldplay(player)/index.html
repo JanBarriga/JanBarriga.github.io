@@ -1,297 +1,169 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Sets the character encoding to UTF-8 to support various characters -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Ensures the webpage scales correctly on mobile devices -->
-    <title>Audio Visualizer</title>
-    <!-- Sets the title of the webpage -->
+    <title>SVG Audio Visualizer</title>
     <style>
-        /* Basic styling for the body element */
-        body{
+        body {
             font-family: Arial, sans-serif;
-            /* Use Arial font or similar */
             text-align: center;
-            /* Center-align the text */
             background-color: #1a1a1a;
-            /* Dark background color */
             color: #fff;
-            /* White text color */
         }
-        /* Styles for the canvas element */
-        #canvas {
+        svg {
             display: block;
-            /* Makes the canvas a block element */
             margin: 20px auto;
-            /* Centers the canvas with margin */
             background-color: #000;
-            /* Black background for the canvas */
         }
-        /* Styles for the controls section */
         .controls {
             margin: 20px;
-            /* Adds margin around the controls */
         }
     </style>
 </head>
 <body>
-    <!-- Heading of the webpage -->
-    <h1>Audio Visualizer</h1>
-    
-    <!-- Section containing controls (file input and visual options) -->
+    <h1>SVG Audio Visualizer</h1>
     <div class="controls">
-        <!-- File input for uploading audio files -->
-        <input type="file" id="audioFile" accept="audio/*">
-        <!-- Accepts only audio files -->
-        <br><br>
-        
-        <!-- Dropdown to select the type of visualization -->
-        <select id="visualizationType">
-            <option value="sphere">3D Sphere</option>
-            <option value="waningMoon">Waning Moon</option>
+        <label for="songSelect">Choose Song:</label>
+        <select id="songSelect">
+            <option value="song1">Song 1</option>
+            <option value="song2">Song 2</option>
+            <!-- Easily add more songs here -->
         </select>
         <br><br>
-        
-        <!-- Audio player element -->
+        <input type="file" id="audioFile" accept="audio/*">
+        <br><br>
         <audio id="audioPlayer" controls></audio>
-        <!-- Allows playing, pausing, and controlling the audio -->
     </div>
-    
-    <!-- Canvas element where visualizations are drawn -->
-    <canvas id="canvas" width="800" height="400"></canvas>
-    <!-- Width and height of the canvas are set -->
-    
+
+    <svg id="svgVisualizer" width="1920" height="1080" viewBox="0 0 100 100">
+        <circle id="circle" cx="50" cy="50" r="25" fill="hsl(200, 100%, 50%)" />
+        <path id="heart" d="M -590.515625 522.19995 C -93.585938 511.789794 57.28125 353.664589 309.140625 352.073824 C 481.46875 350.98992 636.609375 505.348754 799.257812 531.643171 Z M -590.515625 522.19995" fill="hsl(200, 100%, 50%)" style="display:none;" />
+        <path id="wepray" d="M36.5,11.2c0-6.4,5.2-11.4,11.4-11.4c6.4,0,11.4,5.2,11.4,11.4c0,6.4-5.2,11.4-11.4,11.4S36.5,17.4,36.5,11.2z M54.1,24.9 c-2.9-1.6-6.6-0.5-8.2,2.4l-3.2,5.8c-0.4-3-1.2-5.8-1.9-7c-1.6-3.3-3.7-4.6-3.7-4.6c-11.2-6.4-17.2,5.4-17.3,5.8 c-1.1,2.6-2.6,6.9-2.5,15.3c0.4,19.2,11.5,45.1,11.5,45.1H7.3C3.4,87.7,0,90,0,94.2c0,3.7,3.2,6,7,6h29.9c4.5,0,7.9-2.5,8.1-11 l0.3-35.5l11.4-20.8C58.1,30,57,26.4,54.1,24.9z" fill="hsl(200, 100%, 50%)" style="display:none;" />
+        <path id="cross" d="M35,19L41,19L41,30L52,30L52,36L41,36L41,57L35,57L35,36L24,36L24,30L35,30L35,19Z" fill="hsl(200, 100%, 50%)" style="display:none;" />
+        <g id="coldplay" style="display:none;" fill="hsl(200, 100%, 50%)">
+                      <!-- Paths -->
+            <path d="M 52.052996,16.980703 C 33.451377,19.950086 17.293884,53.581773 51.100807,66.970622 5.1483425,68.415607 19.416639,10.249047 52.052996,16.980703 Z" />
+            <path d="M 163.7765,20.313364 C 145.96421,56.266758 187.0831,68.34424 199.95968,56.179148 170.72448,84.278014 137.89693,40.104811 163.7765,20.313364 Z" />
+            <!-- Circles -->
+            <circle cx="104.26469" cy="42.055012" r="25.709103" />
+            <circle cx="524.97351" cy="29.359158" r="8.093606" />
+
+    <path d="m 225.19268,18.250288 c 44.99697,-4.174294 42.27784,55.063459 -0.31739,49.196429 28.37951,-13.011974 19.75892,-41.161638 0.31739,-49.196429 z" />
+
+<path d="m 281.21313,30.470046 c 29.49604,-31.44835306 64.49876,15.019663 35.23099,35.548387 12.45541,-19.491564 -5.30028,-48.988541 -35.23099,-35.548387 z" />
+    <path d="m 359.45133,22.217742 c -31.2637,28.678816 20.55628,61.326966 35.54838,34.754896 -22.12538,15.262315 -51.70162,-7.305059 -35.54838,-34.754896 z" />
+    <path d="m 418.48704,50.78341 c 9.07623,-27.461167 38.79822,-24.560657 49.03773,0.793491 4.28895,-36.343906 -52.51059,-42.6516151 -49.03773,-0.793491 z"/>
+    <path d="m 486.25115,21.265553 c 35.63671,-7.300115 44.13556,53.322581 1.90438,48.561636 28.86049,-7.128449 21.61231,-44.49379 -1.90438,-48.561636 z"/>
+        </g>
+    </svg>
+        </g>
+    </svg>
+
     <script>
         const fileInput = document.getElementById('audioFile');
         const audioPlayer = document.getElementById('audioPlayer');
-        const canvas = document.getElementById('canvas');
-        const ctx = canvas.getContext('2d');
-        const visualizationType = document.getElementById('visualizationType');
-        let audioContext, analyser, source, frequencyData;
-        let animationFrameId;
+        const songSelect = document.getElementById('songSelect');
+        const shapes = {
+            circle: document.getElementById('circle'),
+            heart: document.getElementById('heart'),
+            wepray: document.getElementById('wepray'),
+            cross: document.getElementById('cross'),
+            coldplay: document.getElementById('coldplay')
+        };
 
-        if (!window.AudioContext && !window.webkitAudioContext) {
-            alert('Your browser does not support the Web Audio API. Please try a different browser.');
-        }
+        let audioContext, analyser, frequencyData;
+        let currentShapeIndex = 0;
+        let cycleInterval;
 
-        // Event listener for when an audio file is uploaded
-        fileInput.addEventListener('change', handleFileUpload);
-        
-        // Event listener for when the visualization type is changed
-        visualizationType.addEventListener('change', () => {
-            if (audioPlayer.src) {
-                // Cancels the previous animation and starts a new one when type changes
-                cancelAnimationFrame(animationFrameId);
-                visualize();
+        // Configuration for each song (easily scalable)
+        const songConfig = {
+            song1: {
+                shapeOrder: ['circle', 'heart', 'wepray', 'cross', 'coldplay'],
+                durations: [5000, 6000, 7000, 9000, 999999]
+            },
+            song2: {
+                shapeOrder: ['circle', 'heart', 'wepray', 'cross'],
+                durations: [4000, 8000, 6000, 10000, 999999]
             }
-        });
+        };
 
-        // Function to handle the uploaded audio file
+        fileInput.addEventListener('change', handleFileUpload);
+        songSelect.addEventListener('change', resetVisualizer);
+
         function handleFileUpload(event) {
-            const file = event.target.files[0];  // Get the selected file
+            const file = event.target.files[0];
             if (file && file.type.startsWith('audio/')) {
-                // Check if the file is an audio file
                 const audioURL = URL.createObjectURL(file);
-                // Create a URL for the audio file
                 audioPlayer.src = audioURL;
-                // Set the audio player source to the uploaded file
                 audioPlayer.load();
-                initAudio(audioURL);
-                // Initialize audio processing with Web Audio API
+                initAudio();
             } else {
                 alert('Please upload a valid audio file.');
-                // Show an alert if the file is not audio
             }
         }
 
-        // Function to initialize Web Audio API for audio analysis
-        function initAudio(audioURL) {
+        function initAudio() {
             audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            // Create an audio context for audio manipulation
             analyser = audioContext.createAnalyser();
-            // Create an analyser to extract frequency data
             analyser.fftSize = 256;
-            // Set the FFT size (frequency resolution)
-            const bufferLength = analyser.frequencyBinCount;
-            // Calculate the buffer length (half the FFT size)
-            frequencyData = new Uint8Array(bufferLength);
-            // Create an array to hold the frequency data
+            frequencyData = new Uint8Array(analyser.frequencyBinCount);
 
-            source = audioContext.createMediaElementSource(audioPlayer);
-            // Create a media element source from the audio player
+            const source = audioContext.createMediaElementSource(audioPlayer);
             source.connect(analyser);
-            // Connect the audio source to the analyser
             analyser.connect(audioContext.destination);
-            // Connect the analyser to the audio context destination (speakers)
 
             visualize();
-            // Start the visualization process
+            startCycleShapes();
         }
 
-        // Function to visualize the audio data on the canvas
         function visualize() {
-            animationFrameId = requestAnimationFrame(visualize);
-            // Recursively call visualize to update animation
+            requestAnimationFrame(visualize);
             analyser.getByteFrequencyData(frequencyData);
-            // Get the frequency data from the analyser
 
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            // Clear the canvas for the next frame
+            const averageFrequency = frequencyData.reduce((a, b) => a + b) / frequencyData.length;
+            const scale = averageFrequency / 255;
 
-            frequencyData.forEach((value, i) => {
-                const barHeight = value / 2;
-                // Calculate bar height based on frequency value
-                const color = getColor(value);
-                // Get the color based on frequency value
-                const x = Math.random() * canvas.width;
-                // Generate a random x-coordinate for the visual
-                const y = Math.random() * canvas.height;
-                // Generate a random y-coordinate for the visual
+            const selectedShape = shapes[getCurrentShape()];
+            const hue = Math.round((averageFrequency / 255) * 360);
+            selectedShape.setAttribute('fill', `hsl(${hue}, 100%, 50%)`);
+            selectedShape.setAttribute('transform', `scale(${scale + 0.5})`);
+        }
 
-                // Draw shapes based on the selected visualization type
-                if (visualizationType.value === 'sphere') {
-                    draw3DSphere(ctx, x, y, barHeight / 5, color);
-                } else if (visualizationType.value === 'stars') {
-                    drawStar(ctx, x, y, barHeight / 5, Math.floor(value / 51) + 5, color);
-                } else if (visualizationType.value === 'circles') {
-                    drawCircle(ctx, x, y, barHeight / 5, color);
-                } else if (visualizationType.value === 'hearts') {
-                    drawHeart(ctx, x, y, barHeight / 5, color);
-                } else if (visualizationType.value === 'crescentMoon') {
-                    drawCrescentMoon(ctx, x, y, barHeight / 5, color);
-                } else if (visualizationType.value === 'waningMoon') {
-                    drawWaningMoon(ctx, x, y, barHeight / 5, color);
-                }
+        function startCycleShapes() {
+            const songData = songConfig[songSelect.value];
+            let totalTime = 0;
+
+            songData.shapeOrder.forEach((shape, index) => {
+                setTimeout(() => {
+                    currentShapeIndex = index;
+                    updateShapeVisibility();
+                }, totalTime);
+                totalTime += songData.durations[index];
             });
+
+            cycleInterval = setInterval(() => {
+                currentShapeIndex = (currentShapeIndex + 1) % songData.shapeOrder.length;
+                updateShapeVisibility();
+            }, totalTime);
         }
 
-        // Function to determine the color based on frequency value
-        function getColor(value) {
-            const hue = Math.round((value / 255) * 360);
-            // Calculate hue based on frequency
-            const saturation = 100;
-            // Full saturation
-            const lightness = 50;
-            // Mid-level lightness
-            return hsl(${hue}, ${saturation}%, ${lightness}%);
-            // Return HSL color format
+        function resetVisualizer() {
+            clearInterval(cycleInterval);
+            audioPlayer.currentTime = 0;
+            audioPlayer.pause();
+            updateShapeVisibility();
         }
 
-        // Function to draw a star shape
-        function drawStar(ctx, cx, cy, outerRadius, numPoints, color) {
-            const innerRadius = outerRadius / 2;
-            // Calculate inner radius for star shape
-            ctx.fillStyle = color;
-            // Set the fill color for the star
-            ctx.beginPath();
-            // Start a new drawing path
-            const angle = Math.PI / numPoints;
-            // Calculate the angle between star points
-            for (let i = 0; i < 2 * numPoints; i++) {
-                const radius = (i % 2 === 0) ? outerRadius : innerRadius;
-                // Use outer and inner radius alternately
-                const x = cx + Math.cos(i * angle) * radius;
-                // Calculate x-coordinate for the star point
-                const y = cy + Math.sin(i * angle) * radius;
-                // Calculate y-coordinate for the star point
-                ctx.lineTo(x, y);
-                // Draw line to the calculated point
-            }
-            ctx.closePath();
-            // Close the star shape
-            ctx.fill();
-            // Fill the star with the selected color
+        function getCurrentShape() {
+            return songConfig[songSelect.value].shapeOrder[currentShapeIndex];
         }
 
-        // Function to draw a circle shape
-        function drawCircle(ctx, cx, cy, radius, color) {
-            ctx.fillStyle = color;
-            // Set the fill color for the circle
-            ctx.beginPath();
-            // Start a new drawing path
-            ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-            // Draw a full circle
-            ctx.fill();
-            // Fill the circle with the selected color
-        }
-
-        // Function to draw a heart shape
-        function drawHeart(ctx, cx, cy, size, color) {
-            ctx.fillStyle = color;
-            // Set the fill color for the heart
-            ctx.beginPath();
-            // Start a new drawing path
-            ctx.moveTo(cx, cy);
-            // Move to the starting point (top of the heart)
-            ctx.bezierCurveTo(cx + size / 2, cy - size / 2, cx + size, cy + size / 2, cx, cy + size);
-            // Draw the right side of the heart
-            ctx.bezierCurveTo(cx - size, cy + size / 2, cx - size / 2, cy - size / 2, cx, cy);
-            // Draw the left side of the heart
-            ctx.fill();
-            // Fill the heart with the selected color
-        }
-
-        // Function to draw a crescent moon shape
-        function drawCrescentMoon(ctx, cx, cy, radius, color) {
-            ctx.fillStyle = color;
-            // Set the fill color for the crescent moon
-            ctx.beginPath();
-            // Start a new drawing path
-            ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-            // Draw a full circle for the moon base
-            ctx.fill();
-            // Fill the moon base
-            ctx.globalCompositeOperation = 'destination-out';
-            // Change blending mode to subtract from the previous shape
-            ctx.beginPath();
-            // Start a new drawing path
-            ctx.arc(cx + radius / 2, cy, radius, 0, Math.PI * 2);
-            // Draw a second circle to cut out the crescent
-            ctx.fill();
-            // Subtract the second circle from the first
-            ctx.globalCompositeOperation = 'source-over';
-            // Reset blending mode
-        }
-
-        // Function to draw a waning moon shape
-        function drawWaningMoon(ctx, cx, cy, radius, color) {
-            ctx.fillStyle = color;
-            // Set the fill color for the waning moon
-            ctx.beginPath();
-            // Start a new drawing path
-            ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-            // Draw a full circle for the moon base
-            ctx.fill();
-            // Fill the moon base
-            ctx.globalCompositeOperation = 'destination-out';
-            // Change blending mode to subtract from the previous shape
-            ctx.beginPath();
-            // Start a new drawing path
-            ctx.arc(cx - radius / 2, cy, radius, 0, Math.PI * 2);
-            // Draw a second circle to cut out the waning section
-            ctx.fill();
-            // Subtract the second circle from the first
-            ctx.globalCompositeOperation = 'source-over';
-            // Reset blending mode
-        }
-
-        // Function to draw a 3D sphere effect
-        function draw3DSphere(ctx, cx, cy, radius, color) {
-            const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
-            // Create a radial gradient for the sphere
-            gradient.addColorStop(0, color);
-            // Set the inner color
-            gradient.addColorStop(1, '#000');
-            // Set the outer color to black for a shadow effect
-            ctx.fillStyle = gradient;
-            // Apply the gradient as the fill color
-            ctx.beginPath();
-            // Start a new drawing path
-            ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-            // Draw a full circle for the sphere
-            ctx.fill();
-            // Fill the sphere with the gradient
+        function updateShapeVisibility() {
+            Object.keys(shapes).forEach(key => {
+                shapes[key].style.display = key === getCurrentShape() ? 'block' : 'none';
+            });
         }
     </script>
 </body>
