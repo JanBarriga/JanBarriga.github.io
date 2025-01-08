@@ -2,7 +2,7 @@ Of# First you need to install some libraries to manipulate and analyse dara
 install.packages(c("openair","tidyverse", "lares"))
 # Remember to edit the next line in order to use your city data
 # Do not use my hourly data from Martorell
-city<-read.csv('https://raw.githubusercontent.com/drfperez/openair/main/city.csv')
+city<-read.csv('https://raw.githubusercontent.com/JanBarriga/openair/mataró/city.csv')
 # You need to call tidyverse library in order to use pivot_longer
 library (tidyverse)
 # pivot_longer allows you to convert hour columns to hour rows
@@ -19,7 +19,7 @@ city2<-city2[-c(1,3)]
 # reorder the columns
 city2<-city2[,c(3,1,2)]
 # rename the columns names
-colnames (city2)<-c("date","pollutant","value")
+colnames (city2)<-c("data","contaminant","value")
 # check changes of column names are correct
 colnames(city2)
 # check the class of city2
@@ -42,20 +42,20 @@ class(city2$pollutant)
 # To know the different levels of the factor pollutant in order to draw figures
 levels(city2$pollutant)
 # Create a figure with hour, day, week, month variations of pollutants
-timeVariation(city2, pollutant=c("O3","NO2","H2S","NO","HCNM","CO","SO2","HCT", "NOX","PM10"), main="Air pollution in Martorell (1991-2022)")
+timeVariation(city2, pollutant=c("O3","NO2","H2S","NO","HCNM","CO","SO2","HCT", "NOX","PM10"), main="Polució en Mataró (1991-2022)")
 # Create another view of the previous data centered in one pollutant
-trendLevel(city2, pollutant = "H2S", main="Hydrogen sulfide evolution in Martorell")
+trendLevel(city2, pollutant = "H2S", main="Sulfur d'hidrogen")
 # Calculate daily means from hourly data of poly
-daily<-timeAverage(city2NO2,avg.time = "day")
+daily<-timeAverage(city2NO2,avg.time = "Dia")
 View(daily)
 # Create a calendar plot showing values of pollutants with colours
 calendarPlot(daily, pollutant="NO2", year="2021")
 # Select only one pollutant of my database
 city2NO2 <- subset(city2, pollutant=="NO2")
 # Calculate yearly means from previous data
-yearly<-timeAverage(city2NO2,avg.time = "year")
+yearly<-timeAverage(city2NO2,avg.time = "any")
 View(yearly)
-wind<-read.csv("https://raw.githubusercontent.com/drfperez/openair/main/wind.csv")
+wind<-read.csv("https://raw.githubusercontent.com/JanBarriga/openair/mataró/city.csv")
 # Remember to put your data instead of Martorell default data
 View(wind)
 # View your data
