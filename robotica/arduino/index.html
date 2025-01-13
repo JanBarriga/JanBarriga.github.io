@@ -11,4 +11,23 @@ analogiques, digital i sortides analogiques o digitals</li>
 i es una forma d'aconseguir una sortida analògica a partir de diverses sortides digitals molt rapides </p>
 <p> PWM es representa amb el simbol "~" tal com podem veure a la imatge d'un arduino uno</p>
 <img src="arduino.jpg" width="600" height="400">
+<p> Els pins amb PWM en l'arduino uno son el següents: 3,5,6,9,10 i 11. 
+  que son sortides analogiques de 8 bits. Com diu a les especificacions del fabricant</p>
+<a href="https://docs.arduino.cc/resources/datasheets/A000066-datasheet.pdf"> 
+ <p> Mentres, que en el cas del arduino rev4 usa 12 bits. Anomenat pel fabricant com a DAC <i>(DIGITAL ANALOG CONVERTER)</i> </p>
+<a href="https://docs.arduino.cc/resources/datasheets/ABX00080-datasheet.pdf">
+ <p> Tenir 8 o 12 bits en un convertidor DAC tipus PWM fa que tinguem 2<sup>8</sup> o 2<sup>10</sup> nivells differents de corrent,
+ es a dir 256 nivells diferents o 2048 nivells diferents</p>
+
+  <p>Suposem que arduino uno (Tan com si es Rev3 o Rev4) poden donar 5 volts com a maxim. Quina seria la resolució en milivolts
+  de cada arduino?</p>
+
+  <p> per al rev3 es 5 dividit entre 256 = 0.0195 = 19,5 milivolts (Per arduino uno revisió 3) </p>
+  <p> per al rev4 es 5 dividit entre 2048 = 0.00244 = 2,44 milivolts (Per arduino uno revisió 4) </p>
+  
+
+
+  
+
+
 
