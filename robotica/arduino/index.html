@@ -133,16 +133,31 @@ com combinant moltes senyals digitals ràpidament sembla que generem un senyal a
             </tr>
         </thead>
     </table>
-<pre><code>
-  int valorADC= 0;
-  void setup(){
-    Serial.begin(9600);//9600 en Arduino o 115200 en S3
-    }
-    void loop(){
-    valor ADC = analog.Read(A0);//34 en S3
-    Serial println(valorADC);//0-1023 o 0-4095
-    delay(500);}  
-</pre></code>
+<pre>
+    <code>
+        int valorADC= 0;
+        void setup(){
+        Serial.begin(9600);//9600 en Arduino o 115200 en S3
+        }
+        void loop(){
+        valor ADC = analog.Read(A0);//34 en S3
+        Serial println(valorADC);//0-1023 o 0-4095
+        delay(500);
+        }
+    </code>
+</pre>
+ 
+<p> A continuació tenim un codi general que es pot fer servir per a moltes coses diferents y totes  relacionades amb la capacitat
+que te l'arduino de llegir de 0 a 1023, si fosi un ESP 32 llegiria de 0  a 4095. I si fos un ADS 11 15 llegiria a 0-65536. Per que?
+Els microxips i microcontroladors estan fets per transistors i els transistors nomes poden fer una cosa (encendre o apagar-se) es a dir
+0 o 1. Si tenim 10 bits en el ADC (Analog digital converter) siginifica que te 2<sup>10</sup> combinacions de 0 i 1. Es a dir 1024 nivells
+combinacions de zeros i uns es a dir 4096 nivells diferents que numericament van des del 0 a 4095. Ara justifiquem el número 65536.
+Aquest nombre seria correcte si fos 2<sup>16</sup> com diu el fabricant, pero al datasheet parla d'un nivell maxim de 8000h (Numero 
+hexadicimal que correspon a 32768) es a dir, són 15 bits utilitzables. Sempre s'ha de comprobar el datasheet a la fulla de caracteristiques
+del fabricant. <a href = "https://cdn-shop.adafruit.com/datasheets/ads1115.pdf">
+</a>
+</p>
+
 </body>
 </html>
 
