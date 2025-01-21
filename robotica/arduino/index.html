@@ -53,35 +53,98 @@ i es una forma d'aconseguir una sortida analògica a partir de diverses sortides
  <p> Tenir 8 o 12 bits en un convertidor DAC tipus PWM fa que tinguem 2<sup>8</sup> o 2<sup>10</sup> nivells differents de corrent,
  es a dir 256 nivells diferents o 2048 nivells diferents</p>
 
-  <p>Suposem que arduino uno (Tan com si es Rev3 o Rev4) poden donar 5 volts com a maxim. Quina seria la resolució en milivolts
-  de cada arduino?</p>
+  <p>Tenir 8 o 12 bits en un convertidor digital analògic o DAC tipus PWM fa que tinguem 2<sup>8</sup> o 2<sup>10</sup> nivells 
+   diferents de corrent, es a dir 256 nivells diferents o 2048 nivells diferents</p>
 
-  <p> per al rev3 es 5 dividit entre 256 = 0.0195 = 19,5 milivolts (Per arduino uno revisió 3) </p>
-  <p> per al rev4 es 5 dividit entre 2048 = 0.00244 = 2,44 milivolts (Per arduino uno revisió 4) </p>
+<p>Suposem que Arduino Uno Rev3 o Rev4 podem donar 5 volts com a màxim. Quina seria la resolució en milivolts de cada Arduino?</p>
+<p> 5 volts dividit entre 256 dona 0.01953125 volts = 19.53125 milivolts per arduino Rev3</p>
+<p> 5 volts dividit entre 2048 dona 0.00244140625 volts = 2.44140625 milivolts per arduino Rev4</p>
+<p>Els milivolts anteriors són la resolució que aconseguim. Imaginem que volem regular la intensitat d'un LED amb un Arduino Uno Rev3 aconseguim
+menys fluid i amb graons més grans, és a dir canvis més bruscs perquè 256 canvis són menys que 2048 volts. A continuació veurem una imatge que representa
+com combinant moltes senyals digitals ràpidament sembla que generem un senyal analògi i això és la base del PWM.</p>
+<img src="pmw.PNG" widht="600" height="450">
+<p>Quan major és l'amplada del pols vol dir que major és el temps que la sortida digital està en voltatge alt,
+   per exemple 5V i menys temps està a 0V, i per tant el promig  de tots els polsos és més alt. En canvi si 
+   per exemple si cada pols és més estret a 5V vol dir que estarà més temps a 0V, i per tant el promig  de
+   tots els polsos és més baix. A la imatge de a dalt es pot veure com s'encendria un LED o un motor funcionaria a una velocitat 
+   del 10%, 30%, 50%, 90%. Quin persentatge del senyal canviara en un cas i en un altre?</p>
+  <ul>
+    <li>(0,01953125/5)*100 = 0,390625%</li>
+    <li>(0,00244140625/5)*100 = 0,048828125%</li>
+  </ul>  
+<p>A la taula a continuació veuras els valors per defecte de la freqüència PWM en Arduino Uno Rev3</p>
+<table>
+  <thead>
+    <tr>
+      <th>PIN de Sortida</th><th>Freqüència</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>PINS: 3, 9, 10, 11</td>
+      <td>490 Hz</td>
+    </tr>
+    <tr>
+      <td>PINS: 5 i 6</td>
+      <td>976 Hz</td>
+    </tr>
+  </tbody>
+</table>
+    <p>Nota: La taula HTML anterior té una capçalera com un document HTML, però és diu thead, en comptes de head i és la primera filera de la taula.
+    Té un cos anomenat tbody, en comptes de body i és la reta de la taula. 
+    La taula la defineix el tag table que agrupa thead y tbody. Totes les fileres tant del thead com del tbody es defineixen amb el tag tr, que vol dir <i>table row</i>. 
+    Dintre de thead hi ha elements individuals que són cel·les que pertanyen a la primera
+    filera que s'anomenen th o <i>table heading</i>.
+    En el table body hi ha també fileres tr, però dintre d'aquestes fileres els elements individuals han de ser td, que significa <i>table data</i>.
+    per últim, s'han de tancar el table o body. Tots aquests elements es poden modificar amb CSS i fer la taula amb un estil propi</p>
+    <p>Les freqüencies baixes produeixen sorolls en els motors. Per tant, és preferible connectar motors als pins 5 i 6.</p>
+    <p>La freqüencia és la inversa del periòde, 976 Hz o cicles per segon correspo a un periòde de 1/976 segons, que són 1,024 milisegons</p>
 
-  <p> els milivolts anteriors son la resolució que tenen. imaginem que volem regular la intensitat de un led arduino Uno Rev3
-  aconseguim mensys fluidesa i amb graons mes grans, es a dir canvis mes bruscos perque 256 canvis son molt menys que 2048
-  canvis. A continuació veurem una imatge que representa com combinant moltes senyals digitals es fa una senyal analogica. Aixó
-  es el principi del PWM</p>
-  <img src="PWM" width="585" height="400">
-   <p> quan major es l'amplada del pols, vol dir que major es el temps en la que la sortida digital esta en alt voltatge (5 volts o 3,3 volts) i menys temps esta a 0 volts. I per tant
-     la media de tot els polsos es més alt. Si cada pols es més estret, vol dir que estara més temps en voltatge baix (0 volts). A la imatge de dalt es pot veure com la senyal
-     analogica canvia amb els polsos de senyal digital (En els punts on els polsos coincideixen la senyal analogica es potencia, i en els punts on no hi ha polsos la senyal analogica 
-     baixa. </p>
-   <p> a la taula, a continuació veuras els valors per defecte de la frequencia PWM en arduino UNO</p>
-   <table>  
-     <thead>
-       <tr>
-         <th> Pin de sortida th frequencia. </th>
-       </tr>
-     </thead>
-     <tbody>
-       <td> PINS: 3 , 9, 10 , 11 </td>
-       <td> 420Hz </td>
-     </tbody>
-   </table>
- </div>
+    <h2>Convertidor analògic - digital</h2>
+      <p>Apliquem el teorema de Nyquist que diu que hem de fer el doble de mostres com a mínim que la freqüencia màxima per aconseguir convertir
+       un senyal contínu analògic en un senyal digital mostrejat segons la figura següent</p>
+
+  <img src="nyquist.png" width="600" heigth="400">
+  <p>Nyquist és important perquè si en el codi poso una freqüencia de mostreig de 20 Hz per un so no fucionarà perque la freqüencia
+  mínima del so és 20 Hz i la màxima 20 KHz pel que refereix al so audible en humans. Això és perque agafes mostres massa grans i no podem veure 
+  pujades i baixades de la senyal.</p>
+  <p>A continuació veurem una taula comparativa sobre els microcontroladors Arduino UNo i ESP32S3 i el circcuit ha ADS1115</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Microcontrolador i o circuit</th>
+                <th>Número de bits(Nivells)</th>
+                <th>Voltatge</th>
+            </tr>
+            <tr>
+                <td>Arduino Uno</td>
+                <td>10 (0-1023)</td>
+                <td>0-5V, 0-3.3V</td>
+            </tr>
+            <tr>
+                <td>ESP32S3</td>
+                <td>12 (0-4095)</td>
+                <td>0-3.3V</td>
+            </tr>
+            <tr>
+                <td>ADS1115</td>
+                <td>16 (0-65536)</td>
+                <td>0-3.3V</td>
+            </tr>
+        </thead>
+    </table>
+<pre><code>
+  int valorADC= 0;
+  void setup(){
+    Serial.begin(9600);//9600 en Arduino o 115200 en S3
+    }
+    void loop(){
+    valor ADC = analog.Read(A0);//34 en S3
+    Serial println(valorADC);//0-1023 o 0-4095
+    delay(500);}  
+</pre></code>
 </body>
+</html>
 
    
 
