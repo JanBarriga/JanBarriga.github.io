@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <title>Web de Teo</title>
+    <script type="text/javascript" id="MathJax-script" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.0/es5/latest?tex-mml-chtml.js">
+  </script>
+    <style>
+body {
+    padding: 0; /* Elimina l'espai extra al voltant del cos */
+}
+.container-fluid {
+    max-width: 100%; /* Assegura que la navbar ocupa tota l'amplada */
+}   
+    .navbar {
+    padding-left: 0; /* Elimina el padding esquerra de la navbar */
+}
+
+.logo {
+    margin-right: 20px; /* Ajustar el marge si vols separar el logo del text */
+    margin-left: 0; /* Assegurar que no hi hagi marge a l'esquerra */
+}
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+.brand-text {
+    white-space: nowrap; /* Això assegura que el text no es trenqui en múltiples línies */
+    font-size: 1.25rem; /* Ajusta la mida de la font si és necessari */
+}  
+.content-container {
+            margin-left: 10px;
+            margin-right: 10px; /* Marges laterals ajustats */
+            margin-top: 20px; /* Afegeix espai superior entre el contingut i la barra de menú */
+        }
+    </style>
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+     <div class="container-fluid">
+       <a class="navbar-brand d-flex align-items-center" href="#">
+    <img src="/files/images/logo.png" alt="Logo" width="50" class="logo">
+    <span class="brand-text">Web de Teo</span>
+</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Inici</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Tema 1</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">Projectes</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Projecte 1</a>
+                        <a class="dropdown-item" href="#">Projecte 2</a>
+                        <a class="dropdown-item" href="#">Projecte 3</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Tema 2</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Contingut principal -->
+<div class="content-container">
+<h1>Experiment de Vera Rubin, fòrmules de gravitació, força centripeta, velocitat de rotació, efecte dopler, espectres d'hidrogen</h1>
+<p>Apunts a ma de l'altre dia</p>
+<h1>Des de Planetes a Ceceides</h1>
+<p>Els planetes són els cossos que tenen més brillantor del cel perqué estan més a prop i eren considerants Deus perquè es podien moure per cel (Planeta significa Errant/Vagabund)</p>
+<p>La brillantor dels estels va ser classificat per Hiparc fa 2500 anys en una escala de l'1 al 6, de mes a menys respectivament. Pogson al 1876 va proposar una escala diferent.</p>
+<p>Una estrella de magnitud 2 es ⁵√100 = 2.512 vegades menys brillant que la de magnitud 1, i una estrella de magnitud 6 seria exactament 100 vegades mes breillant que una de magnitud 1.</p>
+<p>Alguns planetes, i estrelles molt brillants poden ser de magnitud 0 o -1, mentres que les mes debils seran superiors a 6. Aquesta brillantor observada s'anomena magnitud aparent (M)</p>
+<p>La magnitud real que es produiria si estigués en ella es diu magnitud absoluta (M) i acostuma a ser molt negativa. Comparant M i m puc saber la distancia</p>
+<img src="/files/images/magnitud.png">
+<p>La fòrmula matematica es aquesta: $$x = {10^{M-m \over 5}+1}$$</p>
+</div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
