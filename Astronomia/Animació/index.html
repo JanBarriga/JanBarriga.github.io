@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador d'Energia Fosca i Matèria Fosca</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+        canvas {
+            border: 1px solid #ffffff;
+            background-color: #000000;
+        }
+        .controls {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .slider {
+            width: 300px;
+        }
+        .output {
+            margin-top: 10px;
+        }
+        .info {
+            margin-top: 20px;
+            max-width: 800px;
+            text-align: left;
+        }
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+<style>
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
+  </head>
+<body>
+
+<!-- Inclou highlight.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+<!-- Inicia highlight.js -->
+<script>hljs.highlightAll();</script>
+
+
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+ 
+
+
+   <script>hljs.highlightAll();</script>
+   
+
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        pre {
+            max-width: 100%;
+            overflow-x: auto;
+            padding: 1rem;
+            background-color: #f8f9fa; /* Gray */
+            position: relative;
+        }
+        code {
+            display: block;
+            width: 100%;
+            white-space: pre-wrap;
+        }
+        .copy-button {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            cursor: pointer;
+            color: #000;
+        }
+        .copy-feedback {
+            position: absolute;
+            top: 1rem;
+            right: 2rem;
+            font-size: 0.75rem;
+            color: green;
+            display: none;
+        }
+    </style>
+    <h1>Simulador d'Energia Fosca i Matèria Fosca</h1>
+    <canvas id="simulator" width="800" height="400"></canvas>
+    <div class="controls">
+        <label for="darkEnergySlider">Força de l'Energia Fosca:</label>
+        <input type="range" id="darkEnergySlider" class="slider" min="0" max="100" value="68">
+        <span id="darkEnergyValue">68</span>
+        <br>
+        <label for="darkMatterSlider">Densitat de la Matèria Fosca:</label>
+        <input type="range" id="darkMatterSlider" class="slider" min="0" max="100" value="27">
+        <span id="darkMatterValue">27</span>
+        <br>
+        <label for="numGalaxiesSlider">Nombre de Galàxies:</label>
+        <input type="range" id="numGalaxiesSlider" class="slider" min="50" max="500" value="200">
+        <span id="numGalaxiesValue">200</span>
+    </div>
+    <div class="output">
+        <p><strong>Càlculs en Temps Real:</strong></p>
+        <p>Constant de Hubble (H0): <span id="H0Output">71.00</span> km/s/Mpc</p>
+        <p>Taxa d'Expansió (Energia Fosca): <span id="expansionRate">71.000</span> km/s/Mpc</p>
+        <p>Velocitat de Rotació (Matèria Fosca): <span id="rotationSpeed">0.042</span> rad/Gyr</p>
+        <p>Edat de l'Univers Simulat: <span id="universeAge">13700.0</span> milions d'anys</p>
+        <p>Galàxies Visibles: <span id="visibleGalaxies">100</span></p>
+    </div>
+    <div class="info">
+        <h2>Informació Addicional</h2>
+        <p>L'energia fosca és una forma d'energia que es creu que omple tot l'espai i que és responsable de l'expansió accelerada de l'univers. La matèria fosca, per altra banda, és una forma de matèria que no emet llum però que exerceix una força gravitatòria.</p>
+        <p>En aquesta simulació, pots ajustar la força de l'energia fosca i la densitat de la matèria fosca per veure com afecten a l'expansió i rotació de les galàxies.</p>
+    </div>
+
+    <script>
+        // Obtenim els elements del DOM
+        const canvas = document.getElementById('simulator');
+        const ctx = canvas.getContext('2d');
+
+        const darkEnergySlider = document.getElementById('darkEnergySlider');
+        const darkMatterSlider = document.getElementById('darkMatterSlider');
+        const numGalaxiesSlider = document.getElementById('numGalaxiesSlider');
+
+        const darkEnergyValue = document.getElementById('darkEnergyValue');
+        const darkMatterValue = document.getElementById('darkMatterValue');
+        const numGalaxiesValue = document.getElementById('numGalaxiesValue');
+
+        const H0Output = document.getElementById('H0Output');
+        const expansionRateOutput = document.getElementById('expansionRate');
+        const rotationSpeedOutput = document.getElementById('rotationSpeed');
+        const universeAgeOutput = document.getElementById('universeAge');
+        const visibleGalaxiesOutput = document.getElementById('visibleGalaxies');
+
+        let galaxies = [];
+        let H0 = 71; // km/s/Mpc, basat en mesures recents
+        let universeAge = 13700; // Edat inicial de l'univers (en milions d'anys)
+
+        // Definim la classe Galàxia
+	// Fins al any 2015 no existien les classes i per crear una classe s'utilitzava una funció "function"
+	// Dintre de la funció es posaven els paràmetres o arguments que volem controlar (posició X,Y i tamany)
+	// Utilitzem la paraula clau constructor per crear un tipus d'objecte i la paraula "this" per referirnos a arguments o
+        // parametres propis de la classe.
+	// X,Y i tamany és definirà més endevant en un codi en una altre funció d'inicialització "init".
+	// "Math.random" genera un número aleatori entre 0 i 1. Que passarà si multiplico per 2 "&pi;"?
+	// Em generarà un número aleatori entre 0 i 2 "&pi;".
+	// Com variarà la distancia a la meva simulació?
+	// Entre 50 i 200 pixels, per què?
+	// Perquè si multiplico un número aleatori entre 0 i 1 per 150 (Math.random() * 150) donarà sempre un número entre 0 i 150
+	// i si li sumo 50 serà entre 50 i 200.
+	// La velocitat variarà entre 0.01 i 0.03.
+	// Això que hem creat al 2015 va apareixer "ES6" que és la versió de javascript de 2015 i podem substituir la paraula
+	// function per class.
+        function Galaxy(x, y, size) {
+            this.x = x;
+            this.y = y;
+            this.size = size;
+            this.angle = Math.random() * Math.PI * 2; // Angle inicial aleatori
+            this.distance = Math.random() * 150 + 50; // Distància des del centre
+            this.speed = Math.random() * 0.02 + 0.01; // Velocitat de rotació base
+        }
+
+        // Inicialitzem les galàxies
+        function initGalaxies(numGalaxies) {
+            galaxies = [];
+            for (let i = 0; i < numGalaxies; i++) {
+                galaxies.push(new Galaxy(
+                    canvas.width / 2,
+                    canvas.height / 2,
+                    Math.random() * 3 + 1 // Mida aleatòria entre 1 i 4 píxels
+                ));
+            }
+        }
+
+        // Dibuixem una galàxia
+        function drawGalaxy(galaxy) {
+            ctx.fillStyle = 'white';
+            ctx.beginPath();
+            ctx.arc(galaxy.x, galaxy.y, galaxy.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        // Calculem la taxa d'expansió
+        function calculateExpansionRate(darkEnergyStrength) {
+            // L'energia fosca accelera l'expansió, però no augmenta directament H0
+            let accelerationFactor = 1 + (darkEnergyStrength / 100) * 0.1;
+            return (H0 * accelerationFactor).toFixed(3);
+        }
+
+        // Actualitzem la posició i propietats d'una galàxia
+        function updateGalaxy(galaxy) {
+            const darkEnergyStrength = darkEnergySlider.value / 100; // Percentatge d'energia fosca
+            const darkMatterDensity = darkMatterSlider.value / 100; // Percentatge de matèria fosca
+
+            // Actualitzem la taxa d'expansió i la velocitat de rotació
+            galaxy.distance += darkEnergyStrength * 0.1; // Efecte d'expansió
+            galaxy.angle += galaxy.speed * (1 + darkMatterDensity); // Efecte de rotació
+
+            // Calculem la nova posició de la galàxia
+            galaxy.x = canvas.width / 2 + Math.cos(galaxy.angle) * galaxy.distance;
+            galaxy.y = canvas.height / 2 + Math.sin(galaxy.angle) * galaxy.distance;
+
+            // Actualitzem els càlculs en temps real
+            rotationSpeedOutput.textContent = (galaxy.speed * (1 + darkMatterDensity) * 0.042).toFixed(3); // Velocitat realista
+        }
+
+        // Evolució temporal de l'Univers
+        function evolveUniverse(timePassed) {
+            // Disminuïm H0 lleugerament amb el temps
+            H0 *= (1 - 0.00001 * timePassed);
+            
+            // Augmentem l'edat de l'Univers
+            universeAge += timePassed;
+            
+            // Actualitzem els valors mostrats
+            universeAgeOutput.textContent = universeAge.toFixed(1);
+            H0Output.textContent = H0.toFixed(2);
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            let visibleGalaxies = 0; // Comptador per a les galàxies visibles
+
+            galaxies.forEach(galaxy => {
+                updateGalaxy(galaxy);
+                if (galaxy.x >= 0 && galaxy.x <= canvas.width && galaxy.y >= 0 && galaxy.y <= canvas.height) {
+                    drawGalaxy(galaxy);
+                    visibleGalaxies++; // Incrementem si és visible al canvas
+                }
+            });
+
+            let darkEnergyStrength = darkEnergySlider.value;
+            expansionRateOutput.textContent = calculateExpansionRate(darkEnergyStrength);
+
+            evolveUniverse(0.1); // Simulem el pas de 0.1 milions d'anys per frame
+
+            // Actualitzem el nombre de galàxies visibles
+            visibleGalaxiesOutput.textContent = visibleGalaxies;
+
+            requestAnimationFrame(animate); // Tornem a cridar la funció per animar contínuament
+        }
+
+        // Esdeveniments per actualitzar els valors dels sliders en temps real
+        darkEnergySlider.addEventListener('input', () => {
+            darkEnergyValue.textContent = darkEnergySlider.value;
+        });
+
+        darkMatterSlider.addEventListener('input', () => {
+            darkMatterValue.textContent = darkMatterSlider.value;
+        });
+
+        numGalaxiesSlider.addEventListener('input', () => {
+            numGalaxiesValue.textContent = numGalaxiesSlider.value;
+            initGalaxies(parseInt(numGalaxiesSlider.value));
+        });
+
+        // Inicialitzem les galàxies i comencem l'animació
+        initGalaxies(parseInt(numGalaxiesSlider.value));
+        animate();
+    </script><h1>Explicació del codi</h1>
+    <pre><code> 
+    
+&lt;!DOCTYPE html&gt;
+&lt;html lang="ca"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Simulador d'Energia Fosca i Matèria Fosca&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+        canvas {
+            border: 1px solid #ffffff;
+            background-color: #000000;
+        }
+        .controls {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .slider {
+            width: 300px;
+        }
+        .output {
+            margin-top: 10px;
+        }
+        .info {
+            margin-top: 20px;
+            max-width: 800px;
+            text-align: left;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Simulador d'Energia Fosca i Matèria Fosca&lt;/h1&gt;
+    &lt;canvas id="simulator" width="800" height="400"&gt;&lt;/canvas&gt;
+    &lt;div class="controls"&gt;
+        &lt;label for="darkEnergySlider"&gt;Força de l'Energia Fosca:&lt;/label&gt;
+        &lt;input type="range" id="darkEnergySlider" class="slider" min="0" max="100" value="68"&gt;
+        &lt;span id="darkEnergyValue"&gt;68&lt;/span&gt;
+        &lt;br&gt;
+        &lt;label for="darkMatterSlider"&gt;Densitat de la Matèria Fosca:&lt;/label&gt;
+        &lt;input type="range" id="darkMatterSlider" class="slider" min="0" max="100" value="27"&gt;
+        &lt;span id="darkMatterValue"&gt;27&lt;/span&gt;
+        &lt;br&gt;
+        &lt;label for="numGalaxiesSlider"&gt;Nombre de Galàxies:&lt;/label&gt;
+        &lt;input type="range" id="numGalaxiesSlider" class="slider" min="50" max="500" value="200"&gt;
+        &lt;span id="numGalaxiesValue"&gt;200&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="output"&gt;
+        &lt;p&gt;&lt;strong&gt;Càlculs en Temps Real:&lt;/strong&gt;&lt;/p&gt;
+        &lt;p&gt;Constant de Hubble (H0): &lt;span id="H0Output"&gt;71.00&lt;/span&gt; km/s/Mpc&lt;/p&gt;
+        &lt;p&gt;Taxa d'Expansió (Energia Fosca): &lt;span id="expansionRate"&gt;71.000&lt;/span&gt; km/s/Mpc&lt;/p&gt;
+        &lt;p&gt;Velocitat de Rotació (Matèria Fosca): &lt;span id="rotationSpeed"&gt;0.042&lt;/span&gt; rad/Gyr&lt;/p&gt;
+        &lt;p&gt;Edat de l'Univers Simulat: &lt;span id="universeAge"&gt;13700.0&lt;/span&gt; milions d'anys&lt;/p&gt;
+        &lt;p&gt;Galàxies Visibles: &lt;span id="visibleGalaxies"&gt;100&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="info"&gt;
+        &lt;h2&gt;Informació Addicional&lt;/h2&gt;
+        &lt;p&gt;L'energia fosca és una forma d'energia que es creu que omple tot l'espai i que és responsable de l'expansió accelerada de l'univers. La matèria fosca, per altra banda, és una forma de matèria que no emet llum però que exerceix una força gravitatòria.&lt;/p&gt;
+        &lt;p&gt;En aquesta simulació, pots ajustar la força de l'energia fosca i la densitat de la matèria fosca per veure com afecten a l'expansió i rotació de les galàxies.&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;script&gt;
+        // Obtenim els elements del DOM
+        const canvas = document.getElementById('simulator');
+        const ctx = canvas.getContext('2d');
+
+        const darkEnergySlider = document.getElementById('darkEnergySlider');
+        const darkMatterSlider = document.getElementById('darkMatterSlider');
+        const numGalaxiesSlider = document.getElementById('numGalaxiesSlider');
+
+        const darkEnergyValue = document.getElementById('darkEnergyValue');
+        const darkMatterValue = document.getElementById('darkMatterValue');
+        const numGalaxiesValue = document.getElementById('numGalaxiesValue');
+
+        const H0Output = document.getElementById('H0Output');
+        const expansionRateOutput = document.getElementById('expansionRate');
+        const rotationSpeedOutput = document.getElementById('rotationSpeed');
+        const universeAgeOutput = document.getElementById('universeAge');
+        const visibleGalaxiesOutput = document.getElementById('visibleGalaxies');
+
+        let galaxies = [];
+        let H0 = 71; // km/s/Mpc, basat en mesures recents
+        let universeAge = 13700; // Edat inicial de l'univers (en milions d'anys)
+
+        // Definim la classe Galàxia
+        function Galaxy(x, y, size) {
+            this.x = x;
+            this.y = y;
+            this.size = size;
+            this.angle = Math.random() * Math.PI * 2; // Angle inicial aleatori
+            this.distance = Math.random() * 150 + 50; // Distància des del centre
+            this.speed = Math.random() * 0.02 + 0.01; // Velocitat de rotació base
+        }
+
+        // Inicialitzem les galàxies
+        function initGalaxies(numGalaxies) {
+            galaxies = [];
+            for (let i = 0; i &lt; numGalaxies; i++) {
+                galaxies.push(new Galaxy(
+                    canvas.width / 2,
+                    canvas.height / 2,
+                    Math.random() * 3 + 1 // Mida aleatòria entre 1 i 4 píxels
+                ));
+            }
+        }
+
+        // Dibuixem una galàxia
+        function drawGalaxy(galaxy) {
+            ctx.fillStyle = 'white';
+            ctx.beginPath();
+            ctx.arc(galaxy.x, galaxy.y, galaxy.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        // Calculem la taxa d'expansió
+        function calculateExpansionRate(darkEnergyStrength) {
+            // L'energia fosca accelera l'expansió, però no augmenta directament H0
+            let accelerationFactor = 1 + (darkEnergyStrength / 100) * 0.1;
+            return (H0 * accelerationFactor).toFixed(3);
+        }
+
+        // Actualitzem la posició i propietats d'una galàxia
+        function updateGalaxy(galaxy) {
+            const darkEnergyStrength = darkEnergySlider.value / 100; // Percentatge d'energia fosca
+            const darkMatterDensity = darkMatterSlider.value / 100; // Percentatge de matèria fosca
+
+            // Actualitzem la taxa d'expansió i la velocitat de rotació
+            galaxy.distance += darkEnergyStrength * 0.1; // Efecte d'expansió
+            galaxy.angle += galaxy.speed * (1 + darkMatterDensity); // Efecte de rotació
+
+            // Calculem la nova posició de la galàxia
+            galaxy.x = canvas.width / 2 + Math.cos(galaxy.angle) * galaxy.distance;
+            galaxy.y = canvas.height / 2 + Math.sin(galaxy.angle) * galaxy.distance;
+
+            // Actualitzem els càlculs en temps real
+            rotationSpeedOutput.textContent = (galaxy.speed * (1 + darkMatterDensity) * 0.042).toFixed(3); // Velocitat realista
+        }
+
+        // Evolució temporal de l'Univers
+        function evolveUniverse(timePassed) {
+            // Disminuïm H0 lleugerament amb el temps
+            H0 *= (1 - 0.00001 * timePassed);
+            
+            // Augmentem l'edat de l'Univers
+            universeAge += timePassed;
+            
+            // Actualitzem els valors mostrats
+            universeAgeOutput.textContent = universeAge.toFixed(1);
+            H0Output.textContent = H0.toFixed(2);
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            let visibleGalaxies = 0; // Comptador per a les galàxies visibles
+
+            galaxies.forEach(galaxy =&gt; {
+                updateGalaxy(galaxy);
+                if (galaxy.x &gt;= 0 && galaxy.x &lt;= canvas.width && galaxy.y &gt;= 0 && galaxy.y &lt;= canvas.height) {
+                    drawGalaxy(galaxy);
+                    visibleGalaxies++; // Incrementem si és visible al canvas
+                }
+            });
+
+            let darkEnergyStrength = darkEnergySlider.value;
+            expansionRateOutput.textContent = calculateExpansionRate(darkEnergyStrength);
+
+            evolveUniverse(0.1); // Simulem el pas de 0.1 milions d'anys per frame
+
+            // Actualitzem el nombre de galàxies visibles
+            visibleGalaxiesOutput.textContent = visibleGalaxies;
+
+            requestAnimationFrame(animate); // Tornem a cridar la funció per animar contínuament
+        }
+
+        // Esdeveniments per actualitzar els valors dels sliders en temps real
+        darkEnergySlider.addEventListener('input', () =&gt; {
+            darkEnergyValue.textContent = darkEnergySlider.value;
+        });
+
+        darkMatterSlider.addEventListener('input', () =&gt; {
+            darkMatterValue.textContent = darkMatterSlider.value;
+        });
+
+        numGalaxiesSlider.addEventListener('input', () =&gt; {
+            numGalaxiesValue.textContent = numGalaxiesSlider.value;
+            initGalaxies(parseInt(numGalaxiesSlider.value));
+        });
+
+        // Inicialitzem les galàxies i comencem l'animació
+        initGalaxies(parseInt(numGalaxiesSlider.value));
+        animate();
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+<script>
+  document.querySelectorAll('.copy-button').forEach(item => {
+            item.addEventListener('click', event => {
+                const codeBlock = item.nextElementSibling.nextElementSibling; // Get the <code> element
+                const codeText = codeBlock.textContent; // Get the text content of the <code> element
+                navigator.clipboard.writeText(codeText).then(function() {
+                    // Show copy feedback
+                    const feedback = item.parentElement.querySelector('.copy-feedback');
+                    feedback.style.display = 'block';
+                    setTimeout(() => {
+                        // Hide feedback after 2 seconds
+                        feedback.style.display = 'none';
+                    }, 2000);
+                }, function(err) {
+                    console.error('Failed to copy to clipboard: ', err);
+                });
+            });
+        });
+</script>
+    </code></pre>
+</body>
+</html>
