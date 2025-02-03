@@ -175,6 +175,17 @@
                     canvas.width / 2,
                     canvas.height / 2,
                     Math.random() * 3 + 1 // Mida aleatòria entre 1 i 4 píxels
+		//Canvas.width significa amplada de l'area de dibuix. I al dividir-ho per dos quedarà
+		//al centre de la pantalla
+	        //Canvas.height significa alçada de l'area de dibuix. I al dividir-ho per dos quedarà
+		//al centre de la pantalla.
+		//El metodè push es un sistema que ens permet, amb la sintaxi del punt 
+		//(dot syntax), aplicar el metode push al objecte "galàxies" i crear un numero igual a
+		//num galaxies. Num galaxies està definint al slider per part del usuari i va desde 50 a 500.
+		//Les galàxies es creen amb un cicle for per no repetir 500 vegades crea una galaxia. S'utilitza
+		//un comptador des de i = 0 fins a arribar a numGalaxies i va augmentant d'un en un perquè és
+		//el significat de i++ que es el mateix que i = i + 1. I es el mateix que i += 1
+		
                 ));
             }
         }
