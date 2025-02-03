@@ -1,25 +1,29 @@
-<!DOCTYPE html>
+sc<!DOCTYPE html>
 <html lang="ca">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <title>Web de Jan</title>
+    <title>Web de Teo</title>
     <style>
-        
-    
 body {
-            padding: 20px; /* Espai extra per als marges laterals */
-        }
+    padding: 0; /* Elimina l'espai extra al voltant del cos */
+}
+.container-fluid {
+    max-width: 100%; /* Assegura que la navbar ocupa tota l'amplada */
+}   
+    .navbar {
+    padding-left: 0; /* Elimina el padding esquerra de la navbar */
+}
+
+.logo {
+    margin-right: 20px; /* Ajustar el marge si vols separar el logo del text */
+    margin-left: 0; /* Assegurar que no hi hagi marge a l'esquerra */
+}
 .navbar-brand {
     display: flex;
     align-items: center;
 }
-
-.logo {
-    margin-right: 20px; /* Ajusta aquest valor segons el necessari */
-}
-
 .brand-text {
     white-space: nowrap; /* Això assegura que el text no es trenqui en múltiples línies */
     font-size: 1.25rem; /* Ajusta la mida de la font si és necessari */
@@ -29,45 +33,102 @@ body {
             margin-right: 10px; /* Marges laterals ajustats */
             margin-top: 20px; /* Afegeix espai superior entre el contingut i la barra de menú */
         }
+table{
+    width: 50%;
+    bodrder-collapse: collapse;
+    margin: 20px auto;
+}
+th,td{
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center
+}
+thead{
+    background: #f4f4f4;
+    font-weight: bold;
+}
+tbody tr:nth-child(even){
+    background-color: #f9f9f9;
+}
+tbody tr:hover{
+    background-color: #e2e2e2;
+}
+
     </style>
 </head>
 <body>
- <div>
-    <h1> Conceptes generals de microcontroladors</h1>
-  <p>El diferents microcontroladors tenen en comú el seguents aspectes</p>
-  <li>Tipus de entrades i sortides: El microcontrolador te un procesador tipus AVR o Espressif. Es poden conectar entrades
-    analogiques, digital i sortides analogiques o digitals</li>
-  <li> Les entrades digitals nomes funcionen amb 0 i 1 es a dir, codi binari. Zero siginifica 0 volts, 
-    i 1 significa 5 volts o 3,3 volts. Depenen del microcontrolador</li>
-
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+     <div class="container-fluid">
+       <a class="navbar-brand d-flex align-items-center" href="#">
+    <img src="logo.png" widht="600" height="400">
+    <span class="brand-text">Web de Martí</span>
+</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Inici</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Tema 1</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">Projectes</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Projecte 1</a>
+                        <a class="dropdown-item" href="#">Projecte 2</a>
+                        <a class="dropdown-item" href="#">Projecte 3</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Tema 2</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Contingut principal -->
+<div class="content-container">
+<h1>Conceptes generals de microcontroladors</h1>
+<p>Els diferents microcontroladors tenen en comú els següents aspectes:</p>
+<ul>
+  <li>Tipus d'entrades i sortides: el microcontrolador té un processador tipus AVR o Espressif on es conecta
+  entrades digitals, entrades analògiques, sortides digitals i sortides analògiques</li>
+  <li>Les entrades i sortides digitals només funcionen amb 0 o 1 es a dir codi binari, zero significa 
+  0 volts i 1 pot significar 5 volts o 3,3 volts depenent del microcontrolador i del pin que utilitzem.
+  A aquestes entrades podem connectar per exemple interruptors, sensor "foscor/claror"</li>
 </ul>
-<h2> Sortides analogiques tipus PWM </h2>
-<p> PWM significa modulació de l'ample de banda en angles: Pulse with Modulation</i>
-i es una forma d'aconseguir una sortida analògica a partir de diverses sortides digitals molt rapides </p>
-<p> PWM es representa amb el simbol "~" tal com podem veure a la imatge d'un arduino uno</p>
-<img src="arduino.jpg" width="600" height="400">
-<p> Els pins amb PWM en l'arduino uno son el següents: 3,5,6,9,10 i 11. 
-  que son sortides analogiques de 8 bits. <a href="https://docs.arduino.cc/resources/datasheets/A000066-datasheet.pdf">  Com diu a les especificacions del fabricant</p> </a>
- <p> <a href="https://docs.arduino.cc/resources/datasheets/ABX00080-datasheet.pdf"> </a>
- Mentres, que en el cas del arduino rev4 usa 12 bits. Anomenat pel fabricant com a DAC <i>(DIGITAL ANALOG CONVERTER)</i>  </p>
- <p> Tenir 8 o 12 bits en un convertidor DAC tipus PWM fa que tinguem 2<sup>8</sup> o 2<sup>10</sup> nivells differents de corrent,
- es a dir 256 nivells diferents o 2048 nivells diferents</p>
-
-  <p>Tenir 8 o 12 bits en un convertidor digital analògic o DAC tipus PWM fa que tinguem 2<sup>8</sup> o 2<sup>10</sup> nivells 
-   diferents de corrent, es a dir 256 nivells diferents o 2048 nivells diferents</p>
-
-<p>Suposem que Arduino Uno Rev3 o Rev4 podem donar 5 volts com a màxim. Quina seria la resolució en milivolts de cada Arduino?</p>
-<p> 5 volts dividit entre 256 dona 0.01953125 volts = 19.53125 milivolts per arduino Rev3</p>
-<p> 5 volts dividit entre 2048 dona 0.00244140625 volts = 2.44140625 milivolts per arduino Rev4</p>
-<p>Els milivolts anteriors són la resolució que aconseguim. Imaginem que volem regular la intensitat d'un LED amb un Arduino Uno Rev3 aconseguim
-menys fluid i amb graons més grans, és a dir canvis més bruscs perquè 256 canvis són menys que 2048 volts. A continuació veurem una imatge que representa
-com combinant moltes senyals digitals ràpidament sembla que generem un senyal analògi i això és la base del PWM.</p>
-<img src="pmw.PNG" widht="600" height="450">
+<h2>Sortides Digitals PWM</h2>
+<p>PwM significa "Modulació de l'ample de banda", en angles <i>"Pulse Width Modulation"</i>. Es una forma de conseguir una sortida analogica d'una digital.</p>
+<p>Es representa amb el simbol "〜", tal com podem veure a l'imatge seguent</p>
+<p>Aquests PWM són sortides analògiques de 8 bits, en el cas de Arduino Uno Rev3, d'acord amb el
+  <a href="https://store.arduino.cc/en-es/products/arduino-uno-rev3"> fabricant</a>, mentres en el cas
+d'Arduino Uno Rev4 és de 12 bits, segons el 
+  <a href="https://docs.arduino.cc/resources/datasheets/ABX00080-datasheet.pdf"> fabricant</a>  que l'anomena DAC, que vol dir Digital Analog 
+  Converter</p>
+<p>Tenir 8 o 12 bits en un convertidor digital analògic o DAC tipus PWM fa que tinguem 2<sup>8</sup>
+  o 2<sup>10</sup> nivells diferents de corrent, es a dir 256 nivells diferents o 2048 nivells  diferents</p>
+<p>Suposem que tant Arduino Uno Rev3 o Rev4 poden donar 5 volts com a màxim. Quina seria la resolució en milivolts
+de cada Arduino?</p>
+<p>5 volts dividit entre 256 dona 0.01953125 volts= 19,53125 milivolts per Arduino Uno Rev3</p>
+<p>5 volts dividit entre 2048 dona 0.00244140625 volts= 2,44140625 milivolts per Arduino Uno Rev4</p>
+<img src="arduino-uno.jpg" widht="600" height="400">
+<p>Els milivolts anterior són la resolució que aconseguim. Imaginem que volem regular la  intensitat d'un LED 
+   amb un Arduino Uno Rev3 aconseguim menys fluid i amb graons més grans, es a dir canvis més bruscs perque 256 canvis
+   són menys que 2048 volts. A continuació veurem una imatge que repreenta com combinant moltes senyals digitals 
+   ràpidament sembla que generem un senyal analògic, aixo és la base del PWM.</p>
+<img src="pwm.webp" widht="600" height="450">
 <p>Quan major és l'amplada del pols vol dir que major és el temps que la sortida digital està en voltatge alt,
    per exemple 5V i menys temps està a 0V, i per tant el promig  de tots els polsos és més alt. En canvi si 
    per exemple si cada pols és més estret a 5V vol dir que estarà més temps a 0V, i per tant el promig  de
-   tots els polsos és més baix. A la imatge de a dalt es pot veure com s'encendria un LED o un motor funcionaria a una velocitat 
-   del 10%, 30%, 50%, 90%. Quin persentatge del senyal canviara en un cas i en un altre?</p>
+   tots els polsos és més baix. A la imatge de a dalt es pot veure com s'encendria un LED o un motor 
+   funcionaria a una velocitat del 10%, 30%, 50%, 90%. Quin percentatge del senyal canviara en un cas i 
+   en un altre?</p>
   <ul>
     <li>(0,01953125/5)*100 = 0,390625%</li>
     <li>(0,00244140625/5)*100 = 0,048828125%</li>
@@ -76,12 +137,12 @@ com combinant moltes senyals digitals ràpidament sembla que generem un senyal a
 <table>
   <thead>
     <tr>
-      <th>PIN de Sortida</th><th>Freqüència</th>
+      <th>PIN de Sortida</th><th>Freqüència PWM (Hz)</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>PINS: 3, 9, 10, 11</td>
+      <td>PINS: 3, 9, 10 i 11</td>
       <td>490 Hz</td>
     </tr>
     <tr>
@@ -90,83 +151,61 @@ com combinant moltes senyals digitals ràpidament sembla que generem un senyal a
     </tr>
   </tbody>
 </table>
-    <p>Nota: La taula HTML anterior té una capçalera com un document HTML, però és diu thead, en comptes de head i és la primera filera de la taula.
-    Té un cos anomenat tbody, en comptes de body i és la reta de la taula. 
-    La taula la defineix el tag table que agrupa thead y tbody. Totes les fileres tant del thead com del tbody es defineixen amb el tag tr, que vol dir <i>table row</i>. 
-    Dintre de thead hi ha elements individuals que són cel·les que pertanyen a la primera
-    filera que s'anomenen th o <i>table heading</i>.
-    En el table body hi ha també fileres tr, però dintre d'aquestes fileres els elements individuals han de ser td, que significa <i>table data</i>.
-    per últim, s'han de tancar el table o body. Tots aquests elements es poden modificar amb CSS i fer la taula amb un estil propi</p>
-    <p>Les freqüencies baixes produeixen sorolls en els motors. Per tant, és preferible connectar motors als pins 5 i 6.</p>
-    <p>La freqüencia és la inversa del periòde, 976 Hz o cicles per segon correspo a un periòde de 1/976 segons, que són 1,024 milisegons</p>
+<p>Nota: la taula HTML anterior té una capçalera com un document HTML, però és diu thead, en comptes de head i es la primera filera de la taula.
+Té un cos anomenat tbody, en comptes de body i és la resta de la taula. 
+La taula la defineix el tag table que agrupa thead i tbody. Totes les fileres tant del thead com el tbody es defineixen amb el tag tr, 
+que vol dir table row.
+Dintre de thead hi ha elements individuals que són cel·les que pertanyen a la primera filera 
+i s'anomenen th o table heading. 
+En el table body hi ha també fileres tr però dintre d'aquestes fileres els elements individuals han de ser td,
+que significa table data. Per últim, s'han de tancar el table o el body. Tots aquests elements es poden
+modificar amb CSS i fer la taula amb un estil propi</p>
 
-    <h2>Convertidor analògic - digital</h2>
-      <p>Apliquem el teorema de Nyquist que diu que hem de fer el doble de mostres com a mínim que la freqüencia màxima per aconseguir convertir
-       un senyal contínu analògic en un senyal digital mostrejat segons la figura següent</p>
-
-  <img src="nyquist.png" width="600" heigth="400">
-  <p>Nyquist és important perquè si en el codi poso una freqüencia de mostreig de 20 Hz per un so no fucionarà perque la freqüencia
-  mínima del so és 20 Hz i la màxima 20 KHz pel que refereix al so audible en humans. Això és perque agafes mostres massa grans i no podem veure 
-  pujades i baixades de la senyal.</p>
-  <p>A continuació veurem una taula comparativa sobre els microcontroladors Arduino UNo i ESP32S3 i el circcuit ha ADS1115</p>
-    <table>
-        <thead>
-            <tr>
-                <th>Microcontrolador i o circuit</th>
-                <th>Número de bits(Nivells)</th>
-                <th>Voltatge</th>
-            </tr>
-            <tr>
-                <td>Arduino Uno</td>
-                <td>10 (0-1023)</td>
-                <td>0-5V, 0-3.3V</td>
-            </tr>
-            <tr>
-                <td>ESP32S3</td>
-                <td>12 (0-4095)</td>
-                <td>0-3.3V</td>
-            </tr>
-            <tr>
-                <td>ADS1115</td>
-                <td>16 (0-65536)</td>
-                <td>0-3.3V</td>
-            </tr>
-        </thead>
-    </table>
-<pre>
-    <code>
-        int valorADC= 0;
-        void setup(){
-        Serial.begin(9600);//9600 en Arduino o 115200 en S3
-        }
-        void loop(){
-        valor ADC = analog.Read(A0);//34 en S3
-        Serial println(valorADC);//0-1023 o 0-4095
-        delay(500);
-        }
-    </code>
-</pre>
- 
-<p> A continuació tenim un codi general que es pot fer servir per a moltes coses diferents y totes  relacionades amb la capacitat
-que te l'arduino de llegir de 0 a 1023, si fosi un ESP 32 llegiria de 0  a 4095. I si fos un ADS 11 15 llegiria a 0-65536. Per que?
-Els microxips i microcontroladors estan fets per transistors i els transistors nomes poden fer una cosa (encendre o apagar-se) es a dir
-0 o 1. Si tenim 10 bits en el ADC (Analog digital converter) siginifica que te 2<sup>10</sup> combinacions de 0 i 1. Es a dir 1024 nivells
-combinacions de zeros i uns es a dir 4096 nivells diferents que numericament van des del 0 a 4095. Ara justifiquem el número 65536.
-Aquest nombre seria correcte si fos 2<sup>16</sup> com diu el fabricant, pero al datasheet parla d'un nivell maxim de 8000h (Numero 
-hexadicimal que correspon a 32768) es a dir, són 15 bits utilitzables. Sempre s'ha de comprobar el datasheet a la fulla de caracteristiques
-del fabricant. <a href = "https://cdn-shop.adafruit.com/datasheets/ads1115.pdf">
-</a>
-</p>
-<p>
-
-
-    
-</p>
+<p>Les freqüències baixes produeixen soroll en els motors. Per tant, és preferible connectar motors als pins 5 i 6.</p>
+<p>La freqüència és la inversa del període, 976Hz o cicles per segon correspon a un període de 1/976 segons, que són 1,024 milisegons.</p>
+<h2>Convertidor analògic digital</h2>
+    <p>Apliquem el teorema de Nyquist, que diu que hem de fer el doble de mostres com a mínim que la freqüencia maxima per convertit una senyal analogiga a una digital</p>
+<img src="nyquest-sampling.jpg" widht="600" height="450">
+<p>Nyquist és important perque si en el codi poso una freqüencia de mostreig de 20Hz per un so no funcionarà perque la freqüencia mínima del so es de 20Hz i la màxima 20kHz perque es refereix al so audible en humans. 
+   Això es perque agafem mostres massa grans i no podem veure pujades i baixades de la senyal</p>
+<p>A continuació veurem una taula comparativa sobre els microcontroladors Arduino Uno i ESP32S3 i el circuit ADS1115</p>
+<table>
+  <thead>
+    <tr>
+      <th>Microcontrolador circuit</th><th>Nº bits (Nivells)</th><th>Voltatge</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Arduino Uno</td><td>10 (0-1023)</td><td>0-5V; 0-3,3V</td>
+    </tr>
+    <tr>
+      <td>ESP32S3</td><td>12 (0-4095)</td><td>0-3,3V</td>
+    </tr>
+    <tr>
+      <td>ADS1115</td><td>16 (0-65536)</td><td>0-3,3V</td>
+    </tr>
+  </tbody>
+</table>
+<p>A continuació tenim un codi general que pot servir per moltissimens coses diferents amb la capacitat d'un arduino de llegir de 0 a 1023 en una entrada analogica</p>
+<p>Si fos un ESP32S23 llegiria de 0 a 4095. Aixo es degut a que els ADC (Analog digital converter) tenen diferents quantitat de bits disponibles.</p>
+<p>Si un ADC te 10 bits significa que te 2<sup>10</sup>, es a dir, de 0 a 1023 nivells disponibles.</p>
+<pre><code>
+  int valorADC=0;    //Int es un valor numeric sencer
+  void setup(){    //Codi que es fa al principi nomes una vegada          
+  Serial.begin(9600);    //Conectem l'arduino amb l'ordinador amb un valor determinat. 115200 en S3 o 9600 en Arduino. Aquest valor correspon als bits/segon que pasen per la conexió.
+  }
+  void loop(){     //Codi que es repeteix quan s'acaba infinitaments fins que es desconecta o fins que ho especifiquem
+  valorADC=analogRead(A0);    //Llegim el valor int que llegeix l'arduino d'un complement i el guardem a la variable
+  Serial.print(valorADC);    //Imprimim el valor int que llegeix l'arduino
+  delay (500);    //Esperem 500 milisegons
+  }
+</code></pre>
+</div>
+<p>Un esp32 te molta millor precisió que un Arduino uno, aixó es perque el nombre de volts en el qual esta asignat l'informació es més
+gran a l'esp32</p>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
-
-   
-
-
-
-
