@@ -308,6 +308,15 @@ que no pot variar perquè si varia, varia tot el número de pin</p>
     </ul>
     <p>Amb això aconseguiriem millor resolució o presició, és a dir, el termometre o sensor agafa més valors diferents (seria més precis). En aquest cas value/4095, sempre
     serà un número entre 0 i 1, ja que value sempre va entre 0 i 4095, i si el multiplico per 3300, tindre un número de 0 a 3300 millivolts.</p>
-    <p><b>float celsius = millivolts / 10;</b> float demana un número decimal</p>
+    <p><b>float celsius = millivolts / 10;</b> float demana un número decimal, milivolts va desde 0 a 5000. Que pasa si divideixo entre 10, que els milivolts es converteixen en graus
+    i van de zero a 500ºc. <b>Serial.print(celsius)</b> mostra a la pantalla el valor de la variable celsius. <b>Serial.println(" C")</b> que imprimeix una linea (Println significa
+    print line), i si posem la c entre cometes imprimeix la c tal qual. Si no es posen les cometes imprimeix el valor de la variable C (si hi ha). Serial es una forma de comunicació
+    per USB o comuncicació serie i en molts llenguatges de programació existeix la biblioteca o clase serial. Un llenguatge de programació es un conjunt de biblioteques, una biblioteca
+    es un conjunt de classes, una classe te diverses funcions. </p>
+    <p> Per exemple, arduino es una classe de llenguatge de processing, pero s'utilitza molt més com a llenguatge de programació separat. La avantatge de usar processing amb la biblioteca
+    arduino es que es pot utilitzar totes les biblioteques de visió per ordinador, d'intel·ligencia artificial, de l'ordinador</p>
+    <p> Suposem  </p>
+    <p> t = analogRead (A4); -> 512(1023)
+        h = analogRead (A4); -> 512(1032)</p>
 </body>
 </html>
