@@ -315,8 +315,10 @@ que no pot variar perquè si varia, varia tot el número de pin</p>
     es un conjunt de classes, una classe te diverses funcions. </p>
     <p> Per exemple, arduino es una classe de llenguatge de processing, pero s'utilitza molt més com a llenguatge de programació separat. La avantatge de usar processing amb la biblioteca
     arduino es que es pot utilitzar totes les biblioteques de visió per ordinador, d'intel·ligencia artificial, de l'ordinador</p>
-    <p> Suposem  </p>
-    <p> t = analogRead (A4); -> 512(1023)
-        h = analogRead (A4); -> 512(1032)</p>
+    temp = analogRead (A4); -> 512(1023)
+    h = analogRead (A4); -> 512(1023)
+    <p> de forma que a 2,9 volts ens donaria -55 ºC, i a 4,15 V donaria 135 graus. Com faria un codi de mapeig per a aixó?</p>
+     float temp = map (value, 0, 1023, 2900, 4150)
+     float celsius = map (temp, 2900, 4150, -55, 155)
 </body>
 </html>
