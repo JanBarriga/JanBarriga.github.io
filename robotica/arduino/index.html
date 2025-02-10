@@ -318,7 +318,22 @@ que no pot variar perquè si varia, varia tot el número de pin</p>
     temp = analogRead (A4); -> 512(1023)
     h = analogRead (A4); -> 512(1023)
     <p> de forma que a 2,9 volts ens donaria -55 ºC, i a 4,15 V donaria 135 graus. Com faria un codi de mapeig per a aixó?</p>
-     float temp = map (value, 0, 1023, 2900, 4150)
-     float celsius = map (temp, 2900, 4150, -55, 155)
+     float temp = map (value, 0, 1023, 2900, 4150);
+     float celsius = map (temp, 2900, 4150, -55, 155);
+    <p> Value es un valor que agafa amb la instrucció analogRead. Es transforma en un altre valor que va desde 2900 a 4150 (Milivolts) perqué es de 10 bits (2 <sup>10</sup>) ja que es un ADC (Analogic
+    Digital converter), El transforma en un altre entre 2900 i 4150 milivolts</p>
+    <p> La variable temp no conté temperatura, conté milivolts i els convertim perqué la fulla de caracteristiques de LM 35 diu que hi ha una resposta lineal (Vista en el
+    grafic de més amunt) entre els milivolts mesurats i la temperatura en celsius.</p>
+    <p> Que pasaria si utilitzo un ESP 32 S3 i no arduino respecte als resultats de temperatura?</p>
+    <p> Canviaria els resultats i el codi.</p>
+    <p> El nou codi seria aquest: </p>
+    <p> float temp = map(value,0,4096,2900,4150)</p>
+    <p> Perqué hi ha 12 bits (2 <sup>12</sup>) i s'hauria de conectar a 5 volts. Te dos voltatges, 3v3 i 5v ja que es pot conectar també amb 3v3 volts. Peró no ho llegiria
+    correctament.</p>
+    <p> Quina mesura donaria en un o altre controlador?</p>
+    <p> En l'ESP 32 tenim 4096 nivells differents. I tenim 1250 milivolts disponibles (Perqué es 4150 - 2900). Quina es la resolució que tinc per cada nivell?
+    (1250 / 4096 = 0,305) Cada vegada que augmentem un nivell, augmenten 0.305 milivolts. Aixó cuant seria en graus? (150 - (- 55) = 205) Tenim 205ºc de diferencia de temperatura
+    (0,305 * 205).</p>
+    <p>En el cas de 4096 no importa el valor intermig.</p>
 </body>
 </html>
