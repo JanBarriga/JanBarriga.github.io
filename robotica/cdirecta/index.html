@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+    <title>Cinemàtica Directa</title>
+    <style>
+        /*Aquest llenguatge és CSS i es pot posarun arxiu extern style.css i escriure el que està a continuació o es pot posar com aqui,
+        entre style i final de style (pràctica no recomenada), també el JavaScript s'hauria de posar en un arxiu extern script.js perquè aixi
+        aconseguim separar l'esquelet on està tot el contingut estatic que està en llenguatge HTML del script.js on està tota la activitat
+        interactiva, de tots els estils (tipus de lletra, colors, marges...) en llenguatge CSS. Així tinc tres arxius un index.html que cridarà
+        a l'style.css i a l'escript.js */
+        /*El CSS significa Cascade Style Sheets o fulles d'estil en cascada i sempre té la mateixa estructura:
+        nometiquetahtml{propietat1:valor1;propietat2:valor2;}
+        Per exemple s'aplica el nom de l'etiqueta HTML "body" una propietat relacionada amb els marges anomenada
+        padding que prové del model CSS Box o model de caixes CSS a l'interior de la caixa tenim el contingut o "content",
+        i al voltant tenim el "padding" que s'expressa en píxel, al voltant tenim el "border", i al voltent tenim el "margin".
+        Si posem un sol número (0 o 10px) s'aplica a tots els costats, si posem dos números s'aplica el primer número a dalt
+        i a baix i el segon s'aplica a dreta i esquerra. Si son tres números, el primer a dalt, el segon a dreta i esquerra i 
+        el tercer a baix. Si afegim quatre números el primer anirà a dalt, el segon a la dreta, el tercer a baix i l'ultim a l'esquerra.
+        Si no recordem l'ordre podem escriure"border-top:10px", "border-bottom:20px", border-right:10px", border-left:30px".
+        "Padding" és similar a "border" o a "margin"*/
+        Body {
+        font-family: "Monaco", monospace;
+            /*Hi ha 3 tipus principals de lletres Serif, Sans-Serif i Monospace, la diferència entre elles es que el Serif té formes
+            més detallades i la Sans-serif no tenen aquests detalls, ja que Sans significa sense. Monospace és molt important per al codi
+            perquè l'amplada de cada lletra sempre és la mateixa. Altres famílies són Cursive i Fantasy. 
+            També podem crear o importar tipus de lletres totalment diferents i son arxius que hem d'importar amb el format OTF (OpenTypeFormat)
+            o TTF (TrueTypeFormat), per exemple, ana Vives té síndrome de Down i lletra pròpia*/
+        padding: 0; /* Elimina l'espai extra al voltant del cos */
+        border:10px 50px;
+        margin:20px;
+}
+        .container-fluid {
+        max-width: 100%; /* Assegura que la navbar ocupa tota l'amplada */
+        /*Container-fluid té un punt davant i aquest punt significa que és una "class", és a dir que hi ha un HTML que 
+        posa "class='container-fluid';" i per exemple podria ser un div o divisor de coontingut.
+        Aquest container té una propietat que es diu "max-width" que significa amplada màxima i el valor que li 
+        hem de donar és 100% de l'amplada. Si fos una id posaria un # i només hi hauria una, pero com és una class
+        pot ser moltes vegades repetida.*/
+
+}
+
+ .navbar {
+    padding-left: 0; /* Elimina el padding esquerra de la navbar */
+}
+
+.logo {
+    margin-right: 20px; /* Ajustar el marge si vols separar el logo del text */
+    margin-left: 0; /* Assegurar que no hi hagi marge a l'esquerra */
+}
+
+canvas{
+    border: blue 5px groove;
+    margin: 15px;
+    /* border-style:groove;*/
+}
+
+.brand-text {
+    white-space: nowrap; /* Això assegura que el text no es trenqui en múltiples línies */
+    font-size: 1.25rem; /* Ajusta la mida de la font si és necessari */
+}  
+.content-container {
+            margin-left: 10px;
+            margin-right: 10px; /* Marges laterals ajustats */
+            margin-top: 20px; /* Afegeix espai superior entre el contingut i la barra de menú */
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+       <a class="navbar-brand d-flex align-items-center" href="#">
+    <img src="logo.png" alt="logo" width="50" class="logo">
+    <span class="brand-text">Cinemàtica Directa</span>
+</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://brivera4pompeu.github.io">Inici</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://brivera4pompeu.github.io/robotica/">Tornar</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Contingut principal -->
+<div class="content-container">
+    <h1>Càlcul de  la posició d'un robot amb 2 braços</h1>
+    <!--h1 vol dir titol gran de l'anglès heading 1 i es fa més petit amb h2 i fins a h6 que és el més petit posible-->
+    <div>
+        <!--div és un divisor i conté en aquest cas unes quantes instruccions html que serveixen per introduïr dades que vulgui l'usuari-->
+        <!--etiquetes i camps d'entrada per a les dades del robot-->
+        <label for="a1"> Longitud del primer braç(a1):</label>
+        <!--label és una etiqueta que ens ajuda a identificar un text-->
+        <input type="number" id="a1" value="2" step="0.1"><br><br>
+        <!--input vol dir entrada d'informació per part de l'usuari que pot ser de molts tipus en aquest cas és  un número, 
+        però podria ser un input type text,date o button que serian respectivament que només acepten que escrivim text, una data o un botó respectivamment, 
+        més exemples aqui: https://www.w3schools.com/html/html_form_input_types.asp-->
+        <!--id significa identificador i és  com un DNI, no es pot repetir en la mateixa pàginna i ens ajuda  a manipular-lo 
+        en Javascript getElementById, value significa valorper defecte que dortirà directament, step és 
+        la variabilitat que jo puc escriure, no puc escriure 4,32, si vulgues escriure 4,32 amb 2  decimals qué hauria d'escriure?
+        hauria d'escriure step="0.01"-->
+        <!--br significa "break" que deixa una linea en blanc darrera, com hi ha 2 br hi hauran 2 lineas en blanc-->
+        <label for="a2"> Longitud del segon braç(a2):</label>
+          <input type="number" id="a2" value="1.5" step="0.1"><br><br>
+        <label for="q1"> angle del primer braç(q1, en graus):</label>
+          <input type="number" id="q1" value="45" step="0.1"><br><br>
+        <label for="q2"> angle del segon braç(q2, en graus):</label>
+          <input type="number" id="q2" value="30" step="0.1"><br><br>
+        <!--fins aqui els camps d'entrada de dades de l'usuari per fer el problema-->
+        <button onclick="calculatePosition()">Calcula la posició</button>
+        <!--tots els imputs són com caixes blanques de caixes d'informació-->
+        <!--calcula la posició, té forma de botó i quan el cliquem  s'executa una funció
+        Javascript anomeada calculatedPosition() que té els parentesis buits perque no depèn de cap parametre o argument,
+        Butto  és un tag principal com label, p per paràgraf, input per entrada i el que té al costat tots els tags principals
+        són atributs com en aquest onclick-->
+        <!-- en comtes de fer un clic al botó puc fer onddclick que obligaria a l'usuari a fer 2 clicks o puc fer que el boto s'activa quan paso persobre 
+        amb el ratoli i puc fer que canvii de color o una explicació de lo que fa o tooltip o informació del que fa el botó-->
+    </div>
+    <div id="output"></div> <br>
+    <canvas id="robotCanvas" width="400" height="400"></canvas>
+    
+    <!--id ens serveis per identificar qualsevol element html i no es poden repetir en la mateixa pàgina, a vegades necesitem fer servir class
+    perque volem repetir les  característiques d'aquesta classe diverses vegades a la pàgina. Quan escric HTLM id i vull agafar-ho des de JavaScript
+    escric getElementById i quan escric en HTML class i vull agafar-ho en JavaScript escric getElementByClassName. Si ho vull agafar des de
+    CSS, és a dir que el que vull fer amb ell és donar-li un estil simplement he de posar en CSS si poso # seguit del nom de la classe seleccionare
+    aquesta classe i si escricc . seguit del nom de la id seleccionare la id. En CSS  s'ha d'escriure sempre {propietat1:valor1; propietat2:valor2}
+    i davant del primer  claudator he d'escriure .nomdelaid o #nomdelaclasse-->
+    <script>
+        function calculatePosition() {
+            //Agafar les dades introduïdes per l'usuari
+        let a1 = parseFloat(document.getElementById('a1').value); //logitud del primer braç
+        let a2 = parseFloat(document.getElementById('a2').value); //longitud del segon braç
+        let q1_deg = parseFloat(document.getElementById('q1').value); //angle en graus del primer braç
+        let q2_deg = parseFloat(document.getElementById('q2').value); //angle en graus del segon braç
+
+            /* la funció le ens permet crear veriables locals perque estan dintre de una funció (serien variables globals
+            si estiguesin a principi del codi i afectes a tot el codi) que emmagatzemen els valors introduïts per l'usuari perquè a banda
+            de fet getElementbyId aplico el metode .value per  asegurarme que agafo el valor script i aplico la funció parseFloat per convertir
+            el valor intrduit per l'usuari en un número decimal o floating point number (si hagues posat parseInt el convertiria en números enters).
+            En aquest tros de codi  de la linea 131 a la 134 hem aconseguit guardar les 4 dades geometriques del nostre robot per fer calculs de la seva 
+            posició en funció de les 4 dades introduïdes per l'usuari */
+
+        //Convertir graus a radians per als calculs trigonometrics
+           let q1 = q1_deg * Math.PI / 180;
+           let q2 = q2_deg * Math.PI / 180;
+        //aixó és lo mateix que 2PI/360
+
+        //mostar les fórmules per calcular la posició del robot
+            let output = "<div class='equation'>Les equacions per calcular la posició final del robot són:</div>";
+            output += `<div class='equation'>\\[ x = a_1 \\cos(q_1) + a_2 \\cos(q_1 + q_2) \\]</div>`;
+            output += `<div class='equation'>\\[ y = a_1 \\sin(q_1) + a_2 \\sin(q_1 + q_2) \\]</div>`;
+
+        /* Estic creant una variable anomenada output en javascript que conté un element <div> o divisor HTML dintrdel qual hi han equacions del robot
+        en llenguatgge javascript de la biblioteca (library) mathtax3 que permet veure formules matemàqiques en una web. MathJax3 utilitza \\ 
+        per avisar que comença en MathJax i té unes normes com que la _ indica subínde, si poso una \\ davant de sinus o cosinus es veu escrit com a formula */
+
+        //Substituir les variabes de les  equacions
+            output += "<div class='equation'>Substituint els valors:</div>";
+            output += `<div class='equation'>\\[ x = ${a1} \\cos(${q1_deg}°) + ${a2} \\cos(${q1_deg}° + ${q2_deg}°) \\]</div>`;
+            output += `<div class='equation'>\\[ y = ${a1} \\sin(${q1_deg}°) + ${a2} \\sin(${q1_deg}° + ${q2_deg}°) \\]</div>`;
+        //Càlculs numèrics 
+            let x1 = a1 * Math.cos(q1);//Posició en X del primer braç
+            let x2 = a2 * Math.cos(q1 + q2);//Posició en X del segon braç
+            let y1 = a1 * Math.sin(q1);//Posició en y del primer braç
+            let y2 = a2 * Math.sin(q1 + q2);//Posició en Y del segon braç
+            output += "<div class='equation'>Desglossant els càlculs:</div>";
+            output += `<div class='equation'>\\[ x_1 = a_1 \\cos(q_1) = ${a1} \\times \\cos(${q1_deg}&deg;) = ${x1.toFixed(2)}\\] </div>`;
+            output += `<div class='equation'>\\[ x_2 = a_2 \\cos(q_1+q_2) = ${a2} \\times \\cos(${q1_deg}&deg;) + ${q2_deg}&deg;) = ${x2.toFixed(2)}\\] </div>`;
+            output += `<div class='equation'>\\[ y_1 = a_1 \\sin(q_1) = ${a1} \\times \\cos(${q1_deg}&deg;) = ${y1.toFixed(2)}\\] </div>`;
+            output += `<div class='equation'>\\[ y_2 = a_2 \\sin(q_1+q_2) = ${a2} \\times \\cos(${q1_deg}&deg;) + (${q2_deg}&deg;) = ${y2.toFixed(2)}\\] </div>`;
+        //Càlcul de les coordenades finals (x,y) de la mà del robot
+            let x = x1 + x2;
+            let y = y1 + y2;
+            output += "<div class='equation'>Calculant els resultats numèrics totals:</div>";
+            output += `<div class='equation'>\\[x = {$(x.toFixed(2))} \\] </div>`;
+            output += `<div class='equation'>\\[y = {$(y.toFixed(2))} \\] </div>`;
+        /* .toFixed(2) és un metode d'arrodoniment que apliquem amb la sintaxi del punt a la lletra x i a la lletra y que corresponen a la posició
+        final del robot. Let x = x1 +  x2; emmagatzema el valor de la posició x final en x i el $ selecciona el valor x i el posa 2 decimals
+        arrodonits amb .toFixed i els \\[ indiquen que estem escrivint  un codi MathJax3 que és un derivat de Latex per escriure  formules matemàtiques
+        que renderitzin bé a la ppantalla. output+= el que fa és sumar un element div anomenat output o sortida d'informació que al principi està buit 
+        però quan cliquem calculate comença a sortir tot el output. Ens hem d'adonar  que el div output té al seu interior molts divs anomenats equation però
+        no són "id" perquè si fosin "id" hauriem de ser 1, i són classes*/
+        //Mostrar el resultat
+        document.getElementById('output').innerHTML = output;
+        MathJax.typeset(); //Renderitzar les fórmules matemàtiques amb MathJax
+        }
+        //Dibuixar gràficament el robot amb els dos braços
+        let canvas = document.getElementById("robotCanvas");
+        /*Canvas és semblant a img que servia per introduir una imatge perquè no té els atributs o paràmetres src que 
+        indica la font (source=src=nom de la imatge) o la direcció d'internet de la imatge i tampoc té el paràmetre alt,
+        que s'hauria de posar en totes les imatges, per exemple, alt="aquest text nomes sortirà si no es troba la imatge
+        o per persones cegues perquè entenguin la imatge". En canvi canvas només té dos atributs width i height, que son
+        l'altura i l'amplada en píxels. L'element canvas*/
+        /*Agafa un element que s'anomena robot canvas que hauria d'estar més amunt i que està situat en el div buit de sota del div buit de l'output,
+        es a dir hi ha un divisor buit HTML anomenat output on surten totes les formules i un divisor buit HTML anomenat robotCanvas on sortira
+        el dibuix del robot*/
+        let ctx = canvas.getContext("2d");//El dibuix ha de ser 2D i no 3D
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        //Netejem el canvas abans de dibuixar
+        //ctx l'hem anomenat aixi perquè significa context de canvas en 2D
+        /*Posem el punt davant de .clearRect perquè és un mètode que s'aplica al context i té 4 arguments o parametres. Els 2 primers és
+        la cantonada superior esquerra del rectangle que sempre és el punt de referència de qualsevol dibuix i la cantonada inferior dreta són
+        els 2 darrers números.
+        Quin són els 2 darrers números? Són 400 perquè són canvas.width i canvas.height
+        clearRect. significa netejar un rectangle i només necessitem 2 coordenades per dibuixar-ho, la cantonada superior esquerre i la cantonada
+        inferior dreta.*/
+        //Definim el centre del canvas i l'escala
+        let centerX = canvas.width / 2;//Punt mitjà de X
+        let centerY = canvas.height / 2;//Punt mitjà de Y
+        // si el canvas fa 400, 400 centerX i centerY serien 200.
+        let scale = 80;//Escala per dibuixar les distancies
+        /*La escala del dibuix vol dir que si poso una unitat física en la entrada del text corresponent a a1 o a2 equival a 80 píxels en el canvas. Per exempple
+        si el robot té un braç de un metre serien 80 pixels.*/
+        let x1_screen = centerX + x1 * scale;
+        let y1_screen = centerY - y1 * scale;
+        let x2_screen = centerX + x2 * scale;
+        let y2_screen = centerY - y2 * scale;
+        /* x1_screen, y1_screen, x2_screen, y2_screen són les coordenades del robot que comencem pel centre perquè el braç del robot es pot moure 
+        en qualsevol direcció i el que faig és aplicar l'escala a les distàncies dels braços introduïdes*/
+        /* Aqui lo que farem és dibuiar el primer braç */
+        ctx.beginPath();
+        /* Estic aplicant el mètode de .beginPath amb la sintaxi del punt a ctx que és el context(ctx) de dibuix 2d i el que fa és iniciar un nou camí
+        de dibuix(Path) i es prepara per dibuixar una línia */
+        ctx.moveTo(centerX,centerY);
+        /*Estic avisant que es mogui al centre del canvas per començar a dibuixar des del centre del dibuix*/
+        ctx.lineTo(x1_screen,y1_screen);
+        /*Això vol dir: dibuixa una linia des del centre del canvas que és l'inici del primer braç fins a la posició x1_screen i y1_screen que és 
+        el final del primer braç*/
+        ctx.strokeStyle='blue';
+        /*strokeStyle indica el color de la linia, en aquest cas blau pel primer braç*/
+        ctx.lineWidth='5';
+        /*lineWidth és l'amplada de la linia en píxels, en aquest cas 5px de gruix*/
+        ctx.stroke();
+        /*stroke és una funció, se que és una funció perquè té doble parèntesis i dintre dels parèntesis no hi ha paràmetres, amb aquesta funció aconseguim
+        dibuixar la linia al canvas*/
+        /*A partir d'aqui dibuixem el segon braç i el vull verd amb 5px de gruix*/
+        ctx.beginPath();//Com té 2 parèntesis també és una funció
+        ctx.moveTo(x1_screen,y1_screen);//Ara posem que comenci al final del primer braç perquè és l'inici del segon braç
+        ctx.lineTo(x2_screen,y2_screen);//Ara la linia no pot anar a x1_screen,y1_screen(surt d'aqui) , aixi que posem que vagi cap a x2_screen,y2_screen que és el final del segon braç
+        ctx.strokeStyle='green';
+        ctx.lineWidth='5';
+        ctx.stroke();
+        
+    </script>
+    <p>Em dic Brayan i sóc alumne del curs 2024-2025 de <a href="https://agora.xtec.cat/ies-pompeu-fabra-martorell/">l'institut Pompeu Fabra</a></p>
+    <p>A continuació veuràs un llistat amb diferents projectes que farem durant el curs:</p>
+    <ul>
+         <li>Codis amb JavaScript, CSS i HTML que construiran una pàgina web on l'usuari introuirà diferents dades d'un braç robòtic i el sistema ens calcularà altres dades i les representarà visualment</li>
+        <!--<ul> significa lista doseordenada o unrdered list i <ol> ordered list o llista ordenada amb números i cada <li> és un element de le llista-->
+        <li>Creació d'una obra d'art geomètrica interactiva que reaccioni a la meva veu a través d'un micròfon i a diferents tecles del teclat, al ratolí, que faci moviments repetitius amb sin i cos, moviments aleatoris amb random... Utilitzarem p5.js.</li>
+        <li>Projecte de farmacocinètica: Us deixaré 2 llibre de farmacocinètica amb fòrmules matemàtiques i us donarè un codi inicial de 375 línies on usuari introdueix dades amb un slider com la dosis de fàrmac, la constant d'absorció i la ocnstant d'eliminació, el volum de distribució, la via d'administració (que serà un dropdown que podré trirar oral, intravenosa, transdèrmica, sublingual i inalatòria) nivell tòxic i el sistema em farà un grafic amb unes fòrmules matemàtiques que introduiré i el dibuixarà en un gràfic a temps real i em calculara moltes coses d'interès per un metge o un farmacèutic.</li>
+        <li>Aliments ecològics i convencionals amb C++.</li>
+        <li>Contaminació atmosfèrica d'una ciutat catalana amb R.</li> 
+        <li>Aprenentatge profund o "deep learning" amb Python i amb JavaScript (farem un codi que ens reconeixerà els contorns d'una obra d'art i ens donarà un codi en p5.js).</li>
+    </ul>
+</div>
+
+<!-- Scripts necessaris -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/mathjax/3.2.0/es5/tex-mml-chtml.js">
+</script>
+    <title>Web d'alumne</title>
+    <style>
+        /*Aquest llenguatge és CSS i es pot posarun arxiu extern style.css i escriure el que està a continuació o es pot posar com aqui,
+        entre style i final de style (pràctica no recomenada), també el JavaScript s'hauria de posar en un arxiu extern script.js perquè aixi
+        aconseguim separar l'esquelet on està tot el contingut estatic que està en llenguatge HTML del script.js on està tota la activitat
+        interactiva, de tots els estils (tipus de lletra, colors, marges...) en llenguatge CSS. Així tinc tres arxius un index.html que cridarà
+        a l'style.css i a l'escript.js */
+        /*El CSS significa Cascade Style Sheets o fulles d'estil en cascada i sempre té la mateixa estructura:
+        nometiquetahtml{propietat1:valor1;propietat2:valor2;}
+        Per exemple s'aplica el nom de l'etiqueta HTML "body" una propietat relacionada amb els marges anomenada
+        padding que prové del model CSS Box o model de caixes CSS a l'interior de la caixa tenim el contingut o "content",
+        i al voltant tenim el "padding" que s'expressa en píxel, al voltant tenim el "border", i al voltent tenim el "margin".
+        Si posem un sol número (0 o 10px) s'aplica a tots els costats, si posem dos números s'aplica el primer número a dalt
+        i a baix i el segon s'aplica a dreta i esquerra. Si son tres números, el primer a dalt, el segon a dreta i esquerra i 
+        el tercer a baix. Si afegim quatre números el primer anirà a dalt, el segon a la dreta, el tercer a baix i l'ultim a l'esquerra.
+        Si no recordem l'ordre podem escriure"border-top:10px", "border-bottom:20px", border-right:10px", border-left:30px".
+        "Padding" és similar a "border" o a "margin"*/
+        Body {
+        font-family: "Monaco", monospace;
+            /*Hi ha 3 tipus principals de lletres Serif, Sans-Serif i Monospace, la diferència entre elles es que el Serif té formes
+            més detallades i la Sans-serif no tenen aquests detalls, ja que Sans significa sense. Monospace és molt important per al codi
+            perquè l'amplada de cada lletra sempre és la mateixa. Altres famílies són Cursive i Fantasy. 
+            També podem crear o importar tipus de lletres totalment diferents i son arxius que hem d'importar amb el format OTF (OpenTypeFormat)
+            o TTF (TrueTypeFormat), per exemple, ana Vives té síndrome de Down i lletra pròpia*/
+        padding: 0; /* Elimina l'espai extra al voltant del cos */
+        border:10px 50px;
+        margin:20px;
+}
+        .container-fluid {
+        max-width: 100%; /* Assegura que la navbar ocupa tota l'amplada */
+        /*Container-fluid té un punt davant i aquest punt significa que és una "class", és a dir que hi ha un HTML que 
+        posa "class='container-fluid';" i per exemple podria ser un div o divisor de coontingut.
+        Aquest container té una propietat que es diu "max-width" que significa amplada màxima i el valor que li 
+        hem de donar és 100% de l'amplada. Si fos una id posaria un # i només hi hauria una, pero com és una class
+        pot ser moltes vegades repetida.*/
+
+}
+
+ .navbar {
+    padding-left: 0; /* Elimina el padding esquerra de la navbar */
+}
+
+.logo {
+    margin-right: 20px; /* Ajustar el marge si vols separar el logo del text */
+    margin-left: 0; /* Assegurar que no hi hagi marge a l'esquerra */
+}
+
+canvas{
+    border: blue 5px groove;
+    margin: 15px;
+    /* border-style:groove;*/
+}
+
+.brand-text {
+    white-space: nowrap; /* Això assegura que el text no es trenqui en múltiples línies */
+    font-size: 1.25rem; /* Ajusta la mida de la font si és necessari */
+}  
+.content-container {
+            margin-left: 10px;
+            margin-right: 10px; /* Marges laterals ajustats */
+            margin-top: 20px; /* Afegeix espai superior entre el contingut i la barra de menú */
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+       <a class="navbar-brand d-flex align-items-center" href="#">
+    <img src="logo.png" alt="logo" width="50" class="logo">
+    <span class="brand-text">Web d'alumne</span>
+</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Inici</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Tema 1</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">Braç Robòtic</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="https://brivera4pompeu.github.io/robotica/cdirecta">Cinemàtica Directa</a>
+                        <a class="dropdown-item" href="#">Projecte 2</a>
+                        <a class="dropdown-item" href="#">Projecte 3</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Tema 2</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Contingut principal -->
+<div class="content-container">
+    <h1>Cinemàtica Inversa d'un Robot amb Dos Braços</h1>
+    <div>
+        <label for="a1"> Longitud del primer braç(a1):</label>
+        <input type="number" id="a1" value="2" step="0.1"><br><br>
+        <label for="a2"> Longitud del segon braç(a2):</label>
+        <input type="number" id="a2" value="1.5" step="0.1"><br><br>
+        <label for="x"> Posició X:</label>
+        <input type="number" id="x" value="2.5" step="0.1"><br><br>
+        <label for="y"> Posició Y:</label>
+        <input type="number" id="y" value="1.5" step="0.1"><br><br>
+       
+        <button onclick="calculateAngles()">Calcula els angles</button>
+    </div>
+    
+    <div id="output"></div> <br>
+    <canvas id="robotCanvas" width="400" height="400"></canvas>
+
+    <script>
+        function calculateAngles() {    
+        //Agafar les dades introduïdes per l'usuari
+        let a1 = parseFloat(document.getElementById('a1').value); //logitud del primer braç
+        let a2 = parseFloat(document.getElementById('a2').value); //longitud del segon braç
+        let x = parseFloat(document.getElementById('x').value); //posició x del primer braç
+        let y = parseFloat(document.getElementById('y').value); //posició y del segon braç
+            
+        //Càlcul de q2
+        let d = Math.sqrt(x*x+y*y);
+        let q2 = Math.acos((d*d-a1*a1-a2*a2)/(2*a1*a2));
+            
+        //Càlcul de q1
+        let k1 = a1+a2*Math.cos(q2);
+        let k2 = a2*Math.sin(q2);
+        let q1 = Math.atan2(y,x) - Math.atan2(k2,k1);
+
+        //Convertir radians en graus
+        let q1_deg = q1*180/Math.PI;
+        let q2_deg = q2*180/Math.PI;
+            
+        //Resultat
+        let output="<div class='equation'>Les equacions per calcular els angles són:</div>";
+        output +=`<div class='equation'>\\[q_2 = \\arccos\\left(\\frac{d^2-a_1^2-a_2^2}{2*a_1*a_2}\\right)\\]</div>`;
+        output +=`<div class='equation'>\\[q_1 = \\arctan\\left(y,x\\right)-\\arctan\\left(\\frac{a_2\\sin(q_2)}{a_1+a_2\\cos(q_2)}\\right)\\]</div>`;
+        
+        //Substituir les variables 
+        output += "<div class='equation'>Substituint els valors:</div>";
+        output += `<div class='equation'>\\[d = \\sqrt{${x}^2+${y}^2} = ${d.toFixed(2)}\\]</div>`;    
+        output += `<div class='equation'>\\[q_2 = \\arccos\\left(\\frac{${d.toFixed(2)}^2-${a1}^2-${a2}^2}{2\\times ${a1}\\times ${a2}}\\right) = ${q2_deg.toFixed(2)}°\\]</div>`;
+        output += `<div class='equation'>\\[q_1 = \\arctan\\left(${y},${x}\\right)-\\arctan\\left(\\frac{${a2}\\sin(${q2_deg.toFixe(2)}°)}{${a1}+${a2}\\cos(${q2_deg.toFixed(2)}°)}\\right) = ${q1_deg.toFixed(2)}°\\]</div>`;    
+        document.getElementById('output').innerHTML = output;
+        MathJax.typeset(); //Renderitzar MathJax per mostrar les fórmules correctament
+        
+        //Visualització gràfica
+        let canvas = document.getElementById('robotCanvas');
+        let ctx = canvas.getContext('2d');
+        ctx.clearRect(0,0,canvas.width,canvas.height);//Netejar canvas
+        
+        //Centre i escales
+        let centerX = canvas.width/2;//Punt mitjà de X
+        let centerY = canvas.height/2;//Punt mitjà de Y
+        let scale = 80;//Escala per dibuixar les distancies
+
+        //Coordenades
+        let x1 = a1 * Math.cos(q1);
+        let y1 = a1 * Math.sin(q1);
+        let x2 = x1 + a2 * Math.cos(q1+q2);
+        let y2 = y1 + a2 * Math.sin(q1+q2);
+
+        //Dibuixar braç 1 
+        ctx.beginPath();
+        ctx.moveTo(centerX,centerY);
+        ctx.lineTo(centerX+x1*scale, centerY-y1*scale);
+        ctx.strokeStyle='blue';
+        ctx.lineWidth='5';
+        ctx.stroke();
+
+        //Dibuixar braç 2
+        ctx.beginPath();
+        ctx.moveTo(centerX+x1*scale,centerY-y1*scale);
+        ctx.lineTo(centerX+x2*scale,centerY-y2*scale);
+        ctx.strokeStyle='green';
+        ctx.lineWidth='5';
+        ctx.stroke();
+
+        //Dibuixar els cercles als extrems
+        ctx.beginPath();
+        ctx.arc(centerX,centerY,5,0,2*Math.PI);//Base del Braç
+        ctx.fillStyle = 'red';
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(centerX+x1*scale,centerY-y1*scale,5,0,2*Math.PI);//Final del primer braç
+        ctx.fillStyle='red';
+        ctx.fill()
+
+        ctx.beginPath();
+        ctx.arc(centerX+x2*scale,centerY-y2*scale,5,0,2*Math.PI);//Final del segon braç
+        ctx.fillStyle='red';
+        ctx.fill();
+        }
+        
+    </script>
+    <p>Em dic Brayan i sóc alumne del curs 2024-2025 de <a href="https://agora.xtec.cat/ies-pompeu-fabra-martorell/">l'institut Pompeu Fabra</a></p>
+    <p>A continuació veuràs un llistat amb diferents projectes que farem durant el curs:</p>
+    <ul>
+         <li>Codis amb JavaScript, CSS i HTML que construiran una pàgina web on l'usuari introuirà diferents dades d'un braç robòtic i el sistema ens calcularà altres dades i les representarà visualment</li>
+        <!--<ul> significa lista doseordenada o unrdered list i <ol> ordered list o llista ordenada amb números i cada <li> és un element de le llista-->
+        <li>Creació d'una obra d'art geomètrica interactiva que reaccioni a la meva veu a través d'un micròfon i a diferents tecles del teclat, al ratolí, que faci moviments repetitius amb sin i cos, moviments aleatoris amb random... Utilitzarem p5.js.</li>
+        <li>Projecte de farmacocinètica: Us deixaré 2 llibre de farmacocinètica amb fòrmules matemàtiques i us donarè un codi inicial de 375 línies on usuari introdueix dades amb un slider com la dosis de fàrmac, la constant d'absorció i la ocnstant d'eliminació, el volum de distribució, la via d'administració (que serà un dropdown que podré trirar oral, intravenosa, transdèrmica, sublingual i inalatòria) nivell tòxic i el sistema em farà un grafic amb unes fòrmules matemàtiques que introduiré i el dibuixarà en un gràfic a temps real i em calculara moltes coses d'interès per un metge o un farmacèutic.</li>
+        <li>Aliments ecològics i convencionals amb C++.</li>
+        <li>Contaminació atmosfèrica d'una ciutat catalana amb R.</li> 
+        <li>Aprenentatge profund o "deep learning" amb Python i amb JavaScript (farem un codi que ens reconeixerà els contorns d'una obra d'art i ens donarà un codi en p5.js).</li>
+    </ul>
+</div>
+
+<!-- Scripts necessaris -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>
