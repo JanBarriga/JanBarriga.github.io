@@ -214,5 +214,32 @@ delay(500); // wait for a half second<br />
 <iframe title="Blinking ESP32-S3" src="https://www.youtube.com/embed/9prlFXNvumE" width="640" height="360" frameborder="0" allowfullscreen="allowfullscreen"></iframe><br />
 From 16/09/2022 it is possible to use <a href="https://blog.arduino.cc/2022/09/16/arduino-cloud-extends-esp32-support-to-s2-s3-c3-devices/" target="_blank">cloud Arduino IDE.</a></p>
 	</div><!-- .entry-content -->
+	<h1>Entrades GPIO </h1>
+	<p> GPIO significa General Purpose Input Output. O sigui, entrades i sortides de proposit general. Aquest pins permeten ser utilitzats com entrades o sortides
+	analogiques o digitals, i a vegades com a relotge o parts d'un protocol de comunicació. Les GPIO Estan normalment en microcontroladors avanzats o moderns, com
+	ESP 32 S3 i també en micro-ordinadors microcontroladors com raspberry pi. Arduino UNO Rev 3 no té GPIO Peró es poden utilitzar les entrades analogiques com a GPIO les entrades
+	analogiques A0-A4. Es poden modificar / Piratejar els protocols de comunicació</p>
+	<h2> Protocols de comunicació</h2>
+	<p> Son protocols utilitzats per un Arduino, ESP 32 etc. per comunicar-se amb l'ordinador o qualsevol altre dispositiu. SPI Serial peripherial interface. Permet la comunicació
+	sincrona entre el microcontrolador i altres dispositius electronics. Serveix per que cada puls de relotge (CLK) indica que s'ha de llegir o escriure 1 bit i el transmisor i receptor
+	es mouen al mateix ritme del relotge</p>
+	<h3> Comunicació sincrona</h3>
+	<p>Hi han 2 protocols principals sincrons. SPU i I2C. El transmisor i receptor funcionen de forma totalment independents. Cada Byte (Conjunt de 8 bits) o paquet de dades
+	porta uns bits que es poden identificar com a bits d'inici i final. La velocitat de transmisió te que ser la mateixa. (Arduino UNO: 9600 bauds) (ESP: 115200 Bauds)</p>
+	<p> Exemples de UART i RS232</p>
+	<p> (UART vol dir Universal Asynchronous Receiver / Transmitter)</p>
+	<p> (RS232 Es l'antic port serie) </p>
+	<h5> Avantatges:</h5>
+	<ul>
+		<li>Més sencill de cablejar</li>
+		<li>Ideal per distancies llargues</li>
+		<li>Comunicació simples</li>
+	</ul>
+	<h5> Inconvenientes </h5>
+	<ul>
+		<li>Menys eficencia</li>
+	</ul>
+	<h4> Exemple SPI </h4>
+	<p> El pin 11 es MOSI (Master Out / Slave In) I el pin 12 es MISO (Master In / Slave out)</p>
 </body>
 </html>
