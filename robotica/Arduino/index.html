@@ -84,6 +84,9 @@
                     <a class="nav-link" href="https://brivera4pompeu.github.io/robotica">Tornar</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="https://brivera4pompeu.github.io/robotica/arduino/configuracio/">Configuració</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="https://brivera4pompeu.github.io">Inici</a>
                 </li>
                 </div>
@@ -370,19 +373,5 @@ que no pot variar perquè si varia, varia tot el número de pin</p>
             //500 analogValue donaria 500*(5000//1024) és igual a 2441 i aquest número estaría fora d'escala.
         </code>
     </pre>
-    <p> Un ESP 32 te 240 hz. Aixó es tradueix en 240 millions d'operacions de coma flotant per segon (FLOPs). Aquesta dada es critica perque ens indica la potencia de calcul
-    dels microcontroladors que controlen els robots</p>
-    <p> Un arduino UNO te una velocitat de 16 mhz. El ESP 32 es 15 vegades més potent que l'arduino UNO. I un raspberry pi te una velocitat de 1 ghz. El super ordenador mas
-    potent del muon (Tianh i el capita) han arribat a 1.7 exaFLOPS es a dir 1 trillió d'operacions matematiques per segon. Es important decidir quin microcontrolador, ordinador,
-    o superodinador es adequat per a cada aplicació, perque no podrem utilitzar aplicacions que requereixen molts calculs en un microcontrolador petit.</p>
-
-    <p> Conectivitat o SRAM </p>
-    <p> La memoria interna del ESP 32 també es un factor limitant (En aquest cas 512 kbytes) Comparem amb l'arduino UNO, el qual te 2 kb de SRAM. Que ve de el seu procesador AVR
-    RAM vol dir Random Acces Memory. És una memoria interna en la qual s'executen els programes. ESP 32 S3 Té 256 vegades més memories. I un ordinador com el meu te 8gb de ram
-    (més de 15000 vegades).</p>
-    <p> La memoria ROM es Read Only Memory o el disc dur, que es la capacitat total del microcontrolador. El arduino UNO te 32 kb de ROM. I el ESP 32 S3 té 384 kb. I el meu 
-    ordinador te 119 gb de memoria ROM. </p>
-    <p> Formes de comunicació: Arduino UNO rev 3 no te bluetooth</p>
 </body>
 </html>
-
