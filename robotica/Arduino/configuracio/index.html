@@ -242,6 +242,19 @@ From 16/09/2022 it is possible to use <a href="https://blog.arduino.cc/2022/09/1
 	<h4> Exemple SPI </h4>
 	<p> El pin 11 es MOSI (Master Out / Slave In) I el pin 12 es MISO (Master In / Slave out)</p>
 
-	
+	<p> Blink variable globlal </p>
+	<p>
+		int ledPin = 13;
+		int delayPeriod = 500;
+		void setup(){
+		pinMode(ledPin, OUTPUT);
+		}
+		void loop(){
+		digitalWrite(ledPin, HIGH);
+		delay(delayPeriod);
+		digitalWrite(ledPin, LOW);
+		delay(delayPeriod);
+		}
+	</p>
 </body>
 </html>
