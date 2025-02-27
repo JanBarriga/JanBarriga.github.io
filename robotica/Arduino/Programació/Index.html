@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programació amb Arduino</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"></script>
+    <script src="https://brivera4pompeu.github.io/robotica/arduino/programacio/arduino.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
+        pre { background: #f4f4f4; padding: 10px; overflow-x: auto; position: relative; }
+        code { font-family: monospace; }
+        .copy-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #007bff;
+        }
+    </style>
+    <script>
+        function copyCode(button) {
+            const codeBlock = button.nextElementSibling.innerText;
+            navigator.clipboard.writeText(codeBlock).then(() => {
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => { button.innerHTML = '<i class="fas fa-copy"></i>'; }, 2000);
+            });
+        }
+    </script>
+</head>
+<pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+//El meu primer codi: Blink
+void setup() { //Codi que s'executa una vegada i és la configuració.
+  pinMode(13, OUTPUT); //Estem dient que el pin 13 és una sortida de corrent o OUTPUT on puc connectar
+      //un led.
+}
+
+void loop() { //És un codi que s'executa sense parar fins que desconnecto l'Arduino o li dono una instrucció de parada.
+ digitalWrite(13, HIGH); // <b>digitalWrite</b> és una sortida digital i permet encendre i apagar
+      //Només té 2 valors, HIGH i LOW (Encès i apagat)
+ delay(500);//És el temps en milisegons que ha d'estar, en aquest cas encès.
+ digitalWrite(13, LOW);//Aqui <b>digitalWrite</b> fa que s'apagui
+ delay(500);
+}
+</code></pre>
+<pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+//Blink amb dos variables globals
+//Avantatge principal: Quan canvio un número al principi canviarà tot el codi. 
+//Segon avantatge: També s'enten millor perquè jo poso els noms de les variables
+//Desavantatge: És una mica més llarg. 
+int ledPin = 13;
+int delayPeriod = 500; //Declarem 2 variables globals com a números enters
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+ digitalWrite(ledPin, HIGH);
+ delay(delayPeriod);
+ digitalWrite(ledPin, LOW); //Utilitzo una variable global
+ delay(delayPeriod); //Utilitzo una altra variable global
+}
+</code></pre>
+<pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+//Codi Blink amb un condicional
+
+int ledPin = 13;
+int delayPeriod = 100;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+ digitalWrite(ledPin, HIGH);
+ delay(delayPeriod);
+ digitalWrite(ledPin, LOW);
+ delay(delayPeriod);
+ delayPeriod = delayPeriod + 100; //Augmenta el temps 100 milisegons cada vegada
+ if (delayPeriod == 1000) { //Quan arriba a 1000 milisegons torna a començar, això significa que quan arriba a 1000 torna a començar 
+    //perquè hem posat que el delayPeriod sigui 100 de nou. 
+    //Cada vegada és més lent perquè el temps que triga en encendre i apagar-se és major.
+    //Si vulgues que cada vegada sigui més ràpid, i s'hauria de canviar varies coses: al principi del codi canviar la variable de 
+    //int delayPeriod = 1000, a final de codi posar el menys a "delayPeriod = delayPeriod - 100", i finalment canviar el condicional per:
+    //if (delayPeriod == 100); delayPeriod = 1000;
+    //Si vull que el canvi sigui més lent s'hauria de posar un número més alt en "delayPeriod = delayPeriod + X"
+    //Si vull que el canvi sigui més ràpid s'hauria de posar un número més petit en "delayPeriod = delayPeriod + X"
+  delayPeriod = 100;
+ }
+}
+</code></pre>
+</body>
+</html>
