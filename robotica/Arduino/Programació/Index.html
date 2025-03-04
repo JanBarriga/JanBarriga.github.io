@@ -324,13 +324,13 @@ void loop() {
 // numFlashes no esta definit com a variable global, és una variable local definida dins de la funció "flash"
 // i no te un valor predeterminat, només ha de complir que sigui un valor enter. El mateix per a la variable "d"
 void flash(int numFlashes, int d) {
-  for (int i = 0; i < numFlashes; i ++) {
+    for (int i = 0; i numFlashes; i++) {
     digitalWrite(ledPin, HIGH);
     delay(d);
     digitalWrite(ledPin, LOW);
     delay(d);
-  }
-}
+    }
+    }
 </code></pre>
 
 </body>
