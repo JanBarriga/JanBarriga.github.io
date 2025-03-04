@@ -217,6 +217,121 @@ void loop() {
 }
 
 </code></pre>
+<p> Amb el següent codi, aconseguim el mateix resultat que més amunt, es a dir, 
+encendre i apagar 20 vegades amb un delay de 250 milisegons, peró no ho escribim 20 
+vegades, si no que fem un cicle for.</p>
+<pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+    // 02_08_blik_20_for
+
+int ledPin = 13;
+int delayPeriod = 250;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  for (int i = 0; i < 20; i ++) { //Dintre del cicle for, tenim les condicions que ha de complir el cicle
+      //que són des de i = 0 fins a i = 20, ves augmentant un en un. O sigui i++ que es el mateix que i = i + 1
+      //Si volgués podria canviar les condicions. fent que els numeros augmentesin diferent
+      //(Per exemple i = i + 5)
+      
+   digitalWrite(ledPin, HIGH);
+   delay(delayPeriod);
+   digitalWrite(ledPin, LOW);
+   delay(delayPeriod);
+  }
+ delay(3000);
+}
+</code></pre>
+<p> En el codi anterior, hem dit que repeteixi 20 vegades però es repeteix infinites vegades perqué es repeteix
+20 vegades en un void loop. En el següent codi, posarem un contador i quan arribi a 20 repeticions s'aturarà</p>
+<pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+// 02_09_blink_20_loop (Aqui es nota perqué
+
+int ledPin = 13;
+int delayPeriod = 100;
+int count = 0;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+ digitalWrite(ledPin, HIGH);
+ delay(delayPeriod);
+ digitalWrite(ledPin, LOW);
+ delay(delayPeriod);
+ count ++; //"Count" es una variable global que podria ser local, perquè només afecta al loop.
+    //si escric "int count; count ++;" estaria definint una variable local dintre del loop, i no es pot usar en una altre funció que jo defineixi o
+    //al setup
+ if (count == 20) { //Quan el comtador arriba a 20 deixa de fer parpadeigs de 100 milisegons i fa una aturada de 3 segons abans de tornar a començar
+   count = 0;
+   delay(3000);
+ }
+}
+ // Dos iguals vol dir que es exactament igual. Si posem 3 iguals "===" es una comparació estricta es a dir una comparació
+// estricta, que compara també el tipus de variable. Si posem un igual "=" és una assignació que pot ser temporal o constant
+// si es posa "const" davant es 
+</code></pre>
+<p> El següent codi es el primer exemple de creació d'una funció. Una funció es com un programa dins dins d'un programa.</p>
+<pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+    // 03_01_blink_function
+
+const int ledPin = 13;
+const int delayPeriod = 250;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+// Aquest codi es el principal, anomenat com a "main" en alguns llenguatges. És el que s'aplica continuadament. En aquest cas el "void loop()"
+// el loop repeteix 20 vegades el flash.
+// Com cridem una funció?
+// Només cal posar el nom de la funció dintre del loop per cridar-la i que s'executi sempre.
+void loop() {
+  for (int i = 0; i < 20; i ++) {
+    flash();
+  }
+ delay(3000);
+}
+// per crear una funció només cal escriure el nom de la funció i uns parentesis. Si hagués alguna cosa entre parentesi
+//serian els parametres o arguments de la funció. La paraula "void" en aquest cas es equivalent a la paraula "function" de javascript.
+//triem un nom explicatiu del que fa la funció, i dintre de les claus posem les linees de codi que s'han d'executar quan la cridem pel seu
+//nom dintre del void loop (per exemple). 
+void flash() { 
+   digitalWrite(ledPin, HIGH);
+   delay(delayPeriod);
+   digitalWrite(ledPin, LOW);
+   delay(delayPeriod);
+}
+</code></pre>
+<p>A continuació veurem el codi flash però amb paràmetres. </p>
+<pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+    // 03_03_blink_functrion_params
+
+const int ledPin = 13;
+const int delayPeriod = 250;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  flash(20, delayPeriod);
+  delay(3000);
+}
+// Podem veure que la funció te dos paràmetres que son 2 nombres enters i que s'anomenen "numFlashes" i "d"
+// numFlashes no esta definit com a variable global, és una variable local definida dins de la funció "flash"
+// i no te un valor predeterminat, només ha de complir que sigui un valor enter. El mateix per a la variable "d"
+void flash(int numFlashes, int d) {
+  for (int i = 0; i < numFlashes; i ++) {
+    digitalWrite(ledPin, HIGH);
+    delay(d);
+    digitalWrite(ledPin, LOW);
+    delay(d);
+  }
+}
+</code></pre>
 
 </body>
 </html>
