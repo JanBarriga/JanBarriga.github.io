@@ -96,5 +96,127 @@ void loop() {
  }
 }
 </code></pre>
+<p> En el següent codi podem veure com definim unes variables globals i les apliquem moltes vegades repetides dins del mateix 
+    codi. Es un codi molt repetitiu </p>
+<pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+// 02_07_blink_20 (Encendre i apagar manualment o Hard coded)
+// variables globals, que s'utilitzaran moltes vegades repetides.
+//avantatges: Es pot canviar el periode i el nombre de pin al principi (Variable global) i afecta a moltes linees
+//de codi diferent. 
+
+int ledPin = 13;
+int delayPeriod = 250;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+ digitalWrite(ledPin, HIGH);
+ delay(delayPeriod);
+ digitalWrite(ledPin, LOW);
+ delay(delayPeriod);
+
+ digitalWrite(ledPin, HIGH);
+ delay(delayPeriod);
+ digitalWrite(ledPin, LOW);
+ delay(delayPeriod);
+
+ digitalWrite(ledPin, HIGH);
+ delay(delayPeriod);
+ digitalWrite(ledPin, LOW);
+ delay(delayPeriod);
+
+ digitalWrite(ledPin, HIGH);
+ delay(delayPeriod);
+ digitalWrite(ledPin, LOW);
+ delay(delayPeriod);
+ 
+ digitalWrite(ledPin, HIGH);
+ delay(delayPeriod);
+ digitalWrite(ledPin, LOW);
+ delay(delayPeriod);
+ 
+ digitalWrite(ledPin, HIGH);
+ delay(delayPeriod);
+ digitalWrite(ledPin, LOW);
+ delay(delayPeriod);
+ 
+ digitalWrite(ledPin, HIGH);
+ delay(delayPeriod);
+ digitalWrite(ledPin, LOW);
+ delay(delayPeriod);
+ 
+ digitalWrite(ledPin, HIGH);
+ delay(delayPeriod);
+ digitalWrite(ledPin, LOW);
+ delay(delayPeriod);
+ 
+ digitalWrite(ledPin, HIGH);
+ delay(delayPeriod);
+ digitalWrite(ledPin, LOW);
+ delay(delayPeriod);
+ 
+ digitalWrite(ledPin, HIGH);
+ delay(delayPeriod);
+ digitalWrite(ledPin, LOW);
+ delay(delayPeriod);
+ 
+ digitalWrite(ledPin, HIGH);
+ delay(delayPeriod);
+ digitalWrite(ledPin, LOW);
+ delay(delayPeriod);
+ 
+ digitalWrite(ledPin, HIGH);
+ delay(delayPeriod);
+ digitalWrite(ledPin, LOW);
+ delay(delayPeriod);
+ 
+ digitalWrite(ledPin, HIGH);
+ delay(delayPeriod);
+ digitalWrite(ledPin, LOW);
+ delay(delayPeriod);
+ 
+ digitalWrite(ledPin, HIGH);
+ delay(delayPeriod);
+ digitalWrite(ledPin, LOW);
+ delay(delayPeriod);
+ 
+ digitalWrite(ledPin, HIGH);
+ delay(delayPeriod);
+ digitalWrite(ledPin, LOW);
+ delay(delayPeriod);
+ 
+ digitalWrite(ledPin, HIGH);
+ delay(delayPeriod);
+ digitalWrite(ledPin, LOW);
+ delay(delayPeriod);
+ 
+ digitalWrite(ledPin, HIGH);
+ delay(delayPeriod);
+ digitalWrite(ledPin, LOW);
+ delay(delayPeriod);
+ 
+ digitalWrite(ledPin, HIGH);
+ delay(delayPeriod);
+ digitalWrite(ledPin, LOW);
+ delay(delayPeriod);
+ 
+ digitalWrite(ledPin, HIGH);
+ delay(delayPeriod);
+ digitalWrite(ledPin, LOW);
+ delay(delayPeriod);
+ 
+ digitalWrite(ledPin, HIGH);
+ delay(delayPeriod);
+ digitalWrite(ledPin, LOW);
+ delay(delayPeriod);
+ 
+ 
+ delay(3000);
+}
+
+</code></pre>
+
 </body>
 </html>
