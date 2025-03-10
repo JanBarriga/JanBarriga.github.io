@@ -1,94 +1,505 @@
 <!DOCTYPE html>
-<html lang="ca">
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <title>Web de Jan</title>
-    <style>
-    
-body {
-            padding: 20px; /* Espai extra per als marges laterals */
-        }
-.navbar-brand {
-    display: flex;
-    align-items: center;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Montserrat:wght@700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"></script>
+  <script src="https://ecastro4.github.io/robotica/arduino/programacio/arduino.min.js"></script>
 
-.logo {
-    margin-right: 20px; /* Ajusta aquest valor segons el necessari */
-}
+  <script>hljs.highlightAll();</script>
+  <title>Openair</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #f8f9fa, #ffe4b5);
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
 
-.brand-text {
-    white-space: nowrap; /* Això assegura que el text no es trenqui en múltiples línies */
-    font-size: 1.25rem; /* Ajusta la mida de la font si és necessari */
-}  
-.content-container {
-            margin-left: 10px;
-            margin-right: 10px; /* Marges laterals ajustats */
-            margin-top: 20px; /* Afegeix espai superior entre el contingut i la barra de menú */
-        }
-    </style>
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(45deg, #ff6b6b, #ff3d3d);
+      padding: 10px 20px;
+      border-bottom: 4px solid #ffdd40;
+      z-index: 10;
+    }
+
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+      color: #fff !important;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      transition: color 0.2s ease-in-out;
+    }
+
+    .navbar-brand:hover {
+      color: #000 !important;
+    }
+
+    .navbar-brand img {
+      margin-right: 15px;
+      border-radius: 0;
+    }
+
+    .nav-link {
+      color: #ffffff !important;
+      font-weight: 600;
+      margin-right: 15px;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: #ffdd40 !important;
+    }
+
+    .nav-link::after {
+      content: '';
+      width: 0%;
+      height: 3px;
+      background-color: #ffdd40;
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .dropdown-menu {
+      background-color: #cc3f33;
+      border: none;
+      border-radius: 10px;
+    }
+
+    .dropdown-item {
+      color: #ffffff;
+      transition: background-color 0.3s ease;
+    }
+
+    .dropdown-item:hover {
+      background-color: #ff7f50;
+      color: #ffffff;
+    }
+
+    .content-container {
+      margin: 120px auto 50px auto;
+      padding: 40px;
+      max-width: 900px;
+      background-color: #ffffff;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      border-radius: 15px;
+      border-left: 8px solid #ffdd40;
+      border-right: 8px solid #ffdd40;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    h1 {
+      color: #ff4500;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    ul li {
+      background-color: #ffe4b5;
+      margin-bottom: 10px;
+      padding: 10px 15px;
+      border-left: 5px solid #ff7f50;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    ul li:hover {
+      background-color: #f1f3f5;
+    }
+
+    a {
+      color: #ff4500;
+      font-weight: 600;
+      transition: color 0.3s ease;
+      text-decoration: underline;
+    }
+
+    a:hover {
+      color: #ff7f50;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .content-container {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .navbar-brand {
+        font-size: 1.25rem;
+      }
+
+      ul li {
+        font-size: 1rem;
+      }
+    }
+
+    table {
+      width: 50%;
+      /* Ocupa el 50% de la anchura de la página */
+      border-collapse: collapse;
+      /* Evita que aparezcan dobles líneas en las filas */
+      margin: 20px auto;
+      /* Margen de 20px en la parte superior y centra la tabla */
+    }
+
+    th,
+    td {
+      border: 1px solid #ddd;
+      /* Añade un borde fino de un píxel de color gris claro a todas las celdas (th y td) */
+      padding: 10px;
+      /* Espacio interno dentro de cada celda */
+      text-align: center;
+      /* Centra el texto dentro de cada celda */
+    }
+
+    thead {
+      background: #f4f4f4;
+      /* Cambia el color de fondo del thead a gris claro */
+      font-weight: bold;
+      /* Hace que la cabecera de la tabla esté en negrita */
+    }
+
+    tbody tr:nth-child(even) {
+      /* Aplica estilo a las filas pares */
+      background-color: #f9f9f9;
+    }
+
+    tbody tr:hover {
+      /* Cambia el color de fondo al pasar el ratón por encima */
+      background-color: #e2e2e2;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      left: 50%;
+      background: linear-gradient(135deg, #ffe0b2, #ffccbc);
+      /* Fondo degradado */
+    }
+
+    .custom-button {
+      background-color: #e63946;
+      color: white;
+      border: none;
+      padding: 18px 36px;
+      /* Botón más grande */
+      font-size: 20px;
+      font-family: 'Arial', sans-serif;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-radius: 50px;
+      /* Bordes más redondeados */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .custom-button:hover {
+      background-color: #ff6f61;
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      overflow-x: auto;
+      position: relative;
+    }
+
+    code {
+      font-family: monospace;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      color: #007bff;
+    }
+  </style>
+  <script>
+    function copyCode(button) {
+      const codeBlock = button.nextElementSibling.innerText;
+      navigator.clipboard.writeText(codeBlock).then(() => {
+        button.innerHTML = '<i class="fas fa-check"></i>';
+        setTimeout(() => { button.innerHTML = '<i class="fas fa-copy"></i>'; }, 2000);
+      });
+    }
+  </script>
 </head>
+
 <body>
-
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
-       <a class="navbar-brand d-flex align-items-center" href="#">
-    <img src="logo.png" alt="Logo" width="50" class="logo">
-    <span class="brand-text">Web de Jan</span>
-</a>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Inici</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Tema 1</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">Projectes</a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Projecte 1</a>
-                        <a class="dropdown-item" href="#">Projecte 2</a>
-                        <a class="dropdown-item" href="#">Projecte 3</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Tema 2</a>
-                </li>
-            </ul>
-        </div>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="https://ecastro4.github.io">
+        <img src="https://ecastro4.github.io/logo.png" alt="Logo" width="50">
+        Web deJan
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul.n class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="https://ecastro4.github.io">Inici</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Programació
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="https://ecastro4.github.io/cara">Cara interactiva</a>
+              <a class="dropdown-item" href="https://ecastro4.github.io/ocell">Ocell</a>
+              <a class="dropdown-item" href="https://ecastro4.github.io/wepray">We Pray</a>
+              <a class="dropdown-item" href="https://ecastro4.github.io/coldplay">Coldplay</a>
+              <a class="dropdown-item" href="https://ecastro4.github.io/python">Python</a>
+              <a class="dropdown-item" href="https://ecastro4.github.io/astronomia">Astronomia</a>
+              <a class="dropdown-item" href="https://ecastro4.github.io/openair">Openair</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Robòtica
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+              <a class="dropdown-item" href="https://ecastro4.github.io/robotica/cdirecta">Cinemàtica
+                directa</a>
+              <a class="dropdown-item" href="https://ecastro4.github.io/robotica/cinversa">Cinemàtica
+                inversa</a>
+              <a class="dropdown-item" href="https://ecastro4.github.io/robotica/coldplay">Coldplay</a>
+              <a class="dropdown-item" href="https://ecastro4.github.io/robotica/arduino">Arduino</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://ecastro4.github.io/enllaços">Enllaços</a>
+          </li>
+        </ul.n>
+      </div>
     </div>
-</nav>
+  </nav>
 
-<!-- Contingut principal -->
 <div class="content-container">
-    <h1>Python</h1>
-    <p>Em dic Jan soc de l'institut pompeu fabra martorell <a href="https://agora.xtec.cat/ies-pompeu-fabra-martorell/">l'institut Pompeu Fabra</a></p>
-    <p>A continuació veuràs un google colab que explica python poc a poc</p>
-    <ul>
-        <li>Creació d'una obra d'art geomètrica interactiva que reaccioni a la meva veu a través d'un micròfon i a diferents tecles del teclat, al ratolí, que faci moviments repetitius amb sin i cos, moviments aleatoris amb random... Utilitzarem p5.js.</li>
-        <li>Projecte de farmacocinetica.</li>
-        <li>Aliments ecològics i convencionals amb C++.</li>
-        <li>Contaminació atmosfèrica d'una ciutat catalana amb R.</li> 
-    </ul>
+  <h1>Codis de R: tidyverse, lares i openair</h1>
+  <p>El primer que fem és instalar les biblioteques necessàries: Tidyverse serveix per ordenar les dades
+    (Els i les analistes dediquem el 80% del temps a netejar i preprar les dades per a l’anàlisi.) Lares la utilitzem
+    nomès per aconseguir una instrucció de remplaçar tot de forma eficaç. Openair ens permet fer gràfics d'anàlisi de
+    contaminació
+    com variacions temporals, rosa dels vents de contaminació, gràfics de tendències plurianuals, etc.</p>
+  <pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+      install.packages(c("openair","tidyverse", "lares"))
+    </code></pre>
+
+  <p>Pujem i guardem a la variable city totes les dades csv que hem descarregat del servidor XVPCA de la Generalitat que
+    conté les
+    dades de contaminants aeris en format horari propi de la Generalitat </p>
+  <pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+      city<-read.csv('lleida.csv')
+    </code></pre>
+
+  <p>Carreguem la llibreria tidyverse per poder-la utilitzar per instruccions com pivot. La paraula pivot és clau perquè
+    vol dir canviar files per columnes o columnes per files i reordenar totes les dades.</p>
+  <pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+      library (tidyverse)
+  </code></pre>
+
+  <p>Pivot_longer i la seva contrària pivot_wider, transformen files en columnes de la nostra base de dades. </p>
+  <ul>
+    <li>Pivot_longer transforma les columnes en files, fent així la base de dades més llarga (longer).</li>
+    <li>Pivot_wider transforma les files en columnes fent la base de dades més ample (wider)</li>
+  </ul>
+  <p>Els atributs names_to i values_to ens indiquen en què transformem totes les dades</p>
+  <pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+    city1<-pivot_longer(city,cols=c(h01,h02,h03,h04,h05,h06,h07,h08,h09,h10,h11,h12,h13,h14, h15,h16,h17,h18,h19,h20,h21,h22,h23,h24), names_to="hour", values_to = "value")
+  </code></pre>
+
+  <p>Creem una nova variable de base de dades o dataframe city2 eliminants amb -c les columnes 1,2,4 i de las 6 a las 16
+    perquè
+    no ens interesen les seves dades.</p>
+  <pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+      city2<-city1[-c(1,2,4,6:16)]
+  </code></pre>
+
+  <p>Carreguem la llibreria dplyr per transformar dades que és una part de tidyverse</p>
+  <pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+    library(dplyr)
+  </code></pre>
+
+  <p>Canviem el nom i la posició de les columnes gràcies a l'operador pipe (%>%) de dplyr que permet encadenar diverses
+    operacions</p>
+  <pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+      city2 <- city2 %>% mutate(date=paste0(data, " ", hour))
+  </code></pre>
+
+  <p>Per coneixer el nom de les columnes del nostre dataframe o base de dades city2 hem d'escriure colnames</p>
+  <pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+    colnames (city2)
+  </code></pre>
+
+  <p>Eliminem les columnes 1 i 3</p>
+  <pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+    city2<-city2[-c(1,3)]
+  </code></pre>
+
+  <p>Reordenem les columnes perquè volem "date en primer lloc</p>
+  <pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+    city2<-city2[,c(3,1,2)]
+  </code></pre>
+
+  <p>Obliguem a posar noms a les columnes </p>
+  <pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+    colnames (city2)<-c("date","pollutant","value")
+  </code></pre>
+
+  <p>Comprovem que city2 és un dataframe perquè si no no podré treballar correctament</p>
+  <pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+    class (city2)
+  </code></pre>
+
+  <p>Obliguem a que sigue un dataframe amb la següent instrucció:</p>
+  <pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+    city2 <- as.data.frame(city2)
+  </code></pre>
+
+  <p>Carreguem la llibreria lares per utilitzar una instrucció</p>
+  <pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+    library (lares)
+  </code></pre>
+
+  <p>la instrucció replaceall de lares aconsegueix fer 24 sustitucions moltes vegades diferents, fent milions de
+    sustitucions sense penja-se</p>
+  <pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+      city2<-replaceall(city2, c("T00:00:00.000 h01", "T00:00:00.000 h02","T00:00:00.000 h03","T00:00:00.000 h04","T00:00:00.000 h05","T00:00:00.000 h06","T00:00:00.000 h07","T00:00:00.000 h08","T00:00:00.000 h09","T00:00:00.000 h10","T00:00:00.000 h11","T00:00:00.000 h12","T00:00:00.000 h13","T00:00:00.000 h14","T00:00:00.000 h15","T00:00:00.000 h16","T00:00:00.000 h17","T00:00:00.000 h18","T00:00:00.000 h19","T00:00:00.000 h20","T00:00:00.000 h21","T00:00:00.000 h22","T00:00:00.000 h23","T00:00:00.000 h24"), c(" 01:00:00", " 02:00:00", " 03:00:00", " 04:00:00"," 05:00:00", " 06:00:00"," 07:00:00", " 08:00:00"," 09:00:00", " 10:00:00"," 11:00:00", " 12:00:00"," 13:00:00", " 14:00:00"," 15:00:00", " 16:00:00"," 17:00:00", " 18:00:00"," 19:00:00", " 20:00:00"," 21:00:00", " 22:00:00"," 23:00:00", " 00:00:00"))
+  </code></pre>
+
+  <p>Carreguem la bibliotexa openair per carregar instruccions</p>
+  <pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+    library(openair)
+  </code></pre>
+
+  <p>Comprovem quin tipus de class és la columna de les dades, al principi ens dira character i desprès del codi seüent
+    serà posix.ct</p>
+  <p>les dates tenen format ISO, que és: any-mes-dia hora:minut:segon</p>
+  <pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+    class(city2$date)
+  </code></pre>
+
+  <p>Hem de convertir els caràcters de la columna date en una data amb anys, mesos, dies, hores minuts i segons. </p>
+  <pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+    city2$date<-as.POSIXct(city2$date,"%Y-%m-%d %H:%M:%S", tz="Europe/Madrid")
+  </code></pre>
+
+  <p>La columna pollutant té escrits els noms dels contaminants i l'ordinador els detecta com a caràcters i hem
+    d'aconseguir que siguin factors,
+    és a dir, elements que quan tenen els mateixos caràcters són considerats iguals, per exemple no2 sempre serà el
+    mateix i no la suma dels caràcters n, o, 2.
+  </p>
+  <pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+    city2$pollutant<-as.factor(city2$pollutant)
+  </code></pre>
+
+  <p>Els levels ens serveixen per conèixer tots els factors que hi han dintre de la columa pollutant, és a dir tots els
+    contaminants</p>
+  <pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+      levels(city2$pollutant)
+  </code></pre>
+
+  <p>Creem una nova variable on posem ampliant tots els contaminants en més columnes, de forma què els contaminants que
+    eren factors
+    que estaven a la mateixa columna ara estàn tots en diferents columnes
+  </p>
+  <pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+    city3<-pivot_wider(city2,names_from = pollutant, values_from = value)
+  </code></pre>
+
+  <p>Convertim city 3 en un dataframe</p>
+  <pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+    city3 <- as.data.frame(city3)
+  </code></pre>
 </div>
 
-<!-- Scripts necessaris -->
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+<div class="content-container">
+  <h1>Codis de Python: pandas</h1>
+  <p></p>
+  <pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+  </code></pre>
+</div>
 
-</body>
-</html>
+<div class="content-container">
+  <h1>Descàrrega</h1>
+  <p>També teniu l'opció de 	
+    <a href="https://JanBarriga.github.io/openair/Mataro.zip" download="Mataro.zip">descarregar</a> un ZIP amb tot el projecte que he fet en RStudio</p>
+</div>
+
+        <!-- Scripts necessaris -->
+
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>
