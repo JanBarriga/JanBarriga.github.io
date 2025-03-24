@@ -306,8 +306,49 @@ void flash() {
 }
 </code></pre>
 <p>A continuació veurem el codi flash però amb paràmetres. </p>
-<pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
-    // 03_03_blink_functrion_params
+        <pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+            // 03_03_blink_functrion_params
+        
+        const int ledPin = 13;
+        const int delayPeriod = 250;
+        
+        void setup() {
+          pinMode(ledPin, OUTPUT);
+        }
+        
+        void loop() {
+          flash(20, delayPeriod);
+          delay(3000);
+        }
+        // Podem veure que la funció te dos paràmetres que son 2 nombres enters i que s'anomenen "numFlashes" i "d"
+        // numFlashes no esta definit com a variable global, és una variable local definida dins de la funció "flash"
+        // i no te un valor predeterminat, només ha de complir que sigui un valor enter. El mateix per a la variable "d"
+        void flash(int numFlashes, int d) {
+            for (int i = 0; i &lt; numFlashes; i++) {
+            digitalWrite(ledPin, HIGH);
+            delay(d);
+            digitalWrite(ledPin, LOW);
+            delay(d);
+            }
+            }
+
+        </code></pre>
+    </div>
+    
+        <div class="content-container">
+            <h1>Funcions en Arduino</h1>
+            <p>Les funcions d'arduino són semblants a les funcions que veiem a cinemàtica directa i inversa. En el cas de la cinemàtica robòtica 
+                utilitzavem funcions Javascript dintre d'un codi HTML. Avans cada funció com per exemple, calculatePosition () era una funció 
+                sense arguments o paràmetres que estava identificada amb un bloc de codianomenat function i s'executava quan clicavem un botó. 
+                Dintre d'aquest bloc hi havien instruccions que permeten fer càlculs matemàtics. En el següent codi d'arduino, tenim una funcion 
+                flash amb dos peràmetres que eren números enters anomenat ledPin i de delayPeriod que identifiquen el pin que està connectat i el 
+                temps que ha d'estar encès o apagat.
+            </p>
+            <p> Ara farem que un bucle for ss'executi 20 o x vegades dintre d'unbucle for localitzat dintre d'un bucle infinit loop. Ho aconseguim 
+                amb la paraula clau static, que fa que una variable s'inicialitzi una vegada que correm el codi  i mai més. La paraula static es deriva 
+                del llenguatge C i Arduino és un derviat de C++ i Processing, </p>
+        <pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+            // 03_03_blink_20_faulty
 
 const int ledPin = 13;
 const int delayPeriod = 250;
@@ -317,31 +358,164 @@ void setup() {
 }
 
 void loop() {
-  flash(20, delayPeriod);
-  delay(3000);
+  int count = 0;
+  digitalWrite(ledPin, HIGH);
+  delay(delayPeriod);
+  digitalWrite(ledPin, LOW);
+  delay(delayPeriod);
+  count ++;
+  if (count == 20) {
+    count = 0;
+    delay(3000);
+  }
 }
-// Podem veure que la funció te dos paràmetres que son 2 nombres enters i que s'anomenen "numFlashes" i "d"
-// numFlashes no esta definit com a variable global, és una variable local definida dins de la funció "flash"
-// i no te un valor predeterminat, només ha de complir que sigui un valor enter. El mateix per a la variable "d"
-void flash(int numFlashes, int d) {
-    for (int i = 0; i numFlashes; i++) {
-    digitalWrite(ledPin, HIGH);
-    delay(d);
-    digitalWrite(ledPin, LOW);
-    delay(d);
-    }
-    }
-</code></pre>
-<p>array amb nou valors. i els imprimeix al serial monitor</p>
-<h1>Funcions en arduino</h1>
-      <p>Les funcions de arduino són semblants a les funcions que veiem a cinemàtica directa i inversa. En el cas de cinemàtica
-      robòtica utilitzavem funcions Javascript dintre d'un codi HTLM. Abans cada funció com per exemple, calculatePosition ()
-      era una funció sense arguments o parametres que estava identificada amb un bloc de codi anomenat function i s'executava
-      quan clicavem un botó. Dintre d'aquest bloc hi havien instruccions que permetien fer càlculs matemàtics.En el seguent codi 
-      d'arduino, tenim una funció flash amb dos parametres que eres números enters anomenat ledPin i de delayPeriod que identifiquen
-      el pin que està connectat i el temps que ha d'estar encès o apagat. </p>
+            </code></pre>
+        </div>
 
-<h1> Morse </h1>
-    <p>A continuació crearem una funció per als punts i linees repetits</p>
+        <div class="content-container">
+            <h1>Arrays i Strings</h1>
+            <p>Una Array és una forma de contenir un llistat de valors, moltes vegades són valors enters i s'accedeix amb ells per la 
+                seva posició, sent la primera posició [0] del array o element 0. El codi següent el que fa és a la primera linia defineix una 
+                array amb 9 valors, i els imprimeix en el monitor sèrie els seus valors. Serà útil pel nostre codi morse.
+            </p>
+            <pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+                
+int durations[] = {200, 200, 200, 500, 500, 500, 200, 200, 200};
+
+void setup() {
+  Serial.begin(9600);  
+  for (int i = 0; i < 9; i++) {
+    Serial.println(durations[i]);
+  }
+}
+
+void loop() {
+
+}
+            </code></pre>
+        </div>
+        
+        <div class="content-container">
+            <p>El codi següent ja és un codi morse, perquè combina una array, un bucle for que llegeix l'array i l'aplica a la funció flash, 
+                d'aquesta forma és com si escrivis flash(200), flash(200), flash(200), flash(500), flash(500), flash(500), flash(200), flash(200), flash(200).
+            </p>
+        <pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+const int ledPin = 13;
+
+int durations[] = {200, 200, 200, 500, 500, 500, 200, 200, 200};
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop()  {
+  for (int i = 0; i < 9; i++) {
+    flash(durations[i]);
+  }
+  delay(1000);
+}
+
+void flash(int duration) {
+   digitalWrite(ledPin, HIGH);
+   delay(duration);
+   digitalWrite(ledPin, LOW);
+   delay(duration);
+}
+        </code></pre>
+        </div>
+
+        <div class="content-container">
+            <p>Puc crear una funció que em serveix per quatre lletres i nomès quan la crido he de posar el número de repeticions com 
+                paràmetres o arguments</p>
+        </div>
+
+        <div class="content-container">
+            <h1>Normes internacionals de codi Morse</h1>
+            <ul>
+                <li>Una línia (dash) és igual a tres punts</li>
+                <li>L'espai entre les parts d'una meteixa lletra és igual a un punt (dot). (S = ···, l'espai entre cada punt és un punt)</li>
+                <li>L'espai entre dues lletres de la mateixa paraula són tres punts (Per exemple entre las S i la O de SOS)</li>
+                <li>L'espai entre dues parules és igual a set punts (Pa ······· tomàquet)</li> 
+            </ul>
+            <pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+                void eosz (int numFlashes) {
+                    for (int i = 0; i < numFlashes; i++) {
+                        digitalWrite(ledPin, HIGH);
+                        delay(200);
+                        digitalWrite(ledPin, LOW);
+                        delay(200);
+                    }
+                }
+
+                void loop(){
+                    eosz(1); // Això és la lletra e
+                    eosz(3); // Això és la lletra s
+                    eosz(2); // Això és la lletra o
+                }
+            </code></pre>
+
+            <p>Crearem una funció que serà vàlida pels punts repetits i per les linies repetides amb dos paràametres.</p>
+
+            <pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+
+
+                void eosztmo (int numFlashes, int d) {
+                    for (int i = 0; i < numFlashes; i++) {
+                        digitalWrite(ledPin, HIGH);
+                        delay(d);
+                        digitalWrite(ledPin, LOW);
+                        delay(d);
+                    }
+                }
+
+                void loop(){
+                    eosztmo(1, 600); //Això és la t
+                    eosztmo(3, 600); //Això és la o
+                    eosztmo(3, 200); //Això és la s
+                    eosztmo(1, 200); //Això és la e
+                }
+            </code></pre>
+            <p> L'objectiu del codi següent es entendre que les cadenes o strings són conjunts de caracters ASCII. I podem accedir amb ells amb arrays
+            que estan formats per parentesis quadratss i el primer element es el 0. En llenguatge C i derivats del C com Arduino podem utilitzar punters o pointers
+            que permeten apuntar a un element. En python o Javascript no hi ha pointers
+            </p>
+            <p> A continuació es poden veure els caracters ASCII en una taula, que son els utilitzats en els strings.</p>
+            <p> La taula següent esta basada en un codi binari de 7 bits, perqué 2^7 es 128, hi hauran desde 0 a 127 caracters diferents</p>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th> ASCII </th>
+                            <th> DECIMAL</th>
+                            <th> BINARI </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>A-Z</td>
+                            <td>65-90</td>
+                            <td>0b100001-0b1011010</td>
+                        </tr>
+                        <tr>
+                            <td>a-z</td>
+                            <td>97-122</td>
+                            <td>0b1100001-0b11110001</td>
+                        </tr>
+                        <tr>
+                            <td> 0-9 </td>
+                            <td> 48-57 </td>
+                            <td> 0b110000-0b111001</td>
+                        </tr>
+                        <tr>
+                            <td> Espai</td>
+                            <td> 32 </td>
+                            <td> 0b0100000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p> ASCII Significa American Standard Code for Information Interchange, va ser escrit al 1967 per intercambiar informació entre ordinadors </p>
+            <p> UTF8 Es un sistema que permet escriure 1114112 caracters. ☺</p>
+        </div>
 </body>
 </html>
