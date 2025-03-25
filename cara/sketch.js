@@ -10,7 +10,7 @@ function draw() {
   let vulls= map(vol,0,1,0,100);
   let vboca= map(vol,0,1,0,300);
   background(0,0,0);
-  //Cara
+  //Cara   
   fill(227,192,139);
   ellipse(300,200,250,300);
   //Ull dret
@@ -30,3 +30,4 @@ function draw() {
   fill(219,169,116)
   triangle(300,200,300,225,275-vulls,212.5);
 }
+//mosca 
