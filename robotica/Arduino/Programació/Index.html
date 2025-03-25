@@ -504,7 +504,7 @@ void flash(int duration) {
                         <tr>
                             <td> 0-9 </td>
                             <td> 48-57 </td>
-                            <td> 0b110000-0b111001</td>
+                            <td> 0b110000-0b111001</td>github.com/JanBarriga/JanBarriga.github.io/edit/main/robotic
                         </tr>
                         <tr>
                             <td> Espai</td>
@@ -516,6 +516,44 @@ void flash(int duration) {
             </div>
             <p> ASCII Significa American Standard Code for Information Interchange, va ser escrit al 1967 per intercambiar informació entre ordinadors </p>
             <p> UTF8 Es un sistema que permet escriure 1114112 caracters. ☺</p>
+            <h2> Pointers </h2>
+            <pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+                // sketch 5-04
+                char message[] = "Hello";
+                void setup()
+                {
+                Serial.begin(9600);
+                }
+
+                void loop()
+                {
+                Serial.println(message);
+                delay(1000);
+                }
+            </code>
+            </pre>
+
+            
+            <p> hi ha llenguatges amb o sense punters </p> 
+            <p> Amb punters: C i els seus derivats</p>
+            <p> Sense punters: Javascript i python</p>
+            <p> La funció dels punters es tenir un control total per part del programador de la memoria del ordinador y recursos del sistema. Peró es molt facil provocar errors
+            de memoria o accesos no permesos si no s'utilitzen bé. Es a dir, llegeix el contigut d'una adreça a la memoria i la posició de l'adreça per manipular-la.
+            Hi ha posicions especials per a una adreça, per exemple en el sectors d'arrencada. Donant la possibilitat de reparar-les. Es fa utilitzar 
+            l'ampersand (&) o asterisc (*) per indicar pointers. per tenen funcions diferents Ampersand et permet saber l'adreça del pointer, mentres que el asterisc
+            indica contingut de l'adreça de la memoria. La memoria d'un ordinador es pot imaginar com a caixes d'un array, on cada caixa te una posició concreta. que pot ser buit
+            o amb un valor concret.</p>
+            <p> Les operacions avançades que pot fer els punters son:</p>
+            <li> Accés directe a la memoria</li>
+            <li> Permet modificar valors d'una posició especifica </li>
+            <li> Es la millor manipulació possible de strings (cadenes) o arrays</li> <p> L'array és, en esencia, una llista d'adreçes limitades amb principi i final.</p>
+            <li> Pasar gran quantitats de dades a funcions </li> <p> En lloc de copiar valors ds passa la seva adreça, estalviant memoria i temps. Aquest es un dels motius pel cual C es mes rapid que python o javascript</p>
+            <li> Creació d'estructures dinamiques facilment</li> <p> Llistes enllaçades a la memoria o grafics.</p>
+            <li> Interacció facil amb microcontroladors </li> <p> Els microcontroladors son sistemes amb llenguatxe de baix nivell perque es mes facil de manipular, encara que ha
+            sortit micropython o circuit python </p>
+            
+            
+            
         </div>
 </body>
 </html>
