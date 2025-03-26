@@ -20,29 +20,35 @@ function draw() {
   let pupilY1 = map(mouseY,0,400,135,160);
   let pupilY2 = map(mouseY,0,400,135,160);
 
-  
+  //moviments de cara amb teclat
   if (keyIsPressed === true){
     if(key === "a"){
       pupilX1 = map(mouseX,0,600,235,260);
       pupilY2 = 150
       pupilY1 = map(mouseY,0,400,135,160);
+      //ull esquerre nomes
     }
     else if(key === "d"){
       pupilX2 = map(mouseX,0,600,335,360);
       pupilY1= 150
       pupilY2 = map(mouseY,0,400,135,160);
+     //ull dret nomes
+
     }
     else if(key === "s"){
      pupilX1 = map(mouseX,0,600,260,235);
      pupilX2 = map(mouseX,0,600,360,335);
      pupilY1 = map(mouseY,0,400,160,135);
      pupilY2 = map(mouseY,0,400,160,135);
+    //tracking invers
+
     }
     else if(key === "w"){
      pupilX1 = map(mouseX,0,600,235,260);
      pupilX2 = map(mouseX,0,600,360,335);
      pupilY1 = map(mouseY,0,400,135,160);
      pupilY2 = map(mouseY,0,400,135,160);
+    //bizco
     }
 
     else{
@@ -50,7 +56,7 @@ function draw() {
       pupilX2 = map(mouseX,0,600,335,360);
       pupilY1 = map(mouseY,0,400,135,160);
       pupilY2 = map(mouseY,0,400,135,160);
-      
+      //Tecla no dita presionanada: mode normal
     }
   }
     else{
@@ -58,6 +64,8 @@ function draw() {
       pupilX2 = map(mouseX,0,600,335,360);
       pupilY1 = map(mouseY,0,400,135,160);
       pupilY2 = map(mouseY,0,400,135,160);
+      //ninguna tecla presionant: mode normal
+
   }
   
   //color boca
@@ -66,16 +74,20 @@ function draw() {
   let c1 = map(colorboca1,-1,1,0,c11)
   //color ulls
   let cpr1 = sin(frameCount*0.1);
-  let cpg1 = cos(frameCount*0.1);
-  let cpb1 =tan(frameCount*0.1);
+  let cpg2 = cos(frameCount*0.1);
+  let cpb3 =tan(frameCount*0.1);
   let CPR = map(cpr1,0,1,0,255)
-  let CPG = map(cpg1,0,1,0,255)
-  let CPB = map(cpb1,0,1,0,255)
+  let CPG = map(cpg2,0,1,0,255)
+  let CPB = map(cpb3,0,1,0,255)
   
   background(255,255,255);
+
   //Cara   
   fill(227,192,139);
   ellipse(300,200,250,300);
+  //barret
+  fill(255,0,0);
+  arc(300,110,170,160,60,50,CHORD);
   //Ull dret
   fill(255);
   ellipse(250,150,50,50);
