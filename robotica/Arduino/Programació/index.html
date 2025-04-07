@@ -655,10 +655,13 @@ void flashDotOrDash(char dotOrDash) {
 </code></pre>
 <p> Negació. El signe d'admiració "!" significa negar la variable que es posa després del signe.</p>
 <p> Hi ha dos variables inicials, que son constants per definició del codi. La variable ledPin es el pin el qual conectem
-el led, que es 13 normalment. I el pin 5 es un pin on conectem un interruptor per entrada de dades</p>
+el led, que es 13 normalment. I el pin 5 es un pin on conectem un interruptor per entrada de dades. El pin 5 esta encés per defecte
+perque li hem dit que es un input pull-up, significa que l'interruptor deixa pasar la corrent per defecte. Si fos un input només 
+estaria a 0, es a dir, l'interruptor estaria obert. La variable switch open esta al principi amb valor 1 i quan movem el botó, 
+l'apaguem perqué la variable switchOpen que estava a 1 es transforma a !switchOpen que esta a 0. I si li torno a negar, sortira 1.</p>
 <pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
     const int inputPin = 5;
-    const int ledPin = 13;
+    const int ledPin = 13
     void setup() {
      pinMode(ledPin, OUTPUT);
      pinMode(inputPin, INPUT_PULLUP);
@@ -670,6 +673,68 @@ el led, que es 13 normalment. I el pin 5 es un pin on conectem un interruptor pe
     </code></pre>
 <p> Clica a la imatge següent per veure la simulació </p>
 <a href = "https://www.tinkercad.com/things/6kmvYJBnQFx-circuit-54-monk" target = "_blank"> <img src = "54.PNG"> </a>
+<p> Toggles. </p>
+<pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+    const int inputPin = 5;
+    const int ledPin = 13;
+    int ledValue = LOW;
+
+    void setup()  {
+    pinMode(inputPin, INPUT_PULLUP);
+    pinMode(ledPin, OUTPUT);
+    }
+    void loop()  {
+    if (digitalRead(inputPin) == LOW) {
+     ledValue = ! ledValue;
+     digitalWrite(ledPin, ledValue);
+  }
+}
+</code></pre>
+<a href = "https://www.tinkercad.com/things/ijQ7CKiIRbu-circuit-55-monk" target = "_blank"> <img src = "55.PNG"> </a>
+
+<p>solució amb llibreria </p>
+<pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+    const int inputPin = 5;
+    const int ledPin = 13;
+    int ledValue = LOW;
+    
+    void setup()  {
+    pinMode(inputPin, INPUT_PULLUP);
+    pinMode(ledPin, OUTPUT);
+    }
+    
+    void loop() {
+    if (digitalRead(inputPin) == LOW) {
+     ledValue = ! ledValue;
+     digitalWrite(ledPin, ledValue);
+     delay(500);
+    }
+    }
+</code></pre>
+<pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+    #include <Bounce2.h>
+        const int inputPin = 5;
+        const int ledPin = 13;
+        int ledValue = LOW;
+        Bounce bouncer = Bounce(); 
+
+        void setup() {
+        pinMode(inputPin, INPUT_PULLUP);
+        pinMode(ledPin, OUTPUT);
+        bouncer.attach(inputPin);
+        // bouncer.interval(50); // interval in ms
+        }
+
+        void loop() {
+        if (bouncer.update() && bouncer.read() == LOW) {
+          ledValue = ! ledValue;
+          digitalWrite(ledPin, ledValue);
+        }
+        }
+ </code>
+</pre>
+
+
 
 </div>
 </body>
