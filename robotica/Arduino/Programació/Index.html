@@ -653,8 +653,23 @@ void flashDotOrDash(char dotOrDash) {
   delay(dotDelay); // gap between flashes
 }
 </code></pre>
-</body>
-</html>
-        </div>
+<p> Negació. El signe d'admiració "!" significa negar la variable que es posa després del signe.</p>
+<p> Hi ha dos variables inicials, que son constants per definició del codi. La variable ledPin es el pin el qual conectem
+el led, que es 13 normalment. I el pin 5 es un pin on conectem un interruptor per entrada de dades</p>
+<pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+    const int inputPin = 5;
+    const int ledPin = 13;
+    void setup() {
+     pinMode(ledPin, OUTPUT);
+     pinMode(inputPin, INPUT_PULLUP);
+    }
+    void loop() {
+     int switchOpen = digitalRead(inputPin);
+     digitalWrite(ledPin, ! switchOpen);
+    }
+    </code></pre>
+<iframe src="https://www.tinkercad.com/things/6kmvYJBnQFx-circuit-54-monk" title="Tinkercad"></iframe>
+
+</div>
 </body>
 </html>
