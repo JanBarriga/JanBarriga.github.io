@@ -34,7 +34,7 @@ let mosques = [];
         let movimentX = map(noise(this.offsetX), 0, 1, -this.velocitat, this.velocitat);
         let movimentY = map(noise(this.offsetY), 0, 1, -this.velocitat, this.velocitat);
         this.x += movimentX;
-        this.y += movimentY;
+        this.y += movimentyY;
         this.offsetX += 0.01;
         this.offsetY += 0.01;
         
@@ -76,3 +76,4 @@ let mosques = [];
     function windowResized() {
       resizeCanvas(windowWidth, windowHeight);
     }
+
