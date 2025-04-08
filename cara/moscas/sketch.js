@@ -75,4 +75,4 @@ let mosques = [];
 
     function windowResized() {
       resizeCanvas(windowWidth, windowHeight);
-    }f
+    }
