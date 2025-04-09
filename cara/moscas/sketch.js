@@ -76,4 +76,5 @@ let mosques = [];
     function windowResized() {
       resizeCanvas(windowWidth, windowHeight);
     }
-
+//contar fotogramas de un en un desde 1 fins a infinit. Percentatge es sacar el percentatge d'un nombre. Es tan important com sumar o restar. 60 divisions cada segon.
+//  
