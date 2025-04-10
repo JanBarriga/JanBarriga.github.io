@@ -772,8 +772,9 @@ sheet o fulla de caracteristiques de el ESP32-S3la linea de codi seria:
 "Serial.println("Enter Volts 0-3.3")
 "int pwmValue = volts * 16384.0 / 3.3" </p>
 
-<p> El ESP32-S3 te l'avantatge de tenir més resolució, es a dir, pot donar 16384 valors diferents entre 0-3,3 volts
-Aixó pot que no es noti en un led, peró es nota en un motor, on l'ESP32 permet accedir a més velocitats diferents. 
+<p> El ESP32-S3 te l'avantatge de tenir més resolució, es a dir,  pot donar 16384 valors diferents entre 0-3,3 volts
+Aixó pot que no es noti en un led, peró es nota en un motor, on l'ESP32 permet accedir a més velocitats diferents. Els
+motors poden arribar a 16 bits, que es 2^16 o 65536 valors diferents, depenent del tipus de motor, pot ser observat o no
 </p>
 </div>
 </body>
