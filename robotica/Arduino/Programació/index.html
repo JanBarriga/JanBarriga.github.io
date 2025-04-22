@@ -776,6 +776,32 @@ sheet o fulla de caracteristiques de el ESP32-S3la linea de codi seria:
 Aixó pot que no es noti en un led, peró es nota en un motor, on l'ESP32 permet accedir a més velocitats diferents. Els
 motors poden arribar a 16 bits, que es 2^16 o 65536 valors diferents, depenent del tipus de motor, pot ser observat o no
 </p>
+<pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+const int outputPin = 3;
+
+void setup() {
+  pinMode(outputPin, OUTPUT);
+  Serial.begin(9600); //comença la comunicació serie USB entre l'arduino i l'ordinador a una velocitat de 9600 bauds (Simbols per segon) l'objecte serial es de la clase serial
+  //i si li apliquem la sintaxi del punt el metode begin que té com a parametre o argument. I li apliquem a la sintaxi de punt a la clase serie, pot rebre diversos parametres, si 
+  //els posem entre cometes escriu tal qual, i si no posem entre cometes son variables 
+  Serial.println("Enter Volts 0 to 5"); //demana que el usuari entri per el monitor del arduino ide un numero entre 0 i 5. 
+}
+//void loop es el codi principal que no s'atura mai, es a dir, es repeteix fins que desconectem l'arduino. El metode avaliable es un metode que espera caracters, < 0 es
+//que hi ha algun caracter, Serial.parsefloat es una funció que te la funcio de analitzar el contingut d'un caracter, i si es de tipus decimal (floating point number),les variables
+//float incloeixen els int o integer (numeros sencers). També existeix el parse.int que només acceptaria numeros enters. El float volts crea un espai a la memoria anomenat volts,
+//que haura de ser de floating point numbers, que emmagatzemara el valor parsejat del 
+void loop() {
+  if (Serial.available() > 0) {
+    float volts = Serial.parseFloat();
+    int pwmValue = volts * 255.0 / 5.0; //els volts no serveixen directament, perque volem valors entre 0 i 255, ja que son els valors del PWM, perque es el numero de bits. faig una regla de tres i multiplico el valor per 255 i ho divideixo entre 5. 
+    //aquest valor es integer, i va al més proxim si dona decimal
+    analogWrite(outputPin, pwmValue); 
+  }
+}
+</code></pre>
+
+
+        
 </div>
 </body>
 </html>
