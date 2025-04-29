@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<!-- indica que el document es HTML5-->
+ <html>
+    <head>
+        <meta chars="UTF-8">
+        <title> "Art geometric amb mini cara i Text gran" </title>
+        <script src="https://cdnjs.cloudflare.com/aja/libs/p5.js/1.11.3/p5.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/ml5js/Intro-ML-Arts-IMA@ml5-build-10-7-19/ml5.min.js"></script>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f4;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+            }
+            #loading-screen {
+                position: fixed;
+                top:0;
+                left:0;
+                width:100%;
+                height: 100%;
+                background: rgba(255, 255, 255, 0.9);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size:18;
+                color: #333;
+                z-index:10;
+
+            }
+            .loader{
+                width:50px;
+                height: 50px;
+                border:6px solid #3498db;
+                border-top:6px solid transparent;
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+                margin-bottom: 10px;
+            }
+            @keyframes spin {
+                0%{ transform: rotate(0deg);}
+                100%{ transform: rotate(360deg);}
+            }
+        </style>
+    </head>
+    <body>
+        <div id="loading-screen">
+            <div class = "loader"></div>
+            <p> carregant models, si us plau, espera...</p>
+        </div>
+        <script>
+            let faceapi;
+            let detections = [];
+            let video;
+            let modelsMostrats = false;
+            const miniWidth = 120;
+            const miniHeight = 120;
+            function setup(){
+                createCanvas(600,600);
+                video = createCapture(VIDEO);
+                video.size(480,480);
+                video.hide;
+                const faceOptions = {
+                    withLandmarks: true,
+                    withExpressions: true,
+                    withDescriptors: false,
+                };
+                faceapi = ml5.faceApi(video,faceOptions,faceReady);
+            }
+
+            function faceReady() {
+                faceapi.detect(gotFaces);
+            }
+            function windowResized() {
+                resizeCanvas(windowWidth, windowHeight);
+            }
+            function gotFaces(error,result) {
+                if(error) {
+                    console.error(error);
+                    return;
+                }
+            detections = result;
+            if(!modelsMostrats){
+                document.getElementById("loading-screen").style.display = "none";
+                modelsMostrats = true;
+            }
+            faceapi.detect(gotFaces);
+
+            }
+
+            function draw(){
+                background(255);
+                let dominant = "neutre";
+                let intensity = 0;
+                if (detections && detections.length > 0){
+                    let expr = detections[0].expressions;
+                    dominant = Object.keys(expr).reduce((a,b) => expr[a] > expr[b] ? a : b);
+                    intensity = expr[dominant];
+                }
+                drawDifferentArt(dominant,intensity);
+                noStroke();
+                fill(44,169,225);
+                textSize(48);
+                textAlign(CENTER,CENTER);
+                text("Expressió: " +dominant, width/2,50);
+                if (detections && detections > 0){
+                    image(video,width - miniWidth - 20, height - miniHeight - 20, miniWidth,miniHeight);
+                }
+            }
+            function drawDifferentArt(dominant,intensity){
+                push();
+            }
+            translate(width/2, height/2);
+            noFill();
+            strokeWeight(4);
+            switch (dominant) {
+                case "happy":
+                for (let i = 1; i <= 10; i++) {
+                    stroke(random(200,255),random(200,255),0,150);
+                    ellipse(0,0, i*20*intensity,i*20*intensity);
+                }
+                break;
+                case "sad": detections
+                for(let x = -200; x <= 200; x += 40) {
+                    line(x,-200,x,200);
+                }
+                break;
+                case "angry":
+                    stroke(200,0,0,150);
+                    beginShape();
+                    for (let x = -250; x<=250; x += 20){
+                        let y = (x%40 === 0)? -150 : 150;
+                        vertex(x,y * intensity);
+
+
+                    }
+                    endShape();
+                    break;
+                    case"fearful":
+                    stroke(100,100,100,150);
+                    beginShape();
+                    for (let x = -250; x <= 250; x += 10){
+                        let y = 50*sin(x*0.1*intensity);
+                        vertex(x,y);
+
+                    }
+                    endShape();
+                    break;
+                    case "surprised":
+                        stroke(0,150,255,150);
+                        for(let i = 1; i <= 8; i++){
+                            ellipse(random(-10,10),random(-10,10), i * 30 * intensity, i * 30 * intensity);
+
+                        }
+                        break;
+                        case "disguised": 
+                        stroke(0,150,0,150);
+                        beginShape();
+                        for (let x = -250; x <= 250; x += 15) {
+                            let y = random(-50,50)*intensity;
+                            vertex(x,y);
+                        }
+                        endShape();
+                        break;
+                        default:
+                            stroke(150,150,150,150);
+                            for (let i = -200; i <= 200; i += 40){
+                                for ( let j = -200; j<= 200;j += 40){
+                                rect(i,j,30,30);
+                                }
+                                }
+                            }
+            pop();
+       } 
+        </script>
+    </body>
+ </html>
