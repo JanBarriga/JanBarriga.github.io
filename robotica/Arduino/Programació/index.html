@@ -935,7 +935,25 @@ void loop() {
   When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
   \[x = {-b \pm \sqrt{b^2-4ac} \over 2a}.\]
 </p>
-        
+<h1> Numeros aleatoris i arduino </h1>
+
+<pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+void setup() {
+  Serial.begin(9600);
+  randomSeed(analogRead(0));
+}
+
+void loop() {
+  int number = random(1, 7);
+  Serial.println(numbera);
+  delay(500); 
+}
+
+//analogread llegeix valors de 0-1023 de l'entrada A0, sempre esta llegint i sempre te un soroll de font de forma que genera numeros aleatoris
+//de forma que fem numeros aleatoris de numeros aleatoris
+</code></pre>
+
+
 </div>
 </body>
 </html>
