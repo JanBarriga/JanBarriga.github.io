@@ -799,6 +799,47 @@ void loop() {
   }
 }
 </code></pre>
+<pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+
+void setup() {
+  Serial.begin(9600); // comença la comunicació sèrie USB entre Arduino i l'ordinador a una velocitat de 9600 bauds (9600 símbols per segon).
+}
+
+void loop() {
+  int number = random(1, 7); // escull un número enter aleatoriament del 1 el 7. (1, 7) és un interval així que agafem el 1, 2, 3...7
+    // Els números aleatoris són importants per exemple en controls de qualitat perque  ens asegurem de tot no està decidit 
+    per ningú
+  Serial.println(number); // Perquè fem println i no fem print? perquè volem que surti una línea sobre una altre
+  delay(500); // espera 500 millisegons
+}
+    
+</code></pre>
+
+<pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+
+void setup() {
+  Serial.begin(9600);
+  randomSeed(analogRead(0)); // seed significa llavor i té com argument un número, si per exemple poso randomSeed (4) 
+    sempre em sortirà la mateixa cadena de números aleatoris.
+}
+
+void loop() {
+  int number = random(1, 7);
+  Serial.println(number);
+  delay(500); 
+}
+</code></pre>
+</div>
+
+<div class="content-container">
+    <h2>Numeros aleatoris, perque son imporannts y com es fan</h2>     
+    <p> La funció random de Ardunio IDE deriva de la funció rnd del llenguatge C i C++ i fuaniona de la mateixa manera. 
+        No genera números aleatoris sinó pseudoaleatois, perque estan creats per un algorisme o algoritme, anomenat "Generador líneal congruecial". 
+        Aquet algoritme és determinista, sempre onara els mateixos resulatats.
+        La funció random necesita una llavo o seed per generar els números i sinó s'indica acostuma a ser 1 o 0, en Arduino és 1.  Donarem un exempe matematic</p>
+
+                    
+<h1>Generació de Nombres Pseudoaleatoris: LCG + Arduino</h1>
 
 <h2>1. Algorisme LCG (Linear Congruential Generator)</h2>
   <p>
