@@ -817,6 +817,51 @@ void loop() {
 
 <pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
 
+const int analogPin = 0; // El pin 0 en Arduino és el pin A0 (analog)
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  int reading = analogRead(analogPin); // analogRead llegeix els valors analogics del analogPin de 0 a 1023
+  float voltage = reading / 204.6; // 1023 / 5 = 204,6 Dividim 1023 (2^10 - 1 per a Arduino) entre 5 (volts d'Arduino)
+                        // Ara ens interesa els volts perquè jo connecto un sensor por esemple de temperatura ( de 0 a 100
+    graus, d'humitat 0% - 100%) i els valor de 0 a 1023 no tenen sentit, perquè si fos un altre ESP32 seria de 0 a 4095
+    i el valor 500 en el primer cas estaria per la meitat i en el segon cas seria menys. Si utilitzem voltatge tenim una mesura
+    real del que està passat en el sensor i buscarem la relació entre els volts i la temperatura / humitat a la fulla de 
+    característiques (datasheet), una vegada tenir la relació farem una regla de 3 o un mapejat.
+  Serial.print("Reading="); // Quan poso entre cometes el print em surt tal qual la paraula reading= que significa lectura
+  Serial.print(reading); // reading no té cometes i és una variable que conté valors entre 0 i 1023
+  Serial.print("\t\tVolts="); // \t deixa un espai de tabulador. 
+  Serial.println(voltage); // Ens donarà el valor en volts al costat de Volts=
+    // Com quedarà en el cas de reading 512?
+    // Reading=512        Volts=2.5 // espera mig segon per der una altre lectura
+    // Reading=256        Volts=1.25
+  delay(500);
+}
+
+</code></pre>
+
+
+<pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+
+void setup() {
+  Serial.begin(9600); // comença la comunicació sèrie USB entre Arduino i l'ordinador a una velocitat de 9600 bauds (9600 símbols per segon).
+}
+
+void loop() {
+  int number = random(1, 7); // escull un número enter aleatoriament del 1 el 7. (1, 7) és un interval així que agafem el 1, 2, 3...7
+    // Els números aleatoris són importants per exemple en controls de qualitat perque  ens asegurem de tot no està decidit 
+    per ningú
+  Serial.println(number); // Perquè fem println i no fem print? perquè volem que surti una línea sobre una altre
+  delay(500); // espera 500 millisegons
+}
+    
+</code></pre>
+
+<pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+
 void setup() {
   Serial.begin(9600);
   randomSeed(analogRead(0)); // seed significa llavor i té com argument un número, si per exemple poso randomSeed (4) 
