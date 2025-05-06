@@ -950,9 +950,22 @@ void loop() {
 }
 
 //analogread llegeix valors de 0-1023 de l'entrada A0, sempre esta llegint i sempre te un soroll de font de forma que genera numeros aleatoris
-//de forma que fem numeros aleatoris de numeros aleatoris
+//de forma que fem numeros aleatoris de numeros aleatoris del 0 al 1023. Aquest valors seran aleatoris. Resumint, analogread donarà valors enters
+//aleatori si serà la nostra primera capa d'aleatorietat. La segona capa de la aleatorietat es el randomSeed, que es basa en un nombe recurssiu
+//que pot ser 0. quan ja tenim aquest modul fem la operació "modul" es a dir dividir entre 0. Es un numeor pseudoaleatori d'un numero aleatori perque analogread(0) es aleatori
+//i randomSeed() es pseudo-aleatori
 </code></pre>
-
+<p> La funció abs donarà el valor absolut que será el número sense signe, pe exemple abs(12) = 12, i abs(-12) = 12 </p>
+<p> La funció <b> constrain </b> fa constrenyir o reduir un número d'un rank determinat. La funció constrain te tres arguments. el primer arguments es el número que volem constrenyir
+el segon el principi del rang i  el tercer el final del rank ej: </p>
+<ul>
+<li>constrain(8,1,0); retorna el numero 8 perquè en el rang 1-10 es correcte </li>
+<li>constrain(11,1,10); en retorna un 10 perqué no pot ser major a deu </li>
+<li>constrain(0,1,10); en retorna un 1 </li>
+</ul>
+<p> map(argument,argument,argument,argument,argument); el primer numero es el que ens interesa, el segon es el nombre minim del primer rang, el tercer es el nombre maxim del primer
+rang, el quart es el primer nombre del rang al que volem passar, i el cinqué es el número màxim del segon rang</p>
+<p> La funció pow es la potència, te 2 arguments, el primer argument és la base i el segon l'exponent. per exemple: pow(2,5)=32</p>
 
 </div>
 </body>
