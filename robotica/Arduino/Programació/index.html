@@ -948,24 +948,68 @@ void loop() {
   Serial.println(numbera);
   delay(500); 
 }
-
-//analogread llegeix valors de 0-1023 de l'entrada A0, sempre esta llegint i sempre te un soroll de font de forma que genera numeros aleatoris
-//de forma que fem numeros aleatoris de numeros aleatoris del 0 al 1023. Aquest valors seran aleatoris. Resumint, analogread donarà valors enters
-//aleatori si serà la nostra primera capa d'aleatorietat. La segona capa de la aleatorietat es el randomSeed, que es basa en un nombe recurssiu
-//que pot ser 0. quan ja tenim aquest modul fem la operació "modul" es a dir dividir entre 0. Es un numeor pseudoaleatori d'un numero aleatori perque analogread(0) es aleatori
-//i randomSeed() es pseudo-aleatori
 </code></pre>
-<p> La funció abs donarà el valor absolut que será el número sense signe, pe exemple abs(12) = 12, i abs(-12) = 12 </p>
-<p> La funció <b> constrain </b> fa constrenyir o reduir un número d'un rank determinat. La funció constrain te tres arguments. el primer arguments es el número que volem constrenyir
-el segon el principi del rang i  el tercer el final del rank ej: </p>
-<ul>
-<li>constrain(8,1,0); retorna el numero 8 perquè en el rang 1-10 es correcte </li>
-<li>constrain(11,1,10); en retorna un 10 perqué no pot ser major a deu </li>
-<li>constrain(0,1,10); en retorna un 1 </li>
-</ul>
-<p> map(argument,argument,argument,argument,argument); el primer numero es el que ens interesa, el segon es el nombre minim del primer rang, el tercer es el nombre maxim del primer
-rang, el quart es el primer nombre del rang al que volem passar, i el cinqué es el número màxim del segon rang</p>
-<p> La funció pow es la potència, te 2 arguments, el primer argument és la base i el segon l'exponent. per exemple: pow(2,5)=32</p>
+
+<pre><button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button><code class="language-arduino">
+        void setup() {
+    Serial.begin(9600);
+    randomSeed(analogRead(0)); //genera numeros aleatoris de forma potent. Si dintre de randomSeed posem un número, sempre
+    //sortira el mateix número aleatori com pasa amb el <a href="https://pompeu.neocities.org/arduino/random/seed">
+    //exemple del profesor</a> on podem canviar la seed o llavor i comprovar-ho
+    /*Aquests valors seran aleatoris en el cas que no hi hagi res conectat a A0. Si conectem un simple cable a A0 observarem que 
+    quan toquem amb els dits o inclús sense tocar hi ha un senyal de soroll que es mou entre 0 i 1023 mormalment pel rang baix. 
+    L' aire és una barreja complexa de gasos en moviment i l'entrada analògica és un sistema molt sensible molt sensible en 
+    aquests gasos. Resumint analogRead(0) donarà alors eners aleatoris i serà la nostra primera capa d'aletorietar. La segona
+    capa de la aletorietat és randomSeed perquè utilitza un algortme "lineal conggruencial", que es basa an un mètode recursiu,
+    és a dir, que agafa el número el multipliquem per un nuero fix que no cavia mai i el sumem amb el número fiix que no canvia
+    mai (només canvia si canviem el llenguatge de programació o la versió del lleguate). Quan ja tenim aquest número fem una
+    operació mòdul per obtenir el número aleatori, aixo vol dir diiir el número obtingut entre en número conegut (sempre igual)
+    i el residu serà pseudoaleatori. 
+          
+    Perque és pseudoaleatori?
+    Sempre serà la mateixa seüencia si fessim randomSeed(4), i la mateixa seqüencia si fessim randomSeed(x) sent "x" qualsevol 
+    número.
+    
+    Perque no puc saber quin numero aleatori sortirà?
+    Encara que hi ha una relació matemàtica entre el número de llavor i el número aleatori perquè el número de llavor és aleatori
+    (analogRead(0)). Perquè és un número pseudoaleatori d'un número aleatori perquè la funció randomSeed() és pseudoaleatòria i 
+    analogRead(0) és aleatòria pel soroll de fons.
+
+    Pot servir per tener sempre els mateios números?
+    Sí, perquè quan triem una Seed determinada sempre tindrem una seqüència. Pot ser útil perquè jo puc fer un aparell o 
+    o programa amb una randomSeed(184) i si li dic a un altre investigador o altre fabricant de hardware la meva llavor (seed) 
+    podrà reproduir els meus resultats.
+
+    A més a més de random hem de conèixer les funcions matemàtiques d'Arduino que poden ser útils per fer càlculs, per exemple, 
+    per convertir valors de 0 a 1023 en valors de temperatura, humitat, concentració d'un contaminant, etc.
+    */
+
+    
+    <li>La <b>abs</b> donarà el valor absolut serà el número sense signe, per exemple abs(12) = 12, i abs(-12) = 12</li>
+    <li>La funció <b>constrain</b> fa constrenyir o reduir un número d'un rang determinat. La funció té 3 números o arguments. 
+    El primer argument és el número que volem constrenyir, el segon número és el principi del rang i el tercer número és el final 
+    del rang permès.
+    <ul>
+      <li>constrain(8,1,10); ens retorna el número 8, perques esta en el rang de 1 a 10.</li>
+      <li>constrain(11,1,10); ens retorna el número 10, ja que no pot ser més gran que 10</li>
+      <li>constrain(0,1,10); ens retorna el número 1, ja que no pot ser més petit que 1</li>
+    </ul>
+    </li>
+    <li>La funcií <b>map</b> té 5 arguments. El primer és el número que ens interessa que està a dins del primer rang, el segon és 
+        el número mínim del primer rang, el tercer número és el màxim del primer rang, el quart és el número mínim del segon rang i 
+        finalment, el cinquè número és el número màxim del tercer rang. Per exemple
+        map(200, 0, 1023, 0, 100);
+    </li>
+
+
+}
+
+void loop() {
+  int number = random(1, 7);
+  Serial.println(number);
+  delay(500); 
+}
+</code></pre>
 
 </div>
 </body>
