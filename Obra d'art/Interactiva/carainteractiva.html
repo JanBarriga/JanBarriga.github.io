@@ -59,10 +59,10 @@
             let detections = [];
             let video;
             let modelsMostrats = false;
-            const miniWidth = 400;
-            const miniHeight = 120;
+            const miniWidth = 800;
+            const miniHeight = 1200;
             function setup(){
-                createCanvas(600,600);
+                createCanvas(miniWidth,miniHeight);
                 video = createCapture(VIDEO);
                 video.size(120,120);
                 video.hide;
