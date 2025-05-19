@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<!-- indica que el document es HTML5-->
+ <html>
+    <head>
+        <meta chars="UTF-8">
+        <title> "Art geometric amb mini cara i Text gran" </title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.3/p5.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/ml5js/Intro-ML-Arts-IMA@ml5-build-10-7-19/ml5_build/ml5.min.js"></script>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f4;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+            }
+            #loading-screen {
+                position: fixed;
+                top:0;
+                left:0;
+                width:100%;
+                height: 100%;
+                background: rgba(255, 255, 255, 0.9);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size:18;
+                color: #333;
+                z-index:10;
+
+            }
+            .loader{
+                width:50px;
+                height: 50px;
+                border:6px solid #3498db;
+                border-top:6px solid transparent;
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+                margin-bottom: 10px;
+            }
+            @keyframes spin {
+                0%{ transform: rotate(0deg);}
+                100%{ transform: rotate(360deg);}
+            }
+        </style>
+    </head>
+    <body>
+     <video playsinline="" crossorigin="anonymous" width="480" height="480" style="width: 480px; height: 480px; display: none;"></video>
+        <div id="loading-screen">
+            <div class = "loader"></div>
+            <p> carregant models, si us plau, espera...</p>
+        </div>
+        <script>
+            let faceapi;
+            let detections = [];
+            let video;
+            let modelsMostrats = false;
+            const miniWidth = 400;
+            const miniHeight = 120;
+            function setup(){
+                createCanvas(600,600);
+                video = createCapture(VIDEO);
+                video.size(120,120);
+                video.hide;
+                const faceOptions = {
+                    withLandmarks: true,
+                    withExpressions: true,
+                    withDescriptors: false,
+                };
+                faceapi = ml5.faceApi(video,faceOptions,faceReady);
+            }
+
+            function faceReady() {
+                faceapi.detect(gotFaces);
+            }
+            function windowResized() {
+                resizeCanvas(windowWidth, windowHeight);
+            }
+            function gotFaces(error,result) {
+                if(error) {
+                    console.error(error);
+                    return;
+                }
+            detections = result;
+            if(!modelsMostrats){
+                document.getElementById("loading-screen").style.display = "none";
+                modelsMostrats = true;
+            }
+            faceapi.detect(gotFaces);
+
+            }
+
+            function draw(){
+                background(220);
+  fill(0,0,0)
+beginShape();
+vertex(538, 811.1875);
+bezierVertex(530, 791.1875, 521, 772.1875, 508, 757.1875);
+bezierVertex(490, 745.1875, 471, 719.1875, 454, 702.1875);
+bezierVertex(444, 677.1875, 429, 641.1875, 412, 629.1875);
+bezierVertex(387, 610.1875, 360, 597.1875, 339, 586.1875);
+bezierVertex(321, 578.1875, 312, 560.1875, 302, 550.1875);
+bezierVertex(293, 543.1875, 284, 539.1875, 263, 541.1875);
+bezierVertex(247, 541.1875, 225, 541.1875, 205, 538.1875);
+bezierVertex(163, 537.1875, 114, 531.1875, 66, 528.1875);
+bezierVertex(50, 525.1875, 45, 533.1875, 39, 538.1875);
+bezierVertex(31, 544.1875, 15, 560.1875, 2, 589.1875);
+bezierVertex(1, 637.1875, 4, 722.1875, 3, 782.1875);
+endShape();
+fill(252, 208, 180);
+noStroke();
+//Coll
+beginShape();
+vertex(290, 535.1875);
+bezierVertex(286, 530.1875, 286, 522.1875, 286, 506.1875);
+bezierVertex(293, 485.1875, 297, 467.1875, 301, 461.1875);
+bezierVertex(305, 455.1875, 305, 448.1875, 305, 435.1875);
+bezierVertex(305, 424.1875, 294, 424.1875, 287, 423.1875);
+bezierVertex(275, 435.1875, 267, 440.1875, 261, 444.1875);
+bezierVertex(249, 444.1875, 245, 440.1875, 241, 428.1875);
+bezierVertex(220, 415.1875, 209, 406.1875, 200, 391.1875);
+bezierVertex(190, 376.1875, 184, 372.1875, 182, 397.1875);
+bezierVertex(176, 407.1875, 177, 422.1875, 180, 431.1875);
+bezierVertex(183, 448.1875, 179, 458.1875, 169, 473.1875);
+bezierVertex(150, 486.1875, 129, 490.1875, 113, 490.1875);
+bezierVertex(96, 488.1875, 85, 489.1875, 76, 504.1875);
+bezierVertex(65, 515.1875, 53, 524.1875, 81, 530.1875);
+bezierVertex(116, 534.1875, 150, 534.1875, 198, 540.1875);
+bezierVertex(224, 541.1875, 254, 543.1875, 275, 543.1875);
+endShape();
+//cara
+beginShape();
+vertex(259, 449.1875);
+bezierVertex(268, 444.1875, 275, 434.1875, 283, 422.1875);
+bezierVertex(294, 426.1875, 310, 424.1875, 321, 424.1875);
+bezierVertex(341, 415.1875, 353, 409.1875, 360, 391.1875);
+bezierVertex(364, 367.1875, 375, 282.1875, 372, 269.1875);
+bezierVertex(369, 255.1875, 369, 240.1875, 369, 227.1875);
+bezierVertex(368, 211.1875, 364, 199.1875, 359, 187.1875);
+bezierVertex(348, 168.1875, 301, 150.1875, 214, 190.1875);
+bezierVertex(206, 218.1875, 202, 245.1875, 196, 262.1875);
+bezierVertex(191, 273.1875, 188, 283.1875, 180, 310.1875);
+bezierVertex(169, 301.1875, 163, 304.1875, 159, 315.1875);
+bezierVertex(161, 328.1875, 169, 333.1875, 177, 329.1875);
+bezierVertex(183, 357.1875, 182, 393.1875, 189, 408.1875);
+bezierVertex(207, 428.1875, 221, 434.1875, 247, 450.1875);
+endShape();
+//pelo
+beginShape();
+vertex(181, 346.1875);
+bezierVertex(180, 338.1875, 169, 345.1875, 156, 341.1875);
+bezierVertex(155, 316.1875, 167, 290.1875, 176, 305.1875);
+endShape();
+//arreglo
+fill(58,39,22);
+beginShape();
+vertex(184, 382.1875);
+vertex(177, 337.1875);
+vertex(147, 351.1875);
+vertex(182, 383.1875);
+endShape();
+//pel esquerra
+beginShape();
+vertex(54, 493.1875);
+bezierVertex(76, 494.1875, 78, 491.1875, 102, 485.1875);
+bezierVertex(136, 487.1875, 155, 478.1875, 167, 470.1875);
+bezierVertex(176, 456.1875, 176, 437.1875, 179, 413.1875);
+bezierVertex(180, 393.1875, 184, 373.1875, 179, 358.1875);
+bezierVertex(173, 343.1875, 163, 340.1875, 161, 326.1875);
+bezierVertex(158, 312.1875, 165, 293.1875, 172, 299.1875);
+bezierVertex(179, 309.1875, 193, 317.1875, 186, 307.1875);
+bezierVertex(183, 285.1875, 188, 265.1875, 199, 230.1875);
+bezierVertex(207, 211.1875, 212, 197.1875, 179, 213.1875);
+bezierVertex(163, 230.1875, 150, 245.1875, 141, 266.1875);
+bezierVertex(126, 287.1875, 100, 303.1875, 85, 353.1875);
+bezierVertex(44, 405.1875, 38, 445.1875, 53, 490.1875);
+endShape();
+//dret
+beginShape();
+vertex(302, 463.1875);
+bezierVertex(353, 469.1875, 377, 455.1875, 383, 436.1875);
+bezierVertex(399, 419.1875, 394, 393.1875, 383, 376.1875);
+bezierVertex(396, 373.1875, 407, 349.1875, 406, 313.1875);
+bezierVertex(381, 285.1875, 398, 279.1875, 403, 263.1875);
+bezierVertex(391, 242.1875, 376, 224.1875, 367, 207.1875);
+bezierVertex(367, 262.1875, 375, 284.1875, 369, 328.1875);
+bezierVertex(369, 344.1875, 366, 378.1875, 354, 408.1875);
+bezierVertex(333, 420.1875, 313, 423.1875, 304, 423.1875);
+endShape();
+//boina
+fill(0,0,0);
+beginShape();
+vertex(119, 294.1875);
+bezierVertex(148, 264.1875, 168, 221.1875, 213, 200.1875);
+bezierVertex(270, 169.1875, 326, 167.1875, 356, 183.1875);
+bezierVertex(364, 203.1875, 377, 200.1875, 382, 192.1875);
+bezierVertex(408, 185.1875, 393, 169.1875, 361, 169.1875);
+bezierVertex(362, 152.1875, 356, 131.1875, 339, 113.1875);
+bezierVertex(316, 98.1875, 278, 56.1875, 253, 53.1875);
+bezierVertex(218, 61.1875, 187, 93.1875, 162, 111.1875);
+bezierVertex(131, 121.1875, 70, 172.1875, 67, 197.1875);
+bezierVertex(82, 219.1875, 72, 243.1875, 72, 268.1875);
+bezierVertex(72, 268.1875, 81, 268.1875, 92, 289.1875);
+endShape();
+
+// ulls
+fill(255,255,255);
+beginShape();
+vertex(328, 248.1875);
+bezierVertex(335, 258.1875, 345, 259.1875, 356, 259.1875);
+bezierVertex(362, 255.1875, 367, 244.1875, 363, 225.1875);
+bezierVertex(352, 218.1875, 345, 219.1875, 334, 224.1875);
+endShape();
+
+beginShape();
+vertex(236, 266.1875);
+bezierVertex(244, 272.1875, 253, 276.1875, 263, 276.1875);
+bezierVertex(273, 271.1875, 281, 267.1875, 288, 263.1875);
+bezierVertex(292, 261.1875, 289, 256.1875, 286, 247.1875);
+bezierVertex(281, 242.1875, 269, 231.1875, 256, 234.1875);
+bezierVertex(246, 243.1875, 240, 250.1875, 238, 256.1875);
+endShape();
+//ulls iris esquerre
+fill(58,39,22);
+beginShape();
+vertex(248, 258.1875);
+bezierVertex(249, 262.1875, 254, 264.1875, 259, 264.1875);
+bezierVertex(263, 261.1875, 265, 256.1875, 263, 251.1875);
+bezierVertex(259, 250.1875, 252, 253.1875, 248, 257.1875);
+endShape();
+//ulls iris dret
+beginShape();
+vertex(338, 240.1875);
+bezierVertex(334, 244.1875, 339, 248.1875, 344, 248.1875);
+bezierVertex(350, 246.1875, 351, 242.1875, 351, 237.1875);
+bezierVertex(350, 233.1875, 343, 236.1875, 340, 238.1875);
+endShape();
+//boca superior
+stroke(108,19,02,);
+strokeWeight(3);
+fill(128,39,22);
+beginShape();
+vertex(305, 356.1875);
+bezierVertex(315, 352.1875, 327, 345.1875, 335, 344.1875);
+bezierVertex(346, 342.1875, 351, 340.1875, 356, 344.1875);
+bezierVertex(356, 348.1875, 354, 351.1875, 348, 350.1875);
+bezierVertex(342, 352.1875, 333, 352.1875, 328, 352.1875);
+bezierVertex(322, 355.1875, 318, 356.1875, 312, 357.1875);
+endShape();
+//boca inferior
+beginShape();
+vertex(309, 358.1875);
+bezierVertex(315, 357.1875, 321, 354.1875, 326, 353.1875);
+bezierVertex(331, 352.1875, 336, 353.1875, 339, 353.1875);
+bezierVertex(344, 350.1875, 348, 350.1875, 352, 351.1875);
+bezierVertex(354, 354.1875, 355, 361.1875, 351, 365.1875);
+bezierVertex(339, 368.1875, 330, 368.1875, 324, 366.1875);
+bezierVertex(320, 364.1875, 316, 362.1875, 312, 363.1875);
+bezierVertex(307, 362.1875, 303, 360.1875, 309, 357.1875);
+endShape();
+noStroke();
+//nas
+fill(252, 218, 180);
+beginShape();
+vertex(307, 263.1875);
+bezierVertex(308, 271.1875, 311, 281.1875, 313, 287.1875);
+bezierVertex(315, 294.1875, 315, 301.1875, 310, 304.1875);
+bezierVertex(308, 310.1875, 309, 318.1875, 317, 320.1875);
+bezierVertex(322, 321.1875, 330, 322.1875, 333, 322.1875);
+bezierVertex(338, 322.1875, 344, 320.1875, 348, 316.1875);
+bezierVertex(352, 310.1875, 353, 304.1875, 351, 298.1875);
+bezierVertex(347, 292.1875, 343, 287.1875, 341, 280.1875);
+bezierVertex(337, 269.1875, 333, 263.1875, 328, 255.1875);
+bezierVertex(324, 244.1875, 324, 237.1875, 328, 224.1875);
+bezierVertex(296, 225.1875, 298, 229.1875, 303, 235.1875);
+bezierVertex(305, 240.1875, 308, 248.1875, 308, 257.1875);
+endShape();
+fill(59,22,39);
+                background(255);
+                let dominant = "neutre";
+                let intensity = 0;
+                if (detections && detections.length > 0){
+                    let expr = detections[0].expressions;
+                    dominant = Object.keys(expr).reduce((a,b) => expr[a] > expr[b] ? a : b);
+                    intensity = expr[dominant];
+                }
+                drawDifferentArt(dominant,intensity);
+                noStroke();
+                fill(44,169,225);
+                textSize(48);
+                textAlign(CENTER,CENTER);
+                text("Expressió: " +dominant, width/2,50);
+                if (detections && detections > 0){
+                    image(video,width - miniWidth - 200, height - miniHeight - 20, miniWidth,miniHeight);
+                }
+            }
+            function drawDifferentArt(dominant,intensity){
+                push();
+            //01000101 01010011 01010100 01000101 00100000 01000011 01001111 01000100 01001001 01000111 01001111 00100000 01000101 01010011 00100000 01000100 01000101 00100000 01001010 01000001 01001110 00100000 01000010 01000001 01010010 01010010 01001001 01000111 01000001 00100000 01000011 01000101 01000010 01000001 01001100 01001100 01001111 01010011 00101100 00100000 01001110 01001111 00100000 01000011 01001111 01010000 01001001 01000101 01010011 
+            translate(width/2, height/2);
+            nostroke();
+            fill(59,22,39);
+            switch (dominant) {
+                case "neutral":
+                for (let i = 1; i <= 10; i++){
+                  beginShape();
+                  vertex(220, 245.1875);
+                  bezierVertex(230, 241.1875, 237, 237.1875, 244, 232.1875);
+                  bezierVertex(261, 227.1875, 275, 227.1875, 287, 228.1875);
+                  bezierVertex(297, 229.1875, 293, 222.1875, 276, 212.1875);
+                  bezierVertex(261, 213.1875, 245, 216.1875, 230, 224.1875);
+                  endShape();
+                  //ceja
+                  beginShape();
+                  vertex(331, 221.1875);
+                  bezierVertex(340, 215.1875, 347, 213.1875, 353, 213.1875);
+                  bezierVertex(362, 215.1875, 365, 219.1875, 364, 212.1875);
+                  bezierVertex(357, 204.1875, 346, 200.1875, 337, 204.1875);
+                  endShape();
+                }
+                break;
+                case "happy":
+                for (let i = 1; i <= 10; i++) {
+                  beginShape();
+                  vertex(226, 222.1875);
+                  bezierVertex(252, 215.1875, 272, 219.1875, 291, 228.1875);
+                  bezierVertex(291, 220.1875, 274, 206.1875, 250, 206.1875);
+                  endShape();
+
+                  beginShape();
+                  vertex(332, 209.1875);
+                  bezierVertex(343, 208.1875, 357, 208.1875, 363, 214.1875);
+                  bezierVertex(363, 206.1875, 351, 195.1875, 336, 195.1875);
+                  endShape();
+                }
+                break;
+                case "sad": detections
+                for(let x = -200; x <= 200; x += 40) {
+                    beginShape();
+                  vertex(221, 229.1875);
+                  bezierVertex(245, 232.1875, 264, 229.1875, 283, 222.1875);
+                  bezierVertex(293, 215.1875, 289, 210.1875, 277, 217.1875);
+                  bezierVertex(260, 221.1875, 233, 225.1875, 227, 225.1875);
+                  endShape();
+  
+                  beginShape();
+                  vertex(329, 194.1875);
+                  bezierVertex(341, 203.1875, 355, 203.1875, 362, 204.1875);
+                  bezierVertex(356, 210.1875, 342, 210.1875, 324, 204.1875);
+                  endShape();
+                }
+                break;
+                case "angry":
+                    for (let x = -250; x<=250; x += 20){
+                        let y = (x%40 === 0)? -150 : 150;
+                      
+                       beginShape();
+                      vertex(245, 210.1875);
+                      bezierVertex(264, 212.1875, 277, 220.1875, 288, 231.1875);
+                      bezierVertex(293, 225.1875, 286, 207.1875, 269, 192.1875);
+                      bezierVertex(248, 193.1875, 232, 200.1875, 238, 208.1875);
+                      endShape();
+                      beginShape();
+                      vertex(326, 208.1875);
+                      bezierVertex(336, 196.1875, 351, 189.1875, 356, 189.1875);
+                      bezierVertex(349, 181.1875, 331, 185.1875, 319, 193.1875);
+                      endShape();
+                    }
+                    break;
+                    case"fearful":
+                    for (let x = -250; x <= 250; x += 10){
+                        let y = 50*sin(x*0.1*intensity);
+                        beginShape();
+                        vertex(216, 208.1875);
+                        bezierVertex(239, 208.1875, 259, 201.1875, 281, 184.1875);
+                        bezierVertex(271, 179.1875, 259, 185.1875, 230, 200.1875);
+                        endShape();
+                        beginShape();
+                        vertex(326, 174.1875);
+                        bezierVertex(341, 183.1875, 355, 187.1875, 352, 194.1875);
+                        bezierVertex(335, 193.1875, 323, 181.1875, 324, 175.1875);
+                        endShape();
+                    }
+                    break;
+                    case "surprised":
+                        for(let i = 1; i <= 8; i++){
+                           beginShape();
+                          vertex(217, 241.1875);
+                          bezierVertex(237, 219.1875, 269, 207.1875, 293, 204.1875);
+                          bezierVertex(286, 190.1875, 265, 189.1875, 237, 202.1875);
+                          endShape();
+  
+                          beginShape();
+                          vertex(329, 191.1875);
+                          bezierVertex(344, 191.1875, 355, 196.1875, 359, 201.1875);
+                          bezierVertex(355, 188.1875, 339, 178.1875, 325, 178.1875);
+                          endShape();
+                        }
+                        break;
+
+                        default:
+                            stroke(150,150,150,150);
+                            for (let i = -200; i <= 200; i += 40){
+                                for ( let j = -200; j<= 200;j += 40){
+                                rect(i,j,30,30);
+                                }
+                                }
+                            }
+            pop();
+       } 
+        </script>
+    </body>
+ </html>
