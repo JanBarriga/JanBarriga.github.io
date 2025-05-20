@@ -85,8 +85,17 @@
                     console.error(error);
                     return;
                 }
-             function carabase() {
-             beginShape();
+
+            detections = result;
+            if(!modelsMostrats){
+                document.getElementById("loading-screen").style.display = "none";
+                modelsMostrats = true;
+            }
+            faceapi.detect(gotFaces);
+
+            }
+function carabase() {
+beginShape();
 vertex(538, 811.1875);
 bezierVertex(530, 791.1875, 521, 772.1875, 508, 757.1875);
 bezierVertex(490, 745.1875, 471, 719.1875, 454, 702.1875);
@@ -269,15 +278,6 @@ bezierVertex(296, 225.1875, 298, 229.1875, 303, 235.1875);
 bezierVertex(305, 240.1875, 308, 248.1875, 308, 257.1875);
 endShape();
              }
-            detections = result;
-            if(!modelsMostrats){
-                document.getElementById("loading-screen").style.display = "none";
-                modelsMostrats = true;
-            }
-            faceapi.detect(gotFaces);
-
-            }
-
             function draw(){
                 background(220);
                 background(255);
@@ -306,7 +306,7 @@ endShape();
             switch (dominant) {
                 case "neutral":
                 for (let i = 1; i <= 10; i++){
-                 carabase();
+                  carabase();
                   beginShape();
                   fill(59,22,39);
                   vertex(220, 245.1875);
