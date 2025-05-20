@@ -62,8 +62,6 @@
             const miniWidth = 800;
             const miniHeight = 1200;
             function setup(){
-
-            translate(0,-300);
                 createCanvas(miniWidth,miniHeight);
                 video = createCapture(VIDEO);
                 video.size(120,120);
@@ -281,6 +279,7 @@ bezierVertex(305, 240.1875, 308, 248.1875, 308, 257.1875);
 endShape();
              }
             function draw(){
+             translate(0,-300);
                 background(220);
                 background(255);
                 let dominant = "neutre";
