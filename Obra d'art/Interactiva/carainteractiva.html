@@ -62,6 +62,8 @@
             const miniWidth = 800;
             const miniHeight = 1200;
             function setup(){
+
+            translate(0,-300);
                 createCanvas(miniWidth,miniHeight);
                 video = createCapture(VIDEO);
                 video.size(120,120);
@@ -95,7 +97,6 @@
 
             }
 function carabase() {
-translate(0,-300);
 beginShape();
 vertex(538, 811.1875);
 bezierVertex(530, 791.1875, 521, 772.1875, 508, 757.1875);
