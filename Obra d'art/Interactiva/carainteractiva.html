@@ -59,8 +59,8 @@
             let detections = [];
             let video;
             let modelsMostrats = false;
-            const miniWidth = 800;
-            const miniHeight = 1200;
+            const miniWidth = 400;
+            const miniHeight = 800;
             function setup(){
                 createCanvas(miniWidth,miniHeight);
                 video = createCapture(VIDEO);
@@ -279,7 +279,7 @@ bezierVertex(305, 240.1875, 308, 248.1875, 308, 257.1875);
 endShape();
              }
             function draw(){
-             translate(0,-300);
+             translate(-400,-300);
                 background(220);
                 background(255);
                 let dominant = "neutre";
