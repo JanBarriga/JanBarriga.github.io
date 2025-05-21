@@ -298,6 +298,12 @@
                 if (detections && detections > 0){
                     image(video,width - miniWidth - 200, height - miniHeight - 20, miniWidth,miniHeight);
                 }
+             noStroke();
+             fill(44,169,225);
+             textSize(32);
+             textAlign(CENTER, TOP);
+             text("Expressió: " + dominant, width / 2, 10);
+             text("Intensitat: "+ intensity*100+"5",width/2,50)
             }
             function drawDifferentArt(dominant,intensity){
                 push();
@@ -343,7 +349,6 @@
                 }
                 break;
                 case "sad": detections
-                for(let x = -200; x <= 200; x += 40) {
                  carabase();
                  fill(59,22,39);
                  beginShape();
@@ -358,7 +363,15 @@
                   bezierVertex(341, 203.1875, 355, 203.1875, 362, 204.1875);
                   bezierVertex(356, 210.1875, 342, 210.1875, 324, 204.1875);
                   endShape();
-                }
+              if (intensity > 80){
+               fill(0,0,255,0.75);
+               beginShape();
+               vertex(265, 281.1875);
+               bezierVertex(259, 292.1875, 257, 299.1875, 257, 304.1875);
+               bezierVertex(261, 308.1875, 266, 310.1875, 271, 310.1875);
+               bezierVertex(276, 308.1875, 277, 305.1875, 277, 301.1875);
+               endShape();
+              }
                 break;
                 case "angry":
                     for (let x = -250; x<=250; x += 20){
