@@ -348,31 +348,34 @@
                   endShape();
                 }
                 break;
-                case "sad": detections
+                case "sad": 
+                 intensity = expr[dominant];
                  carabase();
                  fill(59,22,39);
                  beginShape();
-                  vertex(221, 229.1875);
-                  bezierVertex(245, 232.1875, 264, 229.1875, 283, 222.1875);
-                  bezierVertex(293, 215.1875, 289, 210.1875, 277, 217.1875);
-                  bezierVertex(260, 221.1875, 233, 225.1875, 227, 225.1875);
-                  endShape();
+                 vertex(221, 229.1875);
+                 bezierVertex(245, 232.1875, 264, 229.1875, 283, 222.1875);
+                 bezierVertex(293, 215.1875, 289, 210.1875, 277, 217.1875);
+                 bezierVertex(260, 221.1875, 233, 225.1875, 227, 225.1875);
+                 endShape();
   
                   beginShape();
                   vertex(329, 194.1875);
                   bezierVertex(341, 203.1875, 355, 203.1875, 362, 204.1875);
                   bezierVertex(356, 210.1875, 342, 210.1875, 324, 204.1875);
                   endShape();
-                 if (intensity > 50) {
-                 fill(0,0,255,0.75);
-                 beginShape();
-                 vertex(265, 281.1875);
-                 bezierVertex(259, 292.1875, 257, 299.1875, 257, 304.1875);
+              
+      if (intensity > 50) {
+            fill(0,0,255,100);
+            beginShape();
+            vertex(265, 281.1875);
+            bezierVertex(259, 292.1875, 257, 299.1875, 257, 304.1875);
                  bezierVertex(261, 308.1875, 266, 310.1875, 271, 310.1875);
                  bezierVertex(276, 308.1875, 277, 305.1875, 277, 301.1875);
                  endShape();
                  fill(59,22,39);
-            }
+}
+            
                 break;
                 case "angry":
                     for (let x = -250; x<=250; x += 20){
