@@ -86,7 +86,7 @@ const questions = [
     },
     {
         type: "questions", // Tipus de pregunta
-        category: "energia",
+        category: "organitzacio",
         text: `En una línia de producció que consta de tres estacions, les operacions que s’efectuen per a cada unitat produïda requereixen 10 s, 25 s i 20 s respectivament. En règim estacionari i si la línia funciona a màxim rendiment, quantes unitats es produeixen cada hora?`,
         options: [
             { text: "180", value: "a" },
@@ -96,64 +96,33 @@ const questions = [
         ],
         correctAnswer: "b",
         steps:
-        \\[ 
-          t_1 = 10, text{s},
-          t_2 = 25, text{s},
-          t_3 = 20, text{s},
-          t_operació = 1, text{h},
-          t_total = \(t_operació * 3600\),
-           \\]
+        \[  
+            t_1 &= 10\,\text{s} \\
+            t_2 &= 25\,\text{s} \\
+            t_3 &= 20\,\text{s}, \\
+            t_{\text{operació}} &= 1\,\text{h} = 3600\,\text{s} \\
+            n &= \frac{t_{\text{operació}}}{t_3}
+            n &= \frac{3600}{25}
+            n &= 144\,\text{unitats/hora}
+\]
+},
+           
+    
           
         
         
-    },
     {
         type: "questions", // Tipus de pregunta
         category: "materials",
-        text: `Una família que anualment generava 525 kg d’envasos, en un any ha aconseguit reduir aquesta quantitat un 60 %. Quina reducció en emissions de GEH ha obtingut respecte a l’any anterior, tenint en compte que el factor d’emissió dels envasos és de 120,09 g CO2eq/kg residu?`,
+        text: `Per a garantir l’exactitud d’un mesurament, s’utilitza una balança i un procediment de pesatge que consisteix a pesar cinc vegades el mateix objecte. S’obtenen els resultats següents: 460,9 g, 460,4 g, 460,5 g, 460,5 g i 460,7 g. Quina de les quantitats següents, amb l’interval d’incertesa corresponent, es pot prendre com a resultat de la pesada?`,
         options: [
-            { text: "25,22 kg CO2eq", value: "a" },
-            { text: "37,83 kg CO2eq", value: "b" },
-            { text: "63,05 kg CO2eq", value: "c" },
-            { text: "88,27 kg CO2eq", value: "d" }
+            { text: "460,7 g ", value: "a" },
+            { text: "460,5 kg ", value: "b" },
+            { text: "460,6 kg ", value: "c" },
+            { text: "460,4 kg ", value: "d" }
         ],
         correctAnswer: "b",
-        steps: `
-            \\[
-            \\text{Quantitat inicial d’envasos} = 525 \\, \\text{kg}
-            \\]
-            \\[
-            \\text{Percentatge de reducció} = 60\\%
-            \\]
-            \\[
-            \\text{Quantitat reduïda} = 525 \\, \\text{kg} \\times 0{,}60 = 315 \\, \\text{kg}
-            \\]
-            \\[
-            \\text{Quantitat de residu restant} = 525 \\, \\text{kg} - 315 \\, \\text{kg} = 210 \\, \\text{kg}
-            \\]
-            \\[
-            \\text{Emissions inicials} = 525 \, \\text{kg} \\times 120{,}09 \, \\text{g CO2eq/kg}
-            \\]
-            \\[
-            \\text{Emissions inicials} = 63047,25 \, \\text{g CO2eq}
-            \\]
-            \\[
-            \\text{Emissions inicials} = 63{,}05 \, \\text{kg CO2eq}
-            \\]
-            \\[
-            \\text{Emissions després de la reducció} = 210 \, \\text{kg} \\times 120{,}09 \, \\text{g CO2eq/kg}
-            \\]
-            \\[
-            \\text{Emissions després de la reducció} = 25218{,}9 \, \\text{g CO2eq}
-            \\]
-            \\[
-            \\text{Emissions després de la reducció} = 25{,}22 \, \\text{kg CO2eq}
-            \\]
-            \\[
-            \\text{Reducció en emissions} = 63{,}05 \, \\text{kg CO2eq} - 25{,}22 \, \\text{kg CO2eq} = 37{,}83 \, \\text{kg CO2eq}
-            \\]
-            <br><br>
-            <img src="ruta/a/imatgeResposta.jpg" alt="Imatge relacionada amb la resposta">`,  // Imatge opcional al final de la resposta
-        images: `<img src="ruta/a/imatgePregunta.jpg" alt="Imatge relacionada amb la pregunta">`  // Imatge opcional al final de la pregunta
+        steps:
+        
     }
 ];
