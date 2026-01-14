@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<title>Conversió questions.js</title>
+</head>
+<body>
+
+<h2>Conversió questions.js</h2>
+<button onclick="convert()">Convertir</button>
+
+<pre id="output" style="white-space: pre-wrap;"></pre>
+
+<script src="questions.js"></script>
+
+<script>
+function normalizeCategory(cat) {
+  return cat.toLowerCase()
+    .replace(" i ", " ")
+    .replace("à","a").replace("è","e").replace("é","e")
+    .replace("í","i").replace("ò","o").replace("ó","o").replace("ú","u");
+}
+
+function convert() {
+  const converted = questions.map(q => ({
+    type: q.type.toLowerCase(),
+    category: normalizeCategory(q.category),
+    text: q.question || "",
+    options: q.options
+      ? q.options.map(o => {
+          const m = o.match(/^([a-d])\)\s*(.*)$/i);
+          return { value: m[1], text: m[2] };
+        })
+      : null,
+    correctAnswer: q.correctOption || null,
+    steps: q.steps
+      ? q.steps.map(s => `<p><em>${s.statement}</em><br>${s.solution}</p>`).join("")
+      : ""
+  }));
+
+  document.getElementById("output").textContent =
+    "const questions = " + JSON.stringify(converted, null, 2) + ";";
+}
+</script>
+
+</body>
+</html>
