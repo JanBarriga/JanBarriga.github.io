@@ -1,7 +1,5 @@
 const questions = [
-
   // SETEMBRE 2010 - SÈRIE 2
-  
   {
     type: "Questions",
     category: "Organització industrial",
@@ -312,7 +310,7 @@ const questions = [
     category: "Màquines i sistemes elèctrics",
     question: "Qüestió 2: Tolerància de 3 resistències sèrie ±5%.",
     options: ["a) ±2,5%", "b) ±5%", "c) ±10%", "d) ±15%"],
-    correctOption: "b",
+    correctOption: "d",
     imgCode: "2010-Jun-S4-Q2"
   },
   {
