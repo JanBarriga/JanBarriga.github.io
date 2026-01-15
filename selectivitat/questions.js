@@ -205,7 +205,7 @@ const questions = [
  {
   type: "exercicis",
   category: "electrics",
-  images: `<img src="2010-Sept-E4.jpg">`,
+  images: `<img src="2010-Sept-E4.png">`,
   text: "L’esquema representa un circuit elèctric amb dues resistències iguals R = 30 Ω connectades en paral·lel i un potenciòmetre Rp en sèrie, amb 0 ≤ Rp ≤ 45 Ω. La tensió d’alimentació és U = 18 V. Es demana determinar els corrents màxim i mínim, representar qualitativament el corrent en funció de Rp i calcular la potència màxima dissipada per les resistències i pel potenciòmetre.",
   options: null,
   correctAnswer: null,
@@ -279,7 +279,7 @@ const questions = [
   {
     type: "exercicis",
     category: "motors reductors",
-    text: "Un elevador accionat amb un motoreductor de vis sens fi aixeca a velocitat constant una càrrega m = 3 000 kg fins a una altura h = 2 m en un temps t = 35 s. El motor, pel qual circula un corrent I = 16 A, s’alimenta a U = 230 V i té un rendiment ηmot = 0,75. La velocitat de gir d’aquest motor és n = 1 390 min–1. Les resistències passives a l’elevador es consideren negligibles.",
+    text: "Un elevador accionat amb un motor reductor de vis sens fi aixeca a velocitat constant una càrrega m = 3 000 kg fins a una altura h = 2 m en un temps t = 35 s. El motor, pel qual circula un corrent I = 16 A, s’alimenta a U = 230 V i té un rendiment ηmot = 0,75. La velocitat de gir d’aquest motor és n = 1 390 min–1. Les resistències passives a l’elevador es consideren negligibles.",
     text: "a) La potència, Pm, i el parell, Γm, a l’eix de sortida del motor.",
     text: "b) El rendiment, ηred, del reductor.",
     text: "c) La potència total dissipada, Pdiss, en el motoreductor.",
@@ -447,6 +447,7 @@ const questions = [
   {
     "type": "exercicis",
     "category": "maquines sistemes electrics",
+    images: `<img src="2010-Juny-E4.png">`,
     "text": "",
     "options": null,
     "correctAnswer": null,
