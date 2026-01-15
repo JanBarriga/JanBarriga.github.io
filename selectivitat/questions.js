@@ -156,39 +156,136 @@ const questions = [
     <p><strong>c) Esquema de portes lògiques equivalent</strong></p>
     <p>Dues portes NOT aplicades a c i p. Les seves sortides entren a una porta OR. El resultat entra en una porta AND amb la variable v.</p>
   `
-}
+},
 
   {
-    "type": "exercicis",
-    "category": "motors reductors",
-    "text": "",
-    "options": null,
-    "correctAnswer": null,
-    "steps": "<p><em>a) El parell, Γs, a l'eix de sortida.</em><br>Γs = Ps / ωs = 850 / (5300 · 2π/60) = 1,532 Nm</p><p><em>b) El rendiment electromecànic, η.</em><br>η = Ps / (U·I) = 850 / (230 · 5,5) = 0,6719 (67,19%)</p><p><em>c) Energia consumida i dissipada en 10 min.</em><br>E_elec = 230 · 5,5 · 10 · 60 = 759 kJ (210,8 Wh); E_diss = E_elec · (1-η) = 249 kJ (69,16 Wh)</p><p><em>d) Cost econòmic (0,09 €/kWh).</em><br>Cost = 0,09 · 0,2108 = 0,019 €</p>"
+  type: "exercicis",
+  category: "motors",
+  text: "Pel motor d’una serra circular elèctrica que s’alimenta a una tensió U = 230 V circula un corrent I = 5,5 A. En règim de funcionament nominal, proporciona a l’eix de sortida, que gira a n = 5 300 min⁻¹, una potència Ps = 850 W. Determineu el parell a l’eix de sortida, el rendiment electromecànic, l’energia consumida i dissipada en 10 minuts, i el cost econòmic si el preu de l’energia és 0,09 €/kWh.",
+  options: null,
+  correctAnswer: null,
+  steps: `
+    <p><strong>a) Parell Γ<sub>s</sub> a l’eix de sortida</strong></p>
+    <p>
+      Velocitat angular:<br>
+      ω = 2π·n / 60 = 2π·5300 / 60 = 554,17 rad/s
+    </p>
+    <p>
+      Γ<sub>s</sub> = P<sub>s</sub> / ω = 850 / 554,17 = <strong>1,53 N·m</strong>
+    </p>
+
+    <p><strong>b) Rendiment electromecànic η</strong></p>
+    <p>
+      Potència elèctrica absorbida:<br>
+      P<sub>el</sub> = U·I = 230·5,5 = 1265 W
+    </p>
+    <p>
+      η = P<sub>s</sub> / P<sub>el</sub> = 850 / 1265 = <strong>0,672 (67,2 %)</strong>
+    </p>
+
+    <p><strong>c) Energia consumida i dissipada en 10 min</strong></p>
+    <p>
+      Temps de funcionament: t = 10 min = 600 s
+    </p>
+    <p>
+      Energia elèctrica consumida:<br>
+      E<sub>el</sub> = P<sub>el</sub>·t = 1265·600 = <strong>759 000 J = 210,8 Wh</strong>
+    </p>
+    <p>
+      Energia dissipada:<br>
+      E<sub>diss</sub> = E<sub>el</sub>·(1 − η) = 759 000·(1 − 0,672) = <strong>249 000 J = 69,2 Wh</strong>
+    </p>
+
+    <p><strong>d) Cost econòmic</strong></p>
+    <p>
+      Cost = 0,09 · 0,2108 = <strong>0,019 €</strong>
+    </p>
+  `
+},
+ {
+  type: "exercicis",
+  category: "electrics",
+  images: `<img src="2010-Sept-E4.jpg">`,
+  text: "L’esquema representa un circuit elèctric amb dues resistències iguals R = 30 Ω connectades en paral·lel i un potenciòmetre Rp en sèrie, amb 0 ≤ Rp ≤ 45 Ω. La tensió d’alimentació és U = 18 V. Es demana determinar els corrents màxim i mínim, representar qualitativament el corrent en funció de Rp i calcular la potència màxima dissipada per les resistències i pel potenciòmetre.",
+  options: null,
+  correctAnswer: null,
+  steps: `
+    <p><strong>Dades del problema</strong></p>
+    <p>
+      U = 18 V<br>
+      R = 30 Ω (dues resistències iguals en paral·lel)<br>
+      0 ≤ R<sub>p</sub> ≤ 45 Ω<br>
+      P<sub>max</sub> = 10 W
+    </p>
+
+    <p><strong>a) Corrent màxim i mínim</strong></p>
+    <p>
+      Equivalent de les dues resistències en paral·lel:<br>
+      R<sub>eq</sub> = (R·R)/(R + R) = 30·30 / 60 = 15 Ω
+    </p>
+    <p>
+      Resistència total del circuit:<br>
+      R<sub>total</sub> = R<sub>eq</sub> + R<sub>p</sub>
+    </p>
+    <p>
+      Corrent màxim (R<sub>p</sub> = 0):<br>
+      I<sub>max</sub> = U / R<sub>total</sub> = 18 / 15 = <strong>1,2 A</strong>
+    </p>
+    <p>
+      Corrent mínim (R<sub>p</sub> = 45 Ω):<br>
+      I<sub>min</sub> = 18 / (15 + 45) = 18 / 60 = <strong>0,3 A</strong>
+    </p>
+
+    <p><strong>b) Variació del corrent en funció de R<sub>p</sub></strong></p>
+    <p>
+      El corrent ve donat per:<br>
+      I(R<sub>p</sub>) = 18 / (15 + R<sub>p</sub>)
+    </p>
+    <p>
+      La gràfica I(R<sub>p</sub>) és una corba decreixent: quan R<sub>p</sub> augmenta de 0 a 45 Ω, el corrent disminueix de 1,2 A a 0,3 A.
+    </p>
+
+    <p><strong>c) Potència màxima dissipada</strong></p>
+    <p>
+      La potència dissipada al potenciòmetre és màxima quan:<br>
+      R<sub>p</sub> = R<sub>eq</sub> / 2 = 15 / 2 = 7,5 Ω
+    </p>
+    <p>
+      Corrent en aquesta situació:<br>
+      I = 18 / (15 + 7,5) = 18 / 22,5 = 0,8 A
+    </p>
+    <p>
+      Potència dissipada pel potenciòmetre:<br>
+      P<sub>p</sub> = I² · R<sub>p</sub> = 0,8² · 7,5 = <strong>4,8 W</strong>
+    </p>
+    <p>
+      Potència dissipada per cada resistència R:<br>
+      Tensió sobre el paral·lel: U = I · R<sub>eq</sub> = 0,8 · 15 = 12 V<br>
+      Potència per resistència: P = U² / R = 12² / 30 = <strong>4,8 W</strong>
+    </p>
+    <p>
+      Com que totes les potències són inferiors a 10 W, <strong>no se supera el límit màxim permès</strong>.
+    </p>
+  `
+},
+  {
+    type: "exercicis",
+    category: "principis de les maquines",
+    text: "Un remolque de masa $m = 395\\text{ kg}$ está articulado en el punto $O$ a una distancia $L = 1950\\text{ mm}$ del eje de la rueda. El centro de masas $G$ se encuentra a una distancia $d$ del eje de la rueda. Determina las expresiones de la fuerza de la rueda sobre el suelo ($F$) y la fuerza vertical en el enganche ($F_O$), y selecciona la afirmación correcta sobre la distribución de carga.",
+    options: null,
+    correctAnswer: null,
+    steps: "<p><em>a) Força F en funció de d (roda sobre terra).</em><br>F = mg (1 + d/1950)</p><p><em>b) Força vertical Fo en funció de d.</em><br>Fo = -mg (d/L) (Força vertical avall)</p><p><em>c) Gràfiques de F i Fo.</em><br>F lineal creixent; Fo lineal decreixent (negativa).</p><p><em>d) Distribució per minimitzar Fo.</em><br>Si d=0, llavors Fo=0. En aquest cas F = 3874 N.</p>"
   },
   {
-    "type": "exercicis",
-    "category": "maquines sistemes electrics",
-    "text": "",
-    "options": null,
-    "correctAnswer": null,
-    "steps": "<p><em>a) Corrents màxim i mínim (Imax, Imin).</em><br>I_max (Rp=0) = 18 / 15 = 1,2 A; I_min (Rp=45) = 18 / (15+45) = 0,3 A</p><p><em>b) Dibuixeu el corrent I en funció de Rp.</em><br>Gràfica decreixent de 1,2 A a 0,3 A.</p><p><em>c) Potència màxima dissipada per resistència i potenciòmetre.</em><br>P_Rmax = 10,8 W (supera els 10W màxims!); P_Pmax = 5,4 W.</p>"
-  },
-  {
-    "type": "exercicis",
-    "category": "principis de les maquines",
-    "text": "",
-    "options": null,
-    "correctAnswer": null,
-    "steps": "<p><em>a) Força F en funció de d (roda sobre terra).</em><br>F = mg (1 + d/1950)</p><p><em>b) Força vertical Fo en funció de d.</em><br>Fo = -mg (d/L) (Força vertical avall)</p><p><em>c) Gràfiques de F i Fo.</em><br>F lineal creixent; Fo lineal decreixent (negativa).</p><p><em>d) Distribució per minimitzar Fo.</em><br>Si d=0, llavors Fo=0. En aquest cas F = 3874 N.</p>"
-  },
-  {
-    "type": "exercicis",
-    "category": "motors reductors",
-    "text": "",
-    "options": null,
-    "correctAnswer": null,
-    "steps": "<p><em>a) Potència Pm i parell Γm a l'eix motor.</em><br>Pm = 230 · 16 · 0,75 = 2760 W; Γm = 2760 / (1390 · 2π/60) = 18,96 Nm</p><p><em>b) Rendiment del reductor ηred.</em><br>η_red = (m·g·v) / Pm = (3000 · 9,807 · 2/35) / 2760 = 0,6091 (60,91%)</p><p><em>c) Potència total dissipada Pdiss.</em><br>P_diss = P_elec - P_carrega = (230·16) - (3000·9,807·2/35) = 1999 W</p>"
+    type: "exercicis",
+    category: "motors reductors",
+    text: "Un elevador accionat amb un motoreductor de vis sens fi aixeca a velocitat constant una càrrega m = 3 000 kg fins a una altura h = 2 m en un temps t = 35 s. El motor, pel qual circula un corrent I = 16 A, s’alimenta a U = 230 V i té un rendiment ηmot = 0,75. La velocitat de gir d’aquest motor és n = 1 390 min–1. Les resistències passives a l’elevador es consideren negligibles.",
+    text: "a) La potència, Pm, i el parell, Γm, a l’eix de sortida del motor.",
+    text: "b) El rendiment, ηred, del reductor.",
+    text: "c) La potència total dissipada, Pdiss, en el motoreductor.",
+    options: null,
+    correctAnswer: null,
+    steps: "<p><em>a) Potència Pm i parell Γm a l'eix motor.</em><br>Pm = 230 · 16 · 0,75 = 2760 W; Γm = 2760 / (1390 · 2π/60) = 18,96 Nm</p><p><em>b) Rendiment del reductor ηred.</em><br>η_red = (m·g·v) / Pm = (3000 · 9,807 · 2/35) / 2760 = 0,6091 (60,91%)</p><p><em>c) Potència total dissipada Pdiss.</em><br>P_diss = P_elec - P_carrega = (230·16) - (3000·9,807·2/35) = 1999 W</p>",
   },
   {
     "type": "questions",
