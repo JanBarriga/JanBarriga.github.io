@@ -125,13 +125,39 @@ const questions = [
     "steps": ""
   },
   {
-    "type": "exercicis",
-    "category": "control logic",
-    "text": "",
-    "options": null,
-    "correctAnswer": null,
-    "steps": "<p><em>a) Escriviu la taula de veritat del sistema (alarma de cotxe).</em><br>Veure taula a la solució (les sortides 'a' són 1 quan v=1 i (c=0 o p=0)).</p><p><em>b) Determineu la funció lògica i simplifiqueu-la.</em><br>a = v · (not c) + v · (not p)</p><p><em>c) Dibuixeu l'esquema de portes lògiques equivalent.</em><br>Esquema amb portes AND i NOT sumades (OR).</p>"
-  },
+  type: "exercicis",
+  category: "control",
+  text: "Un cotxe disposa d’una alarma que sona si, a partir d’una velocitat límit v_lim, algun passatger porta el cinturó de seguretat descordat o hi ha alguna porta oberta. Es defineixen les variables: v = 1 si v ≥ v_lim (0 si v < v_lim), c = 1 si el cinturó està cordat (0 si està descordat), p = 1 si les portes estan tancades (0 si estan obertes) i a = 1 si l’alarma sona (0 si no sona).",
+  options: null,
+  correctAnswer: null,
+  steps: `
+    <p><strong>a) Taula de veritat del sistema</strong></p>
+
+    <table border="1" cellpadding="6" cellspacing="0">
+      <tr>
+        <th>v</th>
+        <th>c</th>
+        <th>p</th>
+        <th>a</th>
+      </tr>
+      <tr><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+      <tr><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+      <tr><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+      <tr><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+      <tr><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+      <tr><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+      <tr><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+      <tr><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+    </table>
+
+    <p><strong>b) Funció lògica</strong></p>
+    <p>a = v · (¬c + ¬p)</p>
+
+    <p><strong>c) Esquema de portes lògiques equivalent</strong></p>
+    <p>Dues portes NOT aplicades a c i p. Les seves sortides entren a una porta OR. El resultat entra en una porta AND amb la variable v.</p>
+  `
+}
+
   {
     "type": "exercicis",
     "category": "motors reductors",
