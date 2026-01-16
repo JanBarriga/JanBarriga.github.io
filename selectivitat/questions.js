@@ -1,279 +1,451 @@
 const questions = [
-    // -------------------------------------------------------------------------
-    // ORGANITZACIÓ INDUSTRIAL
-    // -------------------------------------------------------------------------
-    {
-        text: "En una línia de producció que consta de tres estacions, les operacions que s'efectuen per a cada unitat produïda requereixen 10 s, 25 s i 20 s, respectivament. En règim estacionari i si la línia funciona a màxim rendiment, quantes unitats es produeixen cada hora?",
-        type: "questions",
-        category: "organitzacio",
-        options: [
-            { value: "a", text: "180" },
-            { value: "b", text: "144" },
-            { value: "c", text: "120" },
-            { value: "d", text: "80" }
-        ],
-        correctAnswer: "b",
-        steps: `
-            <p>Per trobar la producció de la línia, hem d'identificar l'estació que actua com a "coll d'ampolla", és a dir, la més lenta.</p>
-            <ul>
-                <li>Estació 1: 10 s/unitat</li>
-                <li>Estació 2: 25 s/unitat (Més lenta)</li>
-                <li>Estació 3: 20 s/unitat</li>
-            </ul>
-            <p>El temps de cicle de la línia el determina l'estació més lenta: $T_{cicle} = 25\\ s$.</p>
-            <p>Càlcul de la producció per hora:</p>
-            $$ P = \\frac{3600\\ s/h}{25\\ s/u} = 144\\ unitats/h $$
-        `
-    },
-    {
-        text: "Una cinta transportadora d'un aeroport es mou a 0,7 m/s i té una ocupació nominal de 3 passatgers per metre. [cite_start]Quina és la capacitat nominal de transport de la cinta en passatgers per hora? [cite: 226, 227]",
-        type: "questions",
-        category: "organitzacio",
-        options: [
-            { value: "a", text: "7560" },
-            { value: "b", text: "3780" },
-            { value: "c", text: "5040" },
-            { value: "d", text: "2520" }
-        ],
-        correctAnswer: "a",
-        steps: `
-            <p>Tenim les següents dades:</p>
-            <ul>
-                <li>Velocitat ($v$) = $0,7\\ m/s$</li>
-                <li>Densitat lineal ($d$) = $3\\ passatgers/m$</li>
-            </ul>
-            <p>La capacitat de transport ($C$) es calcula multiplicant la velocitat per la densitat i convertint els segons a hores:</p>
-            $$ C = v \\cdot d = 0,7 \\frac{m}{s} \\cdot 3 \\frac{pass}{m} = 2,1 \\frac{pass}{s} $$
-            $$ C_{hora} = 2,1 \\cdot 3600 = 7560\\ passatgers/h $$
-        `
-    },
+  // SETEMBRE 2010 - SÈRIE 2
+  {
+    type: "Questions",
+    category: "Organització industrial",
+    question: "Qüestió 1: Una cinta transportadora d'un aeroport es mou a 0,7 m/s i té una ocupació nominal de 3 passatgers per metre. Quina és la capacitat nominal de transport de la cinta en passatgers per hora?",
+    options: ["a) 7560", "b) 3780", "c) 5040", "d) 2520"],
+    correctOption: "a",
+    imgCode: "2010-Set-S2-Q1"
+  },
+  {
+    type: "Questions",
+    category: "Materials i assaigs",
+    question: "Qüestió 2: El peltre és un aliatge format per un 92% d'estany (Sn), un 3% de coure (Cu) i un 5% d'altres elements... Quina quantitat dels dos components principals, en kg, hi ha en 450 kg d'aquest aliatge?",
+    options: ["a) Sn: 414, Cu: 13,5", "b) Sn: 414, Cu: 22,5", "c) Sn: 427,5, Cu: 22,5", "d) Sn: 427,5, Cu: 13,5"],
+    correctOption: "a",
+    imgCode: "2010-Set-S2-Q2"
+  },
+  {
+    type: "Questions",
+    category: "Energia",
+    question: "Qüestió 3: Una placa solar d'1,188 m x 0,540 m està formada per cèl·lules fotovoltaiques rectangulars de 17820 mm². Quantes cèl·lules hi ha, com a màxim?",
+    options: ["a) 35", "b) 36", "c) 37", "d) 38"],
+    correctOption: "b",
+    imgCode: "2010-Set-S2-Q3"
+  },
+  {
+    type: "Questions",
+    category: "Màquines i sistemes elèctrics",
+    question: "Qüestió 4: Una resistència de constantà de 0,8 mm de diàmetre, 2 m de llargària i 0,5 μΩ·m de resistivitat. Valor?",
+    options: ["a) 198,9 Ω", "b) 19,89 Ω", "c) 1,989 Ω", "d) 0,1989 Ω"],
+    correctOption: "c",
+    imgCode: "2010-Set-S2-Q4"
+  },
+  {
+    type: "Questions",
+    category: "Organització industrial",
+    question: "Qüestió 5: Fiabilitat d'un lot de 320 màquines on 240 funcionen després de 1800 h.",
+    options: ["a) 75%", "b) 66%", "c) 33%", "d) 25%"],
+    correctOption: "a",
+    imgCode: "2010-Set-S2-Q5"
+  },
+  {
+    type: "Exercicis",
+    category: "Control lògic",
+    imgCode: "2010-Set-S2-Ex2",
+    steps: [
+      {
+        statement: "a) Escriviu la taula de veritat del sistema (alarma de cotxe).",
+        solution: "Veure taula a la solució (les sortides 'a' són 1 quan v=1 i (c=0 o p=0))."
+      },
+      {
+        statement: "b) Determineu la funció lògica i simplifiqueu-la.",
+        solution: "a = v · (not c) + v · (not p)"
+      },
+      {
+        statement: "c) Dibuixeu l'esquema de portes lògiques equivalent.",
+        solution: "Esquema amb portes AND i NOT sumades (OR)."
+      }
+    ]
+  },
+  {
+    type: "Exercicis",
+    category: "Motors reductors",
+    imgCode: "2010-Set-S2-Ex3-A",
+    steps: [
+      {
+        statement: "a) El parell, Γs, a l'eix de sortida.",
+        solution: "Γs = Ps / ωs = 850 / (5300 · 2π/60) = 1,532 Nm"
+      },
+      {
+        statement: "b) El rendiment electromecànic, η.",
+        solution: "η = Ps / (U·I) = 850 / (230 · 5,5) = 0,6719 (67,19%)"
+      },
+      {
+        statement: "c) Energia consumida i dissipada en 10 min.",
+        solution: "E_elec = 230 · 5,5 · 10 · 60 = 759 kJ (210,8 Wh); E_diss = E_elec · (1-η) = 249 kJ (69,16 Wh)"
+      },
+      {
+        statement: "d) Cost econòmic (0,09 €/kWh).",
+        solution: "Cost = 0,09 · 0,2108 = 0,019 €"
+      }
+    ]
+  },
+  {
+    type: "Exercicis",
+    category: "Màquines i sistemes elèctrics",
+    imgCode: "2010-Set-S2-Ex4-A",
+    steps: [
+      {
+        statement: "a) Corrents màxim i mínim (Imax, Imin).",
+        solution: "I_max (Rp=0) = 18 / 15 = 1,2 A; I_min (Rp=45) = 18 / (15+45) = 0,3 A"
+      },
+      {
+        statement: "b) Dibuixeu el corrent I en funció de Rp.",
+        solution: "Gràfica decreixent de 1,2 A a 0,3 A."
+      },
+      {
+        statement: "c) Potència màxima dissipada per resistència i potenciòmetre.",
+        solution: "P_Rmax = 10,8 W (supera els 10W màxims!); P_Pmax = 5,4 W."
+      }
+    ]
+  },
+  {
+    type: "Exercicis",
+    category: "Principis de les màquines",
+    imgCode: "2010-Set-S2-Ex3-B",
+    steps: [
+      {
+        statement: "a) Força F en funció de d (roda sobre terra).",
+        solution: "F = mg (1 + d/1950)"
+      },
+      {
+        statement: "b) Força vertical Fo en funció de d.",
+        solution: "Fo = -mg (d/L) (Força vertical avall)"
+      },
+      {
+        statement: "c) Gràfiques de F i Fo.",
+        solution: "F lineal creixent; Fo lineal decreixent (negativa)."
+      },
+      {
+        statement: "d) Distribució per minimitzar Fo.",
+        solution: "Si d=0, llavors Fo=0. En aquest cas F = 3874 N."
+      }
+    ]
+  },
+  {
+    type: "Exercicis",
+    category: "Motors reductors",
+    imgCode: "2010-Set-S2-Ex4-B",
+    steps: [
+      {
+        statement: "a) Potència Pm i parell Γm a l'eix motor.",
+        solution: "Pm = 230 · 16 · 0,75 = 2760 W; Γm = 2760 / (1390 · 2π/60) = 18,96 Nm"
+      },
+      {
+        statement: "b) Rendiment del reductor ηred.",
+        solution: "η_red = (m·g·v) / Pm = (3000 · 9,807 · 2/35) / 2760 = 0,6091 (60,91%)"
+      },
+      {
+        statement: "c) Potència total dissipada Pdiss.",
+        solution: "P_diss = P_elec - P_carrega = (230·16) - (3000·9,807·2/35) = 1999 W"
+      }
+    ]
+  },
+  
+  // JUNY 2010 - SÈRIE 1
 
-    // -------------------------------------------------------------------------
-    // MATERIALS I ASSAIGS
-    // -------------------------------------------------------------------------
-    {
-        text: "El peltre és un aliatge format per un 92% d'estany (Sn), un 3% de coure (Cu) i un 5% d'altres elements. Quina quantitat dels dos components principals hi ha en 450 kg d'aquest aliatge?",
-        type: "questions",
-        category: "materials",
-        options: [
-            { value: "a", text: "Sn: 414 kg, Cu: 13,5 kg" },
-            { value: "b", text: "Sn: 414 kg, Cu: 22,5 kg" },
-            { value: "c", text: "Sn: 427,5 kg, Cu: 22,5 kg" },
-            { value: "d", text: "Sn: 427,5 kg, Cu: 13,5 kg" }
-        ],
-        correctAnswer: "a",
-        steps: `
-            <p>Calculem la massa corresponent a cada percentatge sobre el total de 450 kg:</p>
-            <ul>
-                <li><strong>Estany (Sn):</strong> $0,92 \\cdot 450\\ kg = 414\\ kg$</li>
-                <li><strong>Coure (Cu):</strong> $0,03 \\cdot 450\\ kg = 13,5\\ kg$</li>
-            </ul>
-        `
-    },
+  {
+    type: "Questions",
+    category: "Organització industrial",
+    question: "Qüestió 1: Línia de producció (10s, 25s, 20s). Unitats per hora?",
+    options: ["a) 180", "b) 144", "c) 120", "d) 80"],
+    correctOption: "b",
+    imgCode: "2010-Jun-S1-Q1"
+  },
+  {
+    type: "Questions",
+    category: "Metrologia",
+    question: "Qüestió 2: Pesatge (460,9; 460,4; 460,5; 460,5; 460,7). Resultat?",
+    options: ["a) 460,7 g", "b) 460,5 g", "c) 460,6 g", "d) 460,4 g"],
+    correctOption: "c",
+    imgCode: "2010-Jun-S1-Q2"
+  },
+  {
+    type: "Questions",
+    category: "Principis de les màquines",
+    question: "Qüestió 3: Trepant (n=1200, p=80μm). Velocitat avanç?",
+    options: ["a) 0,016 mm/s", "b) 0,16 mm/s", "c) 1,6 mm/s", "d) 16 mm/s"],
+    correctOption: "c",
+    imgCode: "2010-Jun-S1-Q3"
+  },
+  {
+    type: "Questions",
+    category: "Energia",
+    question: "Qüestió 4: Emissions CO2 (4,5L/100km, 2,35kg/L, 950km).",
+    options: ["a) 100,5 kg", "b) 1005 kg", "c) 181,9 kg", "d) 1819 kg"],
+    correctOption: "a",
+    imgCode: "2010-Jun-S1-Q4"
+  },
+  {
+    type: "Questions",
+    category: "Organització industrial",
+    question: "Qüestió 5: Fiabilitat (1400 màquines, 112 fallades, 2000h).",
+    options: ["a) 89,6%", "b) 92%", "c) 92,6%", "d) 94,4%"],
+    correctOption: "b",
+    imgCode: "2010-Jun-S1-Q5"
+  },
+  {
+    type: "Exercicis",
+    category: "Control lògic",
+    imgCode: "2010-Jun-S1-Ex2",
+    steps: [
+      {
+        statement: "a) Escriviu la taula de veritat (Guillotina: pedal p, polsadors p1, p2).",
+        solution: "M = 1 quan (p1=1 OR p2=1) AND p=1."
+      },
+      {
+        statement: "b) Funció lògica i simplificació.",
+        solution: "m = (p1 + p2) · pe"
+      },
+      {
+        statement: "c) Esquema de contactes.",
+        solution: "Dos contactes en paral·lel (p1, p2) en sèrie amb un contacte (pe)."
+      }
+    ]
+  },
+  {
+    type: "Exercicis",
+    category: "Principis de les màquines",
+    imgCode: "2010-Jun-S1-Ex3-A",
+    steps: [
+      {
+        statement: "a) Diagrama de cos lliure pantalla.",
+        solution: "Dibuix vectorial (Forces Fs, Fbc, Fv, Fh)."
+      },
+      {
+        statement: "b) Força Fbc de la barra sobre la pantalla.",
+        solution: "Fbc = Fs / (L · cos 60) = (840 · 1,25) / (2 · 0,5) = 1050 N"
+      },
+      {
+        statement: "c) Forces Fv i Fh en el punt A.",
+        solution: "Fv = -909,3 N (sentit contrari); Fh = 315 N"
+      },
+      {
+        statement: "d) Força horitzontal Ft del terra sobre la barra.",
+        solution: "Ft = Fbc · cos 60 = 525 N"
+      }
+    ]
+  },
+  {
+    type: "Exercicis",
+    category: "Motors reductors",
+    imgCode: "2010-Jun-S1-Ex4-A",
+    steps: [
+      {
+        statement: "a) Parell a l'eix de sortida Γs.",
+        solution: "Γs = 60000 / (5000 · 2π/60) = 114,6 Nm"
+      },
+      {
+        statement: "b) Consum horari ch.",
+        solution: "ch = 180 g/kWh · 60 kW = 10,8 kg/h"
+      },
+      {
+        statement: "c) Rendiment η del motor.",
+        solution: "η = 60000 / ( (35500·10^3 / 0,85) · (10,8/3600) ) = 0,4789 (47,9%)"
+      },
+      {
+        statement: "d) Volum de combustible en 3h.",
+        solution: "V = (10,8 · 3) / 0,85 = 38,12 L"
+      }
+    ]
+  },
+  {
+    type: "Exercicis",
+    category: "Sistemes pneumàtics i oleohidràulics",
+    imgCode: "2010-Jun-S1-Ex3-B",
+    steps: [
+      {
+        statement: "a) Potència hidràulica Ph.",
+        solution: "Ph = q · ρ · g · h = 17 · 1 · 9,807 · 2,8 = 466,8 W"
+      },
+      {
+        statement: "b) Treball fet per la bomba Wbomba.",
+        solution: "W_bomba = 466,8 · 7 = 3268 Wh"
+      },
+      {
+        statement: "c) Rendiment η.",
+        solution: "η = 3268 / 5500 = 0,5941 (59,4%)"
+      },
+      {
+        statement: "d) Cost econòmic total.",
+        solution: "Cost = 0,12 · 5,5 = 0,66 €"
+      }
+    ]
+  },
+  {
+    type: "Exercicis",
+    category: "Màquines i sistemes elèctrics",
+    imgCode: "2010-Jun-S1-Ex4-B",
+    steps: [
+      {
+        statement: "a) Configuracions i posicions commutador.",
+        solution: "Posició 1: Paral·lel. Posició 2: Sèrie."
+      },
+      {
+        statement: "b) Corrents (paral·lel i sèrie).",
+        solution: "Pos 1: I_total = 9,2 A (4,6 A per branca). Pos 2: I_total = 2,3 A."
+      },
+      {
+        statement: "c) Potència consumida.",
+        solution: "Pos 1: P = 2116 W. Pos 2: P = 529 W."
+      }
+    ]
+  },
 
-    // -------------------------------------------------------------------------
-    // MAQUINES I MECANISMES
-    // -------------------------------------------------------------------------
-    {
-        text: "Un trepant amb avanç automàtic es programa de manera que la velocitat de rotació de la broca sigui n = 1200 min⁻¹ i el pas (avanç per volta) p = 80 μm. Quina és la velocitat d'avanç de la broca?",
-        type: "questions",
-        category: "maquines",
-        options: [
-            { value: "a", text: "0,016 mm/s" },
-            { value: "b", text: "0,16 mm/s" },
-            { value: "c", text: "1,6 mm/s" },
-            { value: "d", text: "16 mm/s" }
-        ],
-        correctAnswer: "c",
-        steps: `
-            <p>La velocitat d'avanç ($v_a$) és el producte de la velocitat de rotació ($n$) pel pas ($p$).</p>
-            <ol>
-                <li>Convertim les unitats:
-                    <ul>
-                        <li>$n = 1200\\ min^{-1} = \\frac{1200}{60}\\ s^{-1} = 20\\ s^{-1}$</li>
-                        <li>$p = 80\\ \\mu m = 0,08\\ mm$</li>
-                    </ul>
-                </li>
-                <li>Calculem:
-                    $$ v_a = n \\cdot p = 20\\ s^{-1} \\cdot 0,08\\ mm = 1,6\\ mm/s $$
-                </li>
-            </ol>
-        `
-    },
-
-    // -------------------------------------------------------------------------
-    // MÀQUINES ELÈCTRIQUES I ELECTROTECNIA
-    // -------------------------------------------------------------------------
-    {
-        text: "Una resistència està feta de fil de constantà de 0,8 mm de diàmetre, 2 m de llargària i 0,5 μΩ·m de resistivitat. Quin és el valor d'aquesta resistència?",
-        type: "questions",
-        category: "electrics",
-        options: [
-            { value: "a", text: "198,9 Ω" },
-            { value: "b", text: "19,89 Ω" },
-            { value: "c", text: "1,989 Ω" },
-            { value: "d", text: "0,1989 Ω" }
-        ],
-        correctAnswer: "c",
-        steps: `
-            <p>Utilitzem la llei de Pouillet: $R = \\rho \\cdot \\frac{L}{S}$.</p>
-            <ul>
-                <li><strong>Resistivitat ($\rho$):</strong> $0,5\\ \\mu\\Omega\\cdot m = 0,5 \\cdot 10^{-6}\\ \\Omega\\cdot m$</li>
-                <li><strong>Longitud ($L$):</strong> $2\\ m$</li>
-                <li><strong>Diàmetre ($d$):</strong> $0,8\\ mm = 0,8 \\cdot 10^{-3}\\ m$</li>
-            </ul>
-            <p>Primer calculem la secció ($S$):</p>
-            $$ S = \\pi \\cdot \\left(\\frac{d}{2}\\right)^2 = \\pi \\cdot (0,4 \\cdot 10^{-3})^2 \\approx 5,027 \\cdot 10^{-7}\\ m^2 $$
-            <p>Ara calculem la resistència:</p>
-            $$ R = \\frac{0,5 \\cdot 10^{-6} \\cdot 2}{5,027 \\cdot 10^{-7}} = \\frac{1 \\cdot 10^{-6}}{0,5027 \\cdot 10^{-6}} \\approx 1,989\\ \\Omega $$
-        `
-    },
-    {
-        text: "Un calefactor disposa de dues resistències (R = 50 Ω cadascuna) que es poden connectar segons dues configuracions diferents (Sèrie i Paral·lel) a una tensió U = 230 V. Calcula la potència consumida en cada cas.",
-        type: "exercicis",
-        category: "electrics",
-        images: "",
-        options: [
-            { value: "a", text: "Sèrie: 529 W, Paral·lel: 2116 W" },
-            { value: "b", text: "Sèrie: 1058 W, Paral·lel: 529 W" },
-            { value: "c", text: "Sèrie: 264 W, Paral·lel: 1058 W" },
-            { value: "d", text: "Sèrie: 2116 W, Paral·lel: 529 W" }
-        ],
-        correctAnswer: "a",
-        steps: `
-            <p>La potència es calcula com $P = \\frac{U^2}{R_{eq}}$. Tenim $U = 230\\ V$ i $R = 50\\ \\Omega$.</p>
-            
-            <h3>Cas 1: Connexió en Sèrie</h3>
-            <p>La resistència equivalent és la suma:</p>
-            $$ R_{eq} = R + R = 50 + 50 = 100\\ \\Omega $$
-            $$ P_{serie} = \\frac{230^2}{100} = \\frac{52900}{100} = 529\\ W $$
-
-            <h3>Cas 2: Connexió en Paral·lel</h3>
-            <p>La resistència equivalent de dues resistències iguals en paral·lel és la meitat:</p>
-            $$ R_{eq} = \\frac{R}{2} = 25\\ \\Omega $$
-            $$ P_{paral·lel} = \\frac{230^2}{25} = \\frac{52900}{25} = 2116\\ W $$
-        `
-    },
-
-    // -------------------------------------------------------------------------
-    // CONTROL I AUTOMATITZACIÓ
-    // -------------------------------------------------------------------------
-    {
-        text: "Una guillotina disposa de dos polsadors ($PP_1, PP_2$) i d'un pedal ($p$). El motor ($m$) de la guillotina es posa en marxa (m=1) si s'acciona el pedal (p=1) i, com a mínim, es prem un dels polsadors. Troba la funció lògica.",
-        type: "exercicis",
-        category: "control",
-        options: [
-            { value: "a", text: "m = p + (PP1 · PP2)" },
-            { value: "b", text: "m = p · (PP1 + PP2)" },
-            { value: "c", text: "m = p + PP1 + PP2" },
-            { value: "d", text: "m = p · PP1 · PP2" }
-        ],
-        correctAnswer: "b",
-        steps: `
-            <p>Analitzem l'enunciat:</p>
-            <ul>
-                <li>"S'acciona el pedal": Variable $p$. Condició necessària (AND).</li>
-                <li>"Com a mínim un dels polsadors": Això és una suma lògica (OR) entre $PP_1$ i $PP_2$.</li>
-            </ul>
-            <p>Per tant, la funció és el pedal AND (Polsador 1 OR Polsador 2).</p>
-            $$ m = p \\cdot (PP_1 + PP_2) $$
-            
-            <p><strong>Taula de veritat:</strong></p>
-            <style>
-                .truth-table { border-collapse: collapse; width: 100%; max-width: 400px; margin: 10px 0; }
-                .truth-table th, .truth-table td { border: 1px solid #ddd; padding: 8px; text-align: center; }
-                .truth-table th { background-color: #f2f2f2; color: #333; }
-                .dark-mode .truth-table th { background-color: #333; color: #f2f2f2; }
-            </style>
-            <table class="truth-table">
-                <tr><th>p</th><th>PP1</th><th>PP2</th><th>m</th></tr>
-                <tr><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td>0</td><td>0</td><td>1</td><td>0</td></tr>
-                <tr><td>0</td><td>1</td><td>0</td><td>0</td></tr>
-                <tr><td>0</td><td>1</td><td>1</td><td>0</td></tr>
-                <tr><td>1</td><td>0</td><td>0</td><td>0</td></tr>
-                <tr><td>1</td><td>0</td><td>1</td><td>1</td></tr>
-                <tr><td>1</td><td>1</td><td>0</td><td>1</td></tr>
-                <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
-            </table>
-                    `
-    },
-    {
-        text: "Un cotxe disposa d'una alarma ($a$) que sona si la velocitat supera un límit ($v=1$) i algun passatger porta el cinturó descordat ($c=0$) o hi ha una porta oberta ($p=0$). Les variables són: $c=1$ (cordat), $p=1$ (tancada). [cite_start]Quina és la funció lògica? [cite: 268, 271]",
-        type: "exercicis",
-        category: "control",
-        options: [
-            { value: "a", text: "a = v · (c + p)" },
-            { value: "b", text: "a = v · (NOT c + NOT p)" },
-            { value: "c", text: "a = v + (NOT c · NOT p)" },
-            { value: "d", text: "a = v · NOT c · NOT p" }
-        ],
-        correctAnswer: "b",
-        steps: `
-            <p>Condicions per a que soni l'alarma ($a=1$):</p>
-            <ol>
-                <li>Velocitat superior al límit ($v=1$).</li>
-                <li><strong>I</strong> (Operació AND).</li>
-                <li>(Cinturó descordat <strong>O</strong> Porta oberta).</li>
-            </ol>
-            <p>Traducció a variables:</p>
-            <ul>
-                <li>Cinturó descordat: Si $c=1$ és cordat, descordat és $\\bar{c}$ (NOT c).</li>
-                <li>Porta oberta: Si $p=1$ és tancada, oberta és $\\bar{p}$ (NOT p).</li>
-            </ul>
-            <p>Funció final:</p>
-            $$ a = v \\cdot (\\bar{c} + \\bar{p}) $$
-            <p>Aplicant Morgan, també es podria escriure com $a = v \\cdot \\overline{(c \\cdot p)}$.</p>
-        `
-    },
-
-    // -------------------------------------------------------------------------
-    // MOTORS I PNEUMÀTICA/HIDRÀULICA
-    // -------------------------------------------------------------------------
-    {
-        text: "Una instal·lació de reg disposa d'una bomba que puja q = 17 L/s d'aigua a una altura h = 2,8 m. Quina és la potència hidràulica desenvolupada?",
-        type: "exercicis",
-        category: "pneumatica",
-        images: "",
-        options: [
-            { value: "a", text: "466,5 W" },
-            { value: "b", text: "47,6 W" },
-            { value: "c", text: "46648 W" },
-            { value: "d", text: "166,6 W" }
-        ],
-        correctAnswer: "a",
-        steps: `
-            <p>La potència hidràulica es calcula amb la fórmula:</p>
-            $$ P_h = \\rho \\cdot g \\cdot q \\cdot h $$
-            <p>On:</p>
-            <ul>
-                <li>$\\rho$ (densitat aigua) = $1000\\ kg/m^3$</li>
-                <li>$g$ (gravetat) = $9,8\\ m/s^2$</li>
-                <li>$q$ (cabal) = $17\\ L/s = 0,017\\ m^3/s$</li>
-                <li>$h$ (altura) = $2,8\\ m$</li>
-            </ul>
-            <p>Càlcul:</p>
-            $$ P_h = 1000 \\cdot 9,8 \\cdot 0,017 \\cdot 2,8 $$
-            $$ P_h = 466,48\\ W \\approx 466,5\\ W $$
-        `
-    },
-    {
-        text: "Un motor d'explosió consumeix 4,5 L/100 km i fa servir un gasoil que produeix 2,35 kg de CO₂ per litre. [cite_start]En un viatge de 950 km, quina quantitat de CO₂ emet? [cite: 36, 37]",
-        type: "questions",
-        category: "energia",
-        options: [
-            { value: "a", text: "100,5 kg" },
-            { value: "b", text: "1005 kg" },
-            { value: "c", text: "181,9 kg" },
-            { value: "d", text: "1819 kg" }
-        ],
-        correctAnswer: "a",
-        steps: `
-            <p>Primer calculem el consum total de combustible per als 950 km:</p>
-            $$ Consum_{total} = \\frac{4,5\\ L}{100\\ km} \\cdot 950\\ km = 42,75\\ L $$
-            <p>Ara multipliquem pels kg de CO₂ emesos per litre:</p>
-            $$ Emissions = 42,75\\ L \\cdot 2,35\\ \\frac{kg CO_2}{L} = 100,4625\\ kg $$
-            <p>Arrodonint, obtenim 100,5 kg.</p>
-        `
-    }
+  // =======================================================
+  // JUNY 2010 - SÈRIE 4
+  // =======================================================
+  {
+    type: "Questions",
+    category: "Organització industrial",
+    question: "Qüestió 1: Beneficis producció c=(45000+80n), venda=130.",
+    options: ["a) 215", "b) 450", "c) 565", "d) 900"],
+    correctOption: "d",
+    imgCode: "2010-Jun-S4-Q1"
+  },
+  {
+    type: "Questions",
+    category: "Màquines i sistemes elèctrics",
+    question: "Qüestió 2: Tolerància de 3 resistències sèrie ±5%.",
+    options: ["a) ±2,5%", "b) ±5%", "c) ±10%", "d) ±15%"],
+    correctOption: "b",
+    imgCode: "2010-Jun-S4-Q2"
+  },
+  {
+    type: "Questions",
+    category: "Principis de les màquines",
+    question: "Qüestió 3: Torn (v=3mm/s, pas=0,4mm). Velocitat gir?",
+    options: ["a) 8 min⁻¹", "b) 72 min⁻¹", "c) 472 min⁻¹", "d) 450 min⁻¹"],
+    correctOption: "d",
+    imgCode: "2010-Jun-S4-Q3"
+  },
+  {
+    type: "Questions",
+    category: "Energia",
+    question: "Qüestió 4: Emissions g/km (6,5L/100km, 2,3kg/L).",
+    options: ["a) 149,5 g/km", "b) 14,95 g/km", "c) 282,6 g/km", "d) 28,26 g/km"],
+    correctOption: "a",
+    imgCode: "2010-Jun-S4-Q4"
+  },
+  {
+    type: "Questions",
+    category: "Organització industrial",
+    question: "Qüestió 5: Càrrega camió (MMA 15500, Tara 10000, Contenidor 1500).",
+    options: ["a) 3", "b) 4", "c) 6", "d) 10"],
+    correctOption: "a",
+    imgCode: "2010-Jun-S4-Q5"
+  },
+  {
+    type: "Exercicis",
+    category: "Control lògic",
+    imgCode: "2010-Jun-S4-Ex2",
+    steps: [
+      {
+        statement: "a) Taula de veritat (Bomba incendi, 2 interruptors, porta oberta p=0).",
+        solution: "La bomba s'activa quan p=0 i (i1=1 o i2=1)."
+      },
+      {
+        statement: "b) Funció lògica.",
+        solution: "b = (i1 + i2) · (not p)"
+      },
+      {
+        statement: "c) Esquema de contactes.",
+        solution: "Paral·lel (i1, i2) en sèrie amb un contacte tancat (p)."
+      }
+    ]
+  },
+  {
+    type: "Exercicis",
+    category: "Motors reductors",
+    imgCode: "2010-Jun-S4-Ex3-A",
+    steps: [
+      {
+        statement: "a) Massa m del plafó.",
+        solution: "m = 1,6 · 1,1 · 7 = 12,32 kg"
+      },
+      {
+        statement: "b) Potència Ps a l'eix de sortida.",
+        solution: "Ps = 38 · 17 · 2π/60 = 67,65 W"
+      },
+      {
+        statement: "c) Rendiment electromecànic η.",
+        solution: "η = 67,65 / (230 · 1,3) = 0,2263 (22,6%)"
+      },
+      {
+        statement: "d) Energia consumida i dissipada en 30s.",
+        solution: "E_elec = 8970 J; E_diss = 6941 J"
+      }
+    ]
+  },
+  {
+    type: "Exercicis",
+    category: "Materials i assaigs",
+    imgCode: "2010-Jun-S4-Ex4-A",
+    steps: [
+      {
+        statement: "a) Distància L2.",
+        solution: "L2 = 2 · L1 · cos 40 = 3,064 m"
+      },
+      {
+        statement: "b) Força F cable.",
+        solution: "F = mg / (2 · sin 40) = 1526 N"
+      },
+      {
+        statement: "c) Tensió normal σ.",
+        solution: "σ = 1526 / (π · 2,5^2 mm^2) = 77,70 MPa"
+      },
+      {
+        statement: "d) Deformació unitària ε.",
+        solution: "ε = 77,70e6 / 20e9 = 3,885·10^-3"
+      }
+    ]
+  },
+  {
+    type: "Exercicis",
+    category: "Màquines i sistemes elèctrics",
+    imgCode: "2010-Jun-S4-Ex3-B",
+    steps: [
+      {
+        statement: "a) Energia E en 8h.",
+        solution: "E = 75 · 1,8 · 1,35 · 8 = 1,458 kWh (5249 kJ)"
+      },
+      {
+        statement: "b) Resistència R i corrent I.",
+        solution: "I = 0,7924 A; R = 290,3 Ω"
+      },
+      {
+        statement: "c) Potència Pc a 110V.",
+        solution: "Pc = 110^2 / 290,3 = 41,69 W"
+      },
+      {
+        statement: "d) Longitud L del fil.",
+        solution: "L = (290,3 · π · 0,3^2 mm^2) / 0,2 = 410,3 m"
+      }
+    ]
+  },
+  {
+    type: "Exercicis",
+    category: "Motors reductors",
+    imgCode: "2010-Jun-S4-Ex4-B",
+    steps: [
+      {
+        statement: "a) Treball W fet per l'elevador.",
+        solution: "W = 800 · 9,807 · 15 = 117,7 kJ"
+      },
+      {
+        statement: "b) Potència útil Pm.",
+        solution: "Pm = 9415 W (càlcul via W/t o mgv)"
+      },
+      {
+        statement: "c) Rendiment η.",
+        solution: "η = 9415 / 12000 = 0,7846 (78,46%)"
+      },
+      {
+        statement: "d) Potència dissipada Pdiss.",
+        solution: "P_diss = 12000 - 9415 = 2585 W"
+      }
+    ]
+  }
 ];
